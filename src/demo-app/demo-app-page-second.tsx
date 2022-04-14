@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -25,7 +25,13 @@ export function DemoAppPageSecond() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const common = useSelector((state: StoreState) => state.rootReducer.second.common);
-  const [option, setOption] = useState<CommonOptionModel[]>([]);
+  const [option, setOption] = useState<CommonOptionModel[]>([
+    { value: 'A', text: 'AAAAA' },
+    { value: 'B', text: 'BBBBB' },
+    { value: 'C', text: 'CCCCC' },
+    { value: 'D', text: 'DDDDD' },
+    { value: 'E', text: 'EEEEE' },
+  ]);
   let form: SecondFormModel = { ...useSelector((state: StoreState) => state.rootReducer.second.form) };
   let grid: SecondGridModel[] = [ ...useSelector((state: StoreState) => state.rootReducer.second.grid) ];
   const {
@@ -40,14 +46,14 @@ export function DemoAppPageSecond() {
   } = useCommonBindStoreStateArray(grid, secondSaveGrid);
   useCommonRouteGuard();
   useCommonConstructor(() => {
-    setOption([
-      { value: 'A', text: 'AAAAA' },
-      { value: 'B', text: 'BBBBB' },
-      { value: 'C', text: 'CCCCC' },
-      { value: 'D', text: 'DDDDD' },
-      { value: 'E', text: 'EEEEE' },
-    ]);
+    // do something
   });
+  // useEffect
+  useEffect(
+    () => {
+      console.log('DemoAppPageSecond useEffect');
+    }
+  );
   const onClickNavigate = () => {
     navigate('../first');
   };

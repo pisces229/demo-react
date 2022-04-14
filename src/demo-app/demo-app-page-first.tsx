@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -25,7 +25,13 @@ export function DemoAppPageFirst() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const common = useSelector((state: StoreState) => state.rootReducer.first.common);
-  const [option, setOption] = useState<CommonOptionModel[]>([]);
+  const [option, setOption] = useState<CommonOptionModel[]>([
+    { value: 'A', text: 'AAAAA' },
+    { value: 'B', text: 'BBBBB' },
+    { value: 'C', text: 'CCCCC' },
+    { value: 'D', text: 'DDDDD' },
+    { value: 'E', text: 'EEEEE' },
+  ]);
   const [form, setForm] = useState<FirstFormModel>(
     { ...useSelector((state: StoreState) => state.rootReducer.first.form) }
   );
@@ -44,14 +50,15 @@ export function DemoAppPageFirst() {
   } = useCommonBindStateArray(grid, setGrid);
   useCommonRouteGuard();
   useCommonConstructor(() => {
-    setOption([
-      { value: 'A', text: 'AAAAA' },
-      { value: 'B', text: 'BBBBB' },
-      { value: 'C', text: 'CCCCC' },
-      { value: 'D', text: 'DDDDD' },
-      { value: 'E', text: 'EEEEE' },
-    ]);
+    // do something
   });
+  // useEffect
+  useEffect(
+    () => {
+      console.log('MOUNTED');
+      return () => console.log('UNMOUNTED');
+    }
+  );
   const onClickNavigate = () => {
     dispatch(firstSaveForm(form));
     dispatch(firstSaveGrid(grid));

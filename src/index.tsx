@@ -14,6 +14,7 @@ import { DemoStyleApp } from './demo-styled/demo-styled-app';
 import { DemoAppApp } from './demo-app/demo-app-app';
 
 const root = ReactDOM.createRoot(document.getElementById("root") as any);
+// React Strict Mode does is run certain callbacks/methods twice (in DEV mode ONLY).
 root.render(
   <React.StrictMode>
     {/* <DemoDefaultApp /> */}
