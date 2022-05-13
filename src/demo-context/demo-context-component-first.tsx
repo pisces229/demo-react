@@ -1,7 +1,7 @@
 import React from "react";
 import { DemoContextContext } from "./demo-context-context";
 
-export class DemoContextComponentFirst extends React.Component<{},{},{}> {
+export class DemoContextComponentFirst extends React.Component<{}, {}, {}> {
   static contextType = DemoContextContext;
   context!: React.ContextType<typeof DemoContextContext>;
   //context: React.ContextType<typeof DemoContextContext>;
@@ -9,9 +9,15 @@ export class DemoContextComponentFirst extends React.Component<{},{},{}> {
   //   super(prop);
   // }
   render() {
-    const {count, plusCount} = this.context;
+    const { count, plusCount } = this.context;
     return (
-      <button onClick={() => { plusCount() }}>TestComponentFirst:[{count}]</button>
+      <button
+        onClick={() => {
+          plusCount();
+        }}
+      >
+        TestComponentFirst:[{count}]
+      </button>
     );
   }
 }

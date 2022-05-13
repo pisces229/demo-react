@@ -4,6 +4,12 @@ import { DemoContextContext } from "./demo-context-context";
 export function DemoContextComponentSecond() {
   const { count, plusCount } = useContext(DemoContextContext);
   return (
-    <button onClick={() => { plusCount() }}>TestComponentSecond:[{count}]</button>
+    <button
+      onClick={() => {
+        plusCount();
+      }}
+    >
+      TestComponentSecond:[{count}]
+    </button>
   );
 }

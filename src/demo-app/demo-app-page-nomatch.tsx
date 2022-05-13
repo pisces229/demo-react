@@ -4,10 +4,10 @@ import { useCommonConstructor, useCommonRouteGuard } from "./demo-app-hook";
 export function DemoAppPageNoMatch() {
   const navigate = useNavigate();
   useCommonRouteGuard();
-  useCommonConstructor(() => { });
+  useCommonConstructor(() => {});
   return (
-  <>
-    <h2>DemoAppPageNoMatch</h2>
-  </>
+    <>
+      <h2>DemoAppPageNoMatch</h2>
+    </>
   );
 }

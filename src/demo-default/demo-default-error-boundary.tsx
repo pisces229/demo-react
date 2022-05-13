@@ -1,6 +1,9 @@
 import React from "react";
 
-export class DemoDefaultErrorBoundary extends React.Component<any,{ hasError: boolean }>{
+export class DemoDefaultErrorBoundary extends React.Component<
+  any,
+  { hasError: boolean }
+> {
   constructor(props: any) {
     super(props);
     this.state = { hasError: false };

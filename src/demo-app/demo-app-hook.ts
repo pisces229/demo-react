@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from 'react-router';
 
 // useCommonConstructor
-export const useCommonConstructor = (callBack = () => {}) => {
+export const useCommonConstructor = (callBack = () => { }) => {
   const [init, setInit] = useState(false);
   if (!init) {
     callBack();
@@ -16,7 +16,7 @@ export const useCommonRouteGuard = () => {
   let location = useLocation();
   let navigate = useNavigate();
   useEffect(() => {
-    console.log(`useEffect[location]:${ JSON.stringify(location) }`);
+    console.log(`useEffect[location]:${JSON.stringify(location)}`);
     // do something
   }, [location]);
 };
@@ -32,7 +32,7 @@ export const commonChangeEvent = <T>(data: T) => {
         if (e.target.value === 'on') {
           data = { ...data, [e.target.name]: e.target.checked };
         } else {
-          let value = [ ...(data as any)[e.target.name] ];
+          let value = [...(data as any)[e.target.name]];
           if (e.target.checked) {
             if (!value.includes(e.target.value)) {
               value.push(e.target.value);
@@ -65,7 +65,7 @@ export const commonChangeEvent = <T>(data: T) => {
     if (!e.target.multiple) {
       data = { ...data, [e.target.name]: e.target.value };
     } else {
-      const value :string[] = [];
+      const value: string[] = [];
       for (let i = 0; i < e.target.options.length; ++i) {
         if (e.target.options[i].selected) {
           value.push(e.target.options[i].value);
@@ -94,15 +94,15 @@ export const useCommonBindStateValue = <T>(state: T, setState: React.Dispatch<Re
 export const useCommonBindStateArray = <T>(state: T[], setState: React.Dispatch<React.SetStateAction<T[]>>) => {
   const input = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
     state[index] = commonChangeEvent(state[index]).input(e);
-    setState([ ...state ]);
+    setState([...state]);
   };
   const select = (index: number) => (e: React.ChangeEvent<HTMLSelectElement>) => {
     state[index] = commonChangeEvent(state[index]).select(e);
-    setState([ ...state ]);
+    setState([...state]);
   };
   const textarea = (index: number) => (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     state[index] = commonChangeEvent(state[index]).textarea(e);
-    setState([ ...state ]);
+    setState([...state]);
   };
   return { input, select, textarea };
 };
@@ -122,15 +122,15 @@ export const useCommonBindStoreStateArray = <T>(storeState: T[], action: ActionC
   const dispatch = useDispatch();
   const input = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
     storeState[index] = commonChangeEvent(storeState[index]).input(e);
-    dispatch(action([ ...storeState ]));
+    dispatch(action([...storeState]));
   };
   const select = (index: number) => (e: React.ChangeEvent<HTMLSelectElement>) => {
     storeState[index] = commonChangeEvent(storeState[index]).select(e);
-    dispatch(action([ ...storeState ]));
+    dispatch(action([...storeState]));
   };
   const textarea = (index: number) => (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     storeState[index] = commonChangeEvent(storeState[index]).textarea(e);
-    dispatch(action([ ...storeState ]));
+    dispatch(action([...storeState]));
   };
   return { input, select, textarea };
 };

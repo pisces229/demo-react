@@ -1,17 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 export function DemoHookFirst() {
-  useEffect(
-    () => {
-      console.log('MOUNTED');
-      return () => {
-        console.log('UNMOUNTED');
-      }
-    }
-  );
+  useEffect(() => {
+    console.log("MOUNTED");
+    return () => {
+      console.log("UNMOUNTED");
+    };
+  });
   return (
-  <>
-    <h2>DemoHookFirst</h2>
-  </>
+    <>
+      <h2>DemoHookFirst</h2>
+    </>
   );
 }

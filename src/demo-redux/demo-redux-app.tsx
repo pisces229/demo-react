@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
-import { Provider, useDispatch, useSelector } from 'react-redux';
-import { commonAction } from './demo-redux-action';
+import React, { useCallback } from "react";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import { commonAction } from "./demo-redux-action";
 // createReducer
 // import {
 //   countActionDecrement,
@@ -16,16 +16,16 @@ import {
   countActionDecrement,
   countActionIncrementPayload,
   countActionDecrementPayload,
-} from './demo-redux-count-slice';
-import { store, StoreState } from './demo-redux-store';
+} from "./demo-redux-count-slice";
+import { store, StoreState } from "./demo-redux-store";
 // thunk
-import {
-  apiDefaultTest
-} from './demo-redux-thunk';
+import { apiDefaultTest } from "./demo-redux-thunk";
 
 function DemoReduxAppFirst() {
   const dispatch = useDispatch();
-  const countValue = useSelector((state: StoreState) => state.rootReducer.count.value);
+  const countValue = useSelector(
+    (state: StoreState) => state.rootReducer.count.value
+  );
   const handleIncrement = () => {
     dispatch(countActionIncrement());
   };
@@ -33,25 +33,27 @@ function DemoReduxAppFirst() {
     dispatch(countActionDecrement());
   };
   const handleCommonAction = () => {
-    dispatch(commonAction('value'));
+    dispatch(commonAction("value"));
   };
   const handleApiDefaultTest = () => {
-    dispatch(apiDefaultTest('value'));
+    dispatch(apiDefaultTest("value"));
   };
   return (
-  <>
-    <div>DemoReduxAppFirst countValue:[{countValue}]</div>
-    <button onClick={handleIncrement}>countActionIncrement</button>
-    <button onClick={handleDecrement}>countActionDecrement</button>
-    <button onClick={handleCommonAction}>commonAction</button>
-    <button onClick={handleApiDefaultTest}>apiDefaultTest</button>
-  </>
+    <>
+      <div>DemoReduxAppFirst countValue:[{countValue}]</div>
+      <button onClick={handleIncrement}>countActionIncrement</button>
+      <button onClick={handleDecrement}>countActionDecrement</button>
+      <button onClick={handleCommonAction}>commonAction</button>
+      <button onClick={handleApiDefaultTest}>apiDefaultTest</button>
+    </>
   );
-};
+}
 
 function DemoReduxAppSecond() {
   const dispatch = useDispatch();
-  const countValue = useSelector((state: StoreState) => state.rootReducer.count.value);
+  const countValue = useSelector(
+    (state: StoreState) => state.rootReducer.count.value
+  );
   const handleIncrement = () => {
     dispatch(countActionIncrement());
   };
@@ -65,21 +67,25 @@ function DemoReduxAppSecond() {
     dispatch(countActionDecrementPayload(2));
   };
   return (
-  <>
-    <div>DemoReduxAppSecond countValue:[{countValue}]</div>
-    <button onClick={handleIncrement}>countActionIncrement</button>
-    <button onClick={handleDecrement}>countActionDecrement</button>
-    <button onClick={handleIncrementPayload}>countActionIncrementPayload</button>
-    <button onClick={handleDecrementPayload}>countActionDecrementPayload</button>
-  </>
+    <>
+      <div>DemoReduxAppSecond countValue:[{countValue}]</div>
+      <button onClick={handleIncrement}>countActionIncrement</button>
+      <button onClick={handleDecrement}>countActionDecrement</button>
+      <button onClick={handleIncrementPayload}>
+        countActionIncrementPayload
+      </button>
+      <button onClick={handleDecrementPayload}>
+        countActionDecrementPayload
+      </button>
+    </>
   );
-};
+}
 
 export function DemoReduxApp() {
   return (
-  <Provider store={store}>
-    <DemoReduxAppFirst />
-    <DemoReduxAppSecond />
-  </Provider>
+    <Provider store={store}>
+      <DemoReduxAppFirst />
+      <DemoReduxAppSecond />
+    </Provider>
   );
 }

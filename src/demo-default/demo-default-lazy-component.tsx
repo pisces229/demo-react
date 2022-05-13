@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 // export class DemoDefaultLazyComponent extends React.Component<{},{}>{
 //   constructor(props: {}) {
@@ -14,7 +14,5 @@ import React from 'react';
 // }
 
 export function DemoDefaultLazyComponent() {
-  return (
-    <h1>DemoDefaultLazyComponent</h1>
-  );
+  return <h1>DemoDefaultLazyComponent</h1>;
 }

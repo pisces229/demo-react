@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   Link,
   useLocation,
@@ -45,7 +45,7 @@ function useDemoRouterHook() {
   let navigate = useNavigate();
   // let outlet = useOutlet();
   let { result } = useParams();
-  let resolvedPath = useResolvedPath('first');
+  let resolvedPath = useResolvedPath("first");
   // let [searchParams, setSearchParams] = useSearchParams();
   let match = useMatch({ path: location.pathname, end: true });
   // let match = useMatch({ path: 'first', end: true });
@@ -63,15 +63,15 @@ function useDemoRouterHook() {
     console.log(`useEffect[location]`);
   }, [location]);
   let handleClickNavigate = () => {
-    if (location.pathname === '/first') {
+    if (location.pathname === "/first") {
       navigate(`../second`);
       // navigate(`../second`, { replace: true });
     }
-    if (location.pathname === '/second') {
+    if (location.pathname === "/second") {
       navigate(`../first`);
       // navigate(`../first`, { replace: true });
     }
-  }
+  };
   // let handleClick = (event: React.MouseEvent<HTMLFormElement>) => {
   //   // let params = serializeFormQuery(event.target);
   //   setSearchParams(params);
@@ -93,13 +93,12 @@ function DemoRouterFirst() {
 function DemoRouterSecond() {
   let { handleClickNavigate } = useDemoRouterHook();
   return (
-  <>
-    <h2>DemoRouterSecond</h2>
-    <nav>
-      <Link to="/first">First</Link>
-    </nav>
-    <button onClick={handleClickNavigate}>First</button>
-  </>
+    <>
+      <h2>DemoRouterSecond</h2>
+      <nav>
+        <Link to="/first">First</Link>
+      </nav>
+      <button onClick={handleClickNavigate}>First</button>
+    </>
   );
 }
-

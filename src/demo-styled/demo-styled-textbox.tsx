@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 const CssInput = css`
   color: red;
@@ -17,9 +17,13 @@ const StyledInputText = styled.input.attrs({
 
 export function DemoStyledTextbox(props: { message: string }) {
   return (
-  <>
-    <input className={StyledInput.toString()} type="text" defaultValue={props.message} />
-    <StyledInputText defaultValue={props.message} />
-  </>
+    <>
+      <input
+        className={StyledInput.toString()}
+        type="text"
+        defaultValue={props.message}
+      />
+      <StyledInputText defaultValue={props.message} />
+    </>
   );
-};
+}

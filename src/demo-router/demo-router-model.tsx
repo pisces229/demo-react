@@ -1,9 +1,4 @@
-import {
-  Outlet,
-  Link,
-  useRoutes,
-  RouteObject,
-} from "react-router-dom";
+import { Outlet, Link, useRoutes, RouteObject } from "react-router-dom";
 
 export function DemoRouterModel() {
   // let routeObject: RouteObject[] = [
@@ -77,7 +72,7 @@ export function DemoRouterModel() {
   // ];
   let routeObject: RouteObject[] = [
     {
-      path: '/',
+      path: "/",
       element: (
         <>
           <h1>DemoRouterModel</h1>
@@ -100,10 +95,10 @@ export function DemoRouterModel() {
           <Outlet />
         </>
       ),
-      children:[
+      children: [
         {
           index: true,
-          element: (<h2>[index]</h2>)
+          element: <h2>[index]</h2>,
         },
         {
           path: "first",
@@ -132,21 +127,21 @@ export function DemoRouterModel() {
           children: [
             {
               index: true,
-              element: (<h2>[index]</h2>)
+              element: <h2>[index]</h2>,
             },
             {
-              path: 'first',
-              element: (<h2>[first]</h2>)
+              path: "first",
+              element: <h2>[first]</h2>,
             },
             {
-              path: 'second',
-              element: (<h2>[second]</h2>)
+              path: "second",
+              element: <h2>[second]</h2>,
             },
             {
-              path: '*',
-              element: (<h2>[NoMatch]</h2>)
+              path: "*",
+              element: <h2>[NoMatch]</h2>,
             },
-          ]
+          ],
         },
         {
           path: "second",
@@ -175,33 +170,29 @@ export function DemoRouterModel() {
           children: [
             {
               index: true,
-              element: (<h2>[index]</h2>)
+              element: <h2>[index]</h2>,
             },
             {
-              path: 'first',
-              element: (<h2>[first]</h2>)
+              path: "first",
+              element: <h2>[first]</h2>,
             },
             {
-              path: 'second',
-              element: (<h2>[second]</h2>)
+              path: "second",
+              element: <h2>[second]</h2>,
             },
             {
-              path: '*',
-              element: (<h2>[NoMatch]</h2>)
+              path: "*",
+              element: <h2>[NoMatch]</h2>,
             },
-          ]
+          ],
         },
         {
           path: "*",
-          element: (<h2>[NoMatch]</h2>)
-        }
-      ]
+          element: <h2>[NoMatch]</h2>,
+        },
+      ],
     },
   ];
   let element = useRoutes(routeObject);
-  return (
-  <>
-    {element}
-  </>
-  );
+  return <>{element}</>;
 }
