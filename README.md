@@ -53,3 +53,17 @@ styled-components
 `npm install --save @types/styled-components`
 
 `npm install --save-dev jest-styled-components`
+
+## Self-certification
+
+[Install Chocolatey with PowerShell](https://docs.chocolatey.org/en-us/choco/setup)
+
+`choco --version`
+
+`choco install mkcert`
+
+`mkcert -install`
+
+`mkcert -help`
+
+`mkcert localhost 127.0.0.1 ::1`
