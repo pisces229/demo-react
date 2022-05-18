@@ -143,7 +143,7 @@ export function DemoFetchApp() {
             if (f.indexOf("filename") > -1) {
               let texts = f.split("=");
               if (texts.length > 1) {
-                filename = texts[1];
+                filename = decodeURIComponent(texts[1]);
               }
             }
           });
