@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 const StyledLabelContainer = styled.label`
   align-items: center;
@@ -7,12 +7,12 @@ const StyledLabelContainer = styled.label`
   margin-bottom: 8px;
 `;
 const StyledInput = styled.input.attrs({
-  type: "checkbox",
+  type: 'checkbox',
 })``;
 const StyledLabel = styled.span`
   ${(props: { mode?: string }) => {
     switch (props.mode) {
-      case "dark":
+      case 'dark':
         return css`
           background-color: black;
           color: white;

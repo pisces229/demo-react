@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import {
   Link,
   useLocation,
@@ -13,7 +13,7 @@ import {
   Routes,
   Route,
   Outlet,
-} from "react-router-dom";
+} from 'react-router-dom';
 
 export function DemoRouterHook() {
   return (
@@ -45,7 +45,7 @@ function useDemoRouterHook() {
   let navigate = useNavigate();
   // let outlet = useOutlet();
   let { result } = useParams();
-  let resolvedPath = useResolvedPath("first");
+  let resolvedPath = useResolvedPath('first');
   // let [searchParams, setSearchParams] = useSearchParams();
   let match = useMatch({ path: location.pathname, end: true });
   // let match = useMatch({ path: 'first', end: true });
@@ -63,11 +63,11 @@ function useDemoRouterHook() {
     console.log(`useEffect[location]`);
   }, [location]);
   let handleClickNavigate = () => {
-    if (location.pathname === "/first") {
+    if (location.pathname === '/first') {
       navigate(`../second`);
       // navigate(`../second`, { replace: true });
     }
-    if (location.pathname === "/second") {
+    if (location.pathname === '/second') {
       navigate(`../first`);
       // navigate(`../first`, { replace: true });
     }

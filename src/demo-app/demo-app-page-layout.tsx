@@ -1,6 +1,6 @@
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { useCommonConstructor, useCommonRouteGuard } from "./demo-app-hook";
-import { Head1, Head2, Head3 } from "./demo-app-page-layout-styled";
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { useCommonConstructor, useCommonRouteGuard } from './demo-app-hook';
+import { Head1, Head2, Head3 } from './demo-app-page-layout-styled';
 
 export function DemoAppPageLayout() {
   const navigate = useNavigate();

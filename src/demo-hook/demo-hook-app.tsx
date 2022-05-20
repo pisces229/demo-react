@@ -1,5 +1,5 @@
-import { DemoHookAll } from "./demo-hook-all";
-import { DemoHookFirst } from "./demo-hook-first";
+import { DemoHookAll } from './demo-hook-all';
+import { DemoHookFirst } from './demo-hook-first';
 
 export function DemoHookApp() {
   return (

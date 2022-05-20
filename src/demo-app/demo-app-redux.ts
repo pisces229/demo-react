@@ -1,4 +1,9 @@
-import { combineReducers, configureStore, createAction, createSlice } from '@reduxjs/toolkit';
+import {
+  combineReducers,
+  configureStore,
+  createAction,
+  createSlice,
+} from '@reduxjs/toolkit';
 import {
   CommonModel,
   FirstFormModel,
@@ -10,7 +15,7 @@ import {
 export const commonMessage = createAction('common/message', (value: string) => {
   return {
     payload: value,
-  }
+  };
 });
 // slice
 const firstSlice = createSlice({
@@ -32,21 +37,20 @@ const firstSlice = createSlice({
     };
   },
   reducers: {
-    modifyCommonMessage: (state, action: { type: string, payload: string }) => {
+    modifyCommonMessage: (state, action: { type: string; payload: string }) => {
       state.common.message = action.payload;
     },
-    saveForm: (state, action: { type: string, payload: FirstFormModel }) => {
+    saveForm: (state, action: { type: string; payload: FirstFormModel }) => {
       state.form = { ...action.payload };
     },
-    saveGrid: (state, action: { type: string, payload: FirstGridModel[] }) => {
+    saveGrid: (state, action: { type: string; payload: FirstGridModel[] }) => {
       state.grid = action.payload;
     },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(commonMessage, (state, action) => {
-        state.common.message = action.payload;
-      });
+    builder.addCase(commonMessage, (state, action) => {
+      state.common.message = action.payload;
+    });
   },
 });
 // action
@@ -75,21 +79,20 @@ const secondSlice = createSlice({
     };
   },
   reducers: {
-    modifyCommonMessage: (state, action: { type: string, payload: string }) => {
+    modifyCommonMessage: (state, action: { type: string; payload: string }) => {
       state.common.message = action.payload;
     },
-    saveForm: (state, action: { type: string, payload: SecondFormModel }) => {
+    saveForm: (state, action: { type: string; payload: SecondFormModel }) => {
       state.form = { ...action.payload };
     },
-    saveGrid: (state, action: { type: string, payload: SecondGridModel[] }) => {
+    saveGrid: (state, action: { type: string; payload: SecondGridModel[] }) => {
       state.grid = action.payload;
     },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(commonMessage, (state, action) => {
-        state.common.message = action.payload;
-      });
+    builder.addCase(commonMessage, (state, action) => {
+      state.common.message = action.payload;
+    });
   },
 });
 // action

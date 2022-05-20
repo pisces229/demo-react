@@ -1,9 +1,9 @@
-import React, { lazy, Suspense } from "react";
-import { DemoDefaultErrorBoundary } from "./demo-default-error-boundary";
+import React, { lazy, Suspense } from 'react';
+import { DemoDefaultErrorBoundary } from './demo-default-error-boundary';
 const DemoDefaultLazyComponent = lazy(() =>
-  import("./demo-default-lazy-component").then((module) => ({
+  import('./demo-default-lazy-component').then((module) => ({
     default: module.DemoDefaultLazyComponent,
-  }))
+  })),
 );
 // ----- Welcome -----
 function Welcome(prop: { value: string }) {
@@ -72,10 +72,10 @@ class PropStateFirst extends React.Component<
   private timer!: NodeJS.Timer;
   constructor(props: { value: string }) {
     super(props);
-    this.state = { value: "" };
+    this.state = { value: '' };
   }
   componentDidMount(): void {
-    this.setState({ value: "FirstComponent" });
+    this.setState({ value: 'FirstComponent' });
   }
   render() {
     return (
@@ -95,10 +95,10 @@ class PropStateSecond extends React.Component<
   private timer!: NodeJS.Timer;
   constructor(props: { value: string }) {
     super(props);
-    this.state = { value: "" };
+    this.state = { value: '' };
   }
   componentDidMount() {
-    this.setState({ value: "SecondComponent" });
+    this.setState({ value: 'SecondComponent' });
   }
   render() {
     return (
@@ -140,10 +140,10 @@ class EventFirst extends React.Component<{}, { value: boolean }> {
       <>
         {/* <button onClick={this.clickFirst}> */}
         <button onClick={this.clickFirst.bind(this)}>
-          {this.state.value ? "ON" : "OFF"}
+          {this.state.value ? 'ON' : 'OFF'}
         </button>
         <button onClick={this.clickSecond}>
-          {this.state.value ? "ON" : "OFF"}
+          {this.state.value ? 'ON' : 'OFF'}
         </button>
       </>
     );
@@ -160,7 +160,7 @@ function Condition() {
   );
 }
 function ConditionFirst(prop: { value: number }) {
-  return <>{prop.value > 0 && <h2>{"prop.value > 0"}</h2>}</>;
+  return <>{prop.value > 0 && <h2>{'prop.value > 0'}</h2>}</>;
 }
 function ConditionSecond(prop: { value: number }) {
   switch (prop.value) {
@@ -186,7 +186,7 @@ function List() {
   );
 }
 function ListFirst() {
-  const items = [{ value: "A" }, { value: "B" }];
+  const items = [{ value: 'A' }, { value: 'B' }];
   return (
     <ul>
       {items.map((item, index) => (
@@ -196,7 +196,7 @@ function ListFirst() {
   );
 }
 function ListSecond() {
-  const items = [{ value: "A" }, { value: "B" }];
+  const items = [{ value: 'A' }, { value: 'B' }];
   const result = items.map((item, index) => (
     // 正確！Key 應該在 array 內被指定。
     <ListSecondItem key={index} value={item.value} />
@@ -222,7 +222,7 @@ class FormFirst extends React.Component<
 > {
   constructor(props: {}) {
     super(props);
-    this.state = { input: "", textarea: "", select: "", checkbox: false };
+    this.state = { input: '', textarea: '', select: '', checkbox: false };
   }
   formSubmit = (event: React.FormEvent<HTMLElement>) => {
     console.log(event);
@@ -300,18 +300,18 @@ class TemperatureMain extends React.Component<
 > {
   constructor(props: {}) {
     super(props);
-    this.state = { scale: "", temperature: "" };
+    this.state = { scale: '', temperature: '' };
   }
   celsiusChange = (temperature: string) => {
-    this.setState({ scale: "c", temperature });
+    this.setState({ scale: 'c', temperature });
   };
   fahrenheitChange = (temperature: string) => {
-    this.setState({ scale: "f", temperature });
+    this.setState({ scale: 'f', temperature });
   };
   tryConvert(temperature: string, convert: Function) {
     const input = parseFloat(temperature);
     if (Number.isNaN(input)) {
-      return "";
+      return '';
     }
     const output = convert(input);
     const rounded = Math.round(output * 1000) / 1000;
@@ -323,11 +323,11 @@ class TemperatureMain extends React.Component<
     const scale = this.state.scale;
     const temperature = this.state.temperature;
     const celsius =
-      scale === "f"
+      scale === 'f'
         ? this.tryConvert(temperature, this.toCelsius)
         : temperature;
     const fahrenheit =
-      scale === "c"
+      scale === 'c'
         ? this.tryConvert(temperature, this.toFahrenheit)
         : temperature;
     return (
@@ -367,7 +367,7 @@ class TemperatureInput extends React.Component<
     return (
       <fieldset>
         <legend>
-          Enter temperature in {scale === "f" ? "Fahrenheit" : "Celsius"}:
+          Enter temperature in {scale === 'f' ? 'Fahrenheit' : 'Celsius'}:
         </legend>
         <input value={temperature} onChange={this.change} />
       </fieldset>

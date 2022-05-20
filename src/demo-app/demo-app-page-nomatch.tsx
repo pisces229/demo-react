@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import { useCommonConstructor, useCommonRouteGuard } from "./demo-app-hook";
+import { useNavigate } from 'react-router-dom';
+import { useCommonConstructor, useCommonRouteGuard } from './demo-app-hook';
 
 export function DemoAppPageNoMatch() {
   const navigate = useNavigate();

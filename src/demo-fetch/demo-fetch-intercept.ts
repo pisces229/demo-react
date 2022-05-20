@@ -13,7 +13,7 @@ const FetchAuthorizationGet = async (url: string) => {
   headers.set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
   const request = new Request(url, {
     method: 'GET',
-    headers: headers
+    headers: headers,
   });
   const response = await FetchDefault(request);
   if (response.status === 401) {
@@ -38,7 +38,7 @@ const FetchAuthorizationGet = async (url: string) => {
     return response;
   }
 };
-const FetchAuthorizationPost = async (url: string, body: string|FormData) => {
+const FetchAuthorizationPost = async (url: string, body: string | FormData) => {
   const headers = new Headers();
   if (body instanceof String) {
     headers.set('Content-Type', 'application/json');
@@ -47,7 +47,7 @@ const FetchAuthorizationPost = async (url: string, body: string|FormData) => {
   const request = new Request(url, {
     method: 'POST',
     headers: headers,
-    body
+    body,
   });
   const response = await FetchDefault(request);
   if (response.status === 401) {
@@ -63,7 +63,7 @@ const FetchAuthorizationPost = async (url: string, body: string|FormData) => {
       const retryRequest = new Request(url, {
         method: 'POST',
         headers: headers,
-        body
+        body,
       });
       return await FetchDefault(retryRequest);
     } else {
@@ -79,11 +79,14 @@ const RunRefresh = async () => {
     localStorage.setItem('refresh', `${true}`);
     const refreshHeaders = new Headers();
     refreshHeaders.set('Content-Type', 'application/json');
-    const refreshRequest = new Request(`https://localhost:44392/api/login/Refresh`, {
-      method: 'POST',
-      headers: refreshHeaders,
-      body: JSON.stringify(localStorage.getItem('token')!)
-    });
+    const refreshRequest = new Request(
+      `https://localhost:44392/api/login/Refresh`,
+      {
+        method: 'POST',
+        headers: refreshHeaders,
+        body: JSON.stringify(localStorage.getItem('token')!),
+      },
+    );
     const refreshResponse = await FetchDefault(refreshRequest);
     if (refreshResponse.ok) {
       localStorage.setItem('token', await refreshResponse.text());
@@ -93,7 +96,10 @@ const RunRefresh = async () => {
   } finally {
     localStorage.removeItem('refresh');
   }
-}
+};
 const DoingRefresh = () => localStorage.getItem('refresh');
-const WaitRefresh = () => new Promise((resolve) => setTimeout(() => resolve(!!localStorage.getItem('refresh')), 100));
+const WaitRefresh = () =>
+  new Promise((resolve) =>
+    setTimeout(() => resolve(!!localStorage.getItem('refresh')), 100),
+  );
 export { FetchDefault, FetchAuthorizationGet, FetchAuthorizationPost };

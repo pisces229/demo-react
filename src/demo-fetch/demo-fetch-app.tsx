@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   FetchDefault,
   FetchAuthorizationGet,
   FetchAuthorizationPost,
-} from "./demo-fetch-intercept";
+} from './demo-fetch-intercept';
 interface CommonModel<T> {
   Success: boolean;
   Message: string;
@@ -13,12 +13,12 @@ export function DemoFetchApp() {
   // Example
   const synchronous = () => {
     const headers = new Headers();
-    headers.set("Content-Type", "application/json");
+    headers.set('Content-Type', 'application/json');
     FetchDefault(
       new Request(`https://localhost:44392/api/Default/Test`, {
-        method: "GET",
+        method: 'GET',
         headers: headers,
-      })
+      }),
     ).then(async (response) => {
       if (response.ok) {
         console.log(`then:[${await response.text()}]`);
@@ -27,12 +27,12 @@ export function DemoFetchApp() {
   };
   const asynchronous = async () => {
     const headers = new Headers();
-    headers.set("Content-Type", "application/json");
+    headers.set('Content-Type', 'application/json');
     const result = await FetchDefault(
       new Request(`https://localhost:44392/api/Default/Test`, {
-        method: "GET",
+        method: 'GET',
         headers: headers,
-      })
+      }),
     ).then((response) => {
       if (response.ok) {
         return response.text();
@@ -45,57 +45,57 @@ export function DemoFetchApp() {
   // Login
   const onClickLoginSignIn = () => {
     const headers = new Headers();
-    headers.set("Content-Type", "application/json");
+    headers.set('Content-Type', 'application/json');
     FetchDefault(
       new Request(`https://localhost:44392/api/Login/SignIn`, {
-        method: "POST",
+        method: 'POST',
         headers: headers,
-        body: JSON.stringify({ Username: "Username", Password: "Password" }),
-      })
+        body: JSON.stringify({ Username: 'Username', Password: 'Password' }),
+      }),
     ).then(async (response) => {
       if (response.ok) {
         const value: CommonModel<string> = await response.json();
         console.log(`value:[${JSON.stringify(value)}]`);
-        localStorage.setItem("token", value.Data);
+        localStorage.setItem('token', value.Data);
       }
     });
   };
   const onClickLoginRefresh = () => {
     const headers = new Headers();
-    headers.set("Content-Type", "application/json");
+    headers.set('Content-Type', 'application/json');
     FetchDefault(
       new Request(`https://localhost:44392/api/Login/Refresh`, {
-        method: "POST",
+        method: 'POST',
         headers: headers,
-        body: JSON.stringify(localStorage.getItem("token")!),
-      })
+        body: JSON.stringify(localStorage.getItem('token')!),
+      }),
     ).then(async (response) => {
       if (response.ok) {
         const value = await response.text();
         console.log(`value:[${value}]`);
-        localStorage.setItem("token", value);
+        localStorage.setItem('token', value);
       }
     });
   };
   const onClickLoginSignOut = () => {
     const headers = new Headers();
-    headers.set("Content-Type", "application/json");
+    headers.set('Content-Type', 'application/json');
     FetchDefault(
       new Request(`https://localhost:44392/api/Login/SignOut`, {
-        method: "POST",
+        method: 'POST',
         headers: headers,
-        body: JSON.stringify(localStorage.getItem("token")!),
-      })
+        body: JSON.stringify(localStorage.getItem('token')!),
+      }),
     ).then(async (response) => {
       if (response.ok) {
-        localStorage.removeItem("token");
+        localStorage.removeItem('token');
       }
     });
   };
   // Click
   const onClickTest = () => {
     FetchAuthorizationGet(
-      `https://localhost:44392/api/Test/GetValueByValue?value=hello`
+      `https://localhost:44392/api/Test/GetValueByValue?value=hello`,
     ).then(async (response) => {
       if (response.ok) {
         console.log(`then:[${await response.text()}]`);
@@ -103,14 +103,14 @@ export function DemoFetchApp() {
     });
     FetchAuthorizationPost(
       `https://localhost:44392/api/Test/PostValueByValue`,
-      JSON.stringify("hello")
+      JSON.stringify('hello'),
     ).then(async (response) => {
       if (response.ok) {
         console.log(`then:[${await response.text()}]`);
       }
     });
     FetchAuthorizationGet(
-      `https://localhost:44392/api/Test/GetValueByModel?Name=Pete&Count=1`
+      `https://localhost:44392/api/Test/GetValueByModel?Name=Pete&Count=1`,
     ).then(async (response) => {
       if (response.ok) {
         console.log(`then:[${JSON.stringify(await response.json())}]`);
@@ -118,7 +118,7 @@ export function DemoFetchApp() {
     });
     FetchAuthorizationPost(
       `https://localhost:44392/api/Test/PostValueByModel`,
-      JSON.stringify({ Name: "Pete", Count: 12, Date: new Date() })
+      JSON.stringify({ Name: 'Pete', Count: 12, Date: new Date() }),
     ).then(async (response) => {
       if (response.ok) {
         console.log(`then:[${JSON.stringify(await response.json())}]`);
@@ -128,28 +128,28 @@ export function DemoFetchApp() {
   const onClickDownload = () => {
     FetchAuthorizationPost(
       `https://localhost:44392/api/Test/Download`,
-      ""
+      '',
     ).then(async (response) => {
       if (response.ok) {
-        console.log(response.headers.get("content-type"));
+        console.log(response.headers.get('content-type'));
         if (
-          response.headers.get("content-type") !== "text/plain; charset=utf-8"
+          response.headers.get('content-type') !== 'text/plain; charset=utf-8'
         ) {
           const contentDispositionValues = response.headers
-            .get("content-disposition")
-            ?.split(";");
-          let filename = "download";
+            .get('content-disposition')
+            ?.split(';');
+          let filename = 'download';
           contentDispositionValues?.forEach((f) => {
-            if (f.indexOf("filename") > -1) {
-              let texts = f.split("=");
+            if (f.indexOf('filename') > -1) {
+              let texts = f.split('=');
               if (texts.length > 1) {
                 filename = decodeURIComponent(texts[1]);
               }
             }
           });
-          const a = window.document.createElement("a");
+          const a = window.document.createElement('a');
           a.href = window.URL.createObjectURL(
-            new Blob([await response.blob()])
+            new Blob([await response.blob()]),
           );
           a.download = filename;
           document.body.appendChild(a);
@@ -172,13 +172,13 @@ export function DemoFetchApp() {
   const onClickUpload = () => {
     const formData = new FormData();
     if (file?.length! > 0) {
-      formData.append("UPLOAD_FILE", file?.item(0)!);
-      formData.append("UPLOAD_NAME", "upload");
-      formData.append("UPLOAD_TYPE", "txt");
+      formData.append('UPLOAD_FILE', file?.item(0)!);
+      formData.append('UPLOAD_NAME', 'upload');
+      formData.append('UPLOAD_TYPE', 'txt');
     }
     FetchAuthorizationPost(
       `https://localhost:44392/api/Test/Upload`,
-      formData
+      formData,
     ).then(async (response) => {
       if (response.ok) {
         console.log(`then:[${JSON.stringify(await response.json())}]`);
@@ -191,12 +191,12 @@ export function DemoFetchApp() {
       for (let i = 0; i < file?.length!; ++i) {
         formData.append(`[${i}].UPLOAD_FILE`, file?.item(i)!);
         formData.append(`[${i}].UPLOAD_NAME`, `upload_${i}`);
-        formData.append(`[${i}].UPLOAD_TYPE`, "txt");
+        formData.append(`[${i}].UPLOAD_TYPE`, 'txt');
       }
     }
     FetchAuthorizationPost(
       `https://localhost:44392/api/Test/Uploads`,
-      formData
+      formData,
     ).then(async (response) => {
       if (response.ok) {
         console.log(`then:[${JSON.stringify(await response.json())}]`);

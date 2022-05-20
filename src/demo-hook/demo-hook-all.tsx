@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useRef,
   useState,
-} from "react";
+} from 'react';
 
 const DemoHookContext = React.createContext({ value: 0 });
 
@@ -22,21 +22,21 @@ export function DemoHookAll() {
   };
   // useEffect
   useEffect(() => {
-    console.log("useEffect");
+    console.log('useEffect');
   });
   useEffect(() => {
-    console.log("useEffect[state.value]");
+    console.log('useEffect[state.value]');
   }, [state.value]);
   // useContext
   const context = useContext(DemoHookContext);
   // useCallback
   const useCallbackValue = useCallback(
     () => `useCallback:[${state.value}]`,
-    [state.value]
+    [state.value],
   );
   useEffect(
-    () => console.log("useEffect[useCallbackValue]"),
-    [useCallbackValue]
+    () => console.log('useEffect[useCallbackValue]'),
+    [useCallbackValue],
   );
   // useMemo
   const useMemoValue = useMemo(() => `useMemo:[${state.value}]`, [state.value]);

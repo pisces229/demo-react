@@ -3,7 +3,7 @@ import { commonAction } from './demo-redux-action';
 import { apiDefaultTest } from './demo-redux-thunk';
 
 const initialState = {
-  value: 0
+  value: 0,
 };
 const slice = createSlice({
   name: 'count',
@@ -20,14 +20,14 @@ const slice = createSlice({
       console.log(`state:[${state.value}]`);
       console.log(`action:[${action.type}]`);
       console.log(`action:[${action.payload}]`);
-      return ({ ...state, value: state.value + action.payload});
+      return { ...state, value: state.value + action.payload };
     },
     decrementPayload: (state, action: PayloadAction<number>) => {
       console.log(`decrementPayload`);
       console.log(`state:[${state.value}]`);
       console.log(`action:[${action.type}]`);
       console.log(`action:[${action.payload}]`);
-      return ({ ...state, value: state.value - action.payload});
+      return { ...state, value: state.value - action.payload };
     },
   },
   extraReducers: (builder) => {
@@ -38,25 +38,37 @@ const slice = createSlice({
       })
       // countApiDefaultTest
       .addCase(apiDefaultTest.pending, (state, action) => {
-        console.log(`countReducer.apiDefaultTest.pending:${JSON.stringify(state)}`);
-        console.log(`countReducer.apiDefaultTest.pending:${JSON.stringify(action)}`);
+        console.log(
+          `countReducer.apiDefaultTest.pending:${JSON.stringify(state)}`,
+        );
+        console.log(
+          `countReducer.apiDefaultTest.pending:${JSON.stringify(action)}`,
+        );
       })
       .addCase(apiDefaultTest.fulfilled, (state, action) => {
-        console.log(`countReducer.apiDefaultTest.fulfilled:${JSON.stringify(state)}`);
-        console.log(`countReducer.apiDefaultTest.fulfilled:${JSON.stringify(action)}`);
+        console.log(
+          `countReducer.apiDefaultTest.fulfilled:${JSON.stringify(state)}`,
+        );
+        console.log(
+          `countReducer.apiDefaultTest.fulfilled:${JSON.stringify(action)}`,
+        );
       })
       .addCase(apiDefaultTest.rejected, (state, action) => {
-        console.log(`countReducer.apiDefaultTest.rejected:${JSON.stringify(state)}`);
-        console.log(`countReducer.apiDefaultTest.rejected:${JSON.stringify(action)}`);
-      })
-  }
+        console.log(
+          `countReducer.apiDefaultTest.rejected:${JSON.stringify(state)}`,
+        );
+        console.log(
+          `countReducer.apiDefaultTest.rejected:${JSON.stringify(action)}`,
+        );
+      });
+  },
 });
 // reducer
 export const countReducer = slice.reducer;
 // action
 export const {
-  increment :countActionIncrement,
-  decrement :countActionDecrement,
-  incrementPayload :countActionIncrementPayload,
-  decrementPayload :countActionDecrementPayload,
+  increment: countActionIncrement,
+  decrement: countActionDecrement,
+  incrementPayload: countActionIncrementPayload,
+  decrementPayload: countActionDecrementPayload,
 } = slice.actions;

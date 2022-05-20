@@ -1,4 +1,4 @@
-import { DemoPageBinding } from "./demo-page-binding";
+import { DemoPageBinding } from './demo-page-binding';
 
 export function DemoPageApp() {
   return (

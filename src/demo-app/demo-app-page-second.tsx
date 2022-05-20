@@ -1,38 +1,38 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   useCommonConstructor,
   useCommonBindStoreStateValue,
   useCommonBindStoreStateArray,
   useCommonRouteGuard,
-} from "./demo-app-hook";
+} from './demo-app-hook';
 import {
   CommonOptionModel,
   SecondFormModel,
   SecondGridModel,
-} from "./demo-app-model";
+} from './demo-app-model';
 import {
   StoreState,
   secondSaveForm,
   secondSaveGrid,
   commonMessage,
   secondModifyCommonMessage,
-} from "./demo-app-redux";
-import { Head1, Head2, Head3 } from "./demo-app-page-second-styled";
+} from './demo-app-redux';
+import { Head1, Head2, Head3 } from './demo-app-page-second-styled';
 
 export function DemoAppPageSecond() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const common = useSelector(
-    (state: StoreState) => state.rootReducer.second.common
+    (state: StoreState) => state.rootReducer.second.common,
   );
   const [option, setOption] = useState<CommonOptionModel[]>([
-    { value: "A", text: "AAAAA" },
-    { value: "B", text: "BBBBB" },
-    { value: "C", text: "CCCCC" },
-    { value: "D", text: "DDDDD" },
-    { value: "E", text: "EEEEE" },
+    { value: 'A', text: 'AAAAA' },
+    { value: 'B', text: 'BBBBB' },
+    { value: 'C', text: 'CCCCC' },
+    { value: 'D', text: 'DDDDD' },
+    { value: 'E', text: 'EEEEE' },
   ]);
   let form: SecondFormModel = {
     ...useSelector((state: StoreState) => state.rootReducer.second.form),
@@ -56,10 +56,10 @@ export function DemoAppPageSecond() {
   });
   // useEffect
   useEffect(() => {
-    console.log("DemoAppPageSecond useEffect");
+    console.log('DemoAppPageSecond useEffect');
   });
   const onClickNavigate = () => {
-    navigate("../first");
+    navigate('../first');
   };
   const onChangeSyncMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(commonMessage(e.target.value));
@@ -70,10 +70,10 @@ export function DemoAppPageSecond() {
   const onClickFormClear = () => {
     dispatch(
       secondSaveForm({
-        input: "",
-        select: "",
-        textarea: "",
-      })
+        input: '',
+        select: '',
+        textarea: '',
+      }),
     );
   };
   const onClickGridCreate = () => {
@@ -82,7 +82,7 @@ export function DemoAppPageSecond() {
       row,
       checkbox: false,
       input: row.toString(),
-      select: "",
+      select: '',
       textarea: row.toString(),
     });
     dispatch(secondSaveGrid(grid));

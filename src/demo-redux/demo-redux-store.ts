@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from "./demo-redux-root-reducer";
+import { rootReducer } from './demo-redux-root-reducer';
 
 export const store = configureStore({
   reducer: {
-    rootReducer
+    rootReducer,
   },
   // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   // preloadedState,

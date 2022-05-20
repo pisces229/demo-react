@@ -2,9 +2,9 @@ import styled, {
   createGlobalStyle,
   css,
   ThemeProvider,
-} from "styled-components";
-import { DemoStyledTextbox } from "./demo-styled-textbox";
-import { DemoStyledCheckbox } from "./demo-styled-checkbox";
+} from 'styled-components';
+import { DemoStyledTextbox } from './demo-styled-textbox';
+import { DemoStyledCheckbox } from './demo-styled-checkbox';
 // styled
 // const defaultCss = css`
 //   font-size: medium;
@@ -14,8 +14,8 @@ import { DemoStyledCheckbox } from "./demo-styled-checkbox";
 // `;
 // console.log(defaultCss);
 // console.log(defaultStyled);
-const firstColor = "red";
-const firstFontSize = "small";
+const firstColor = 'red';
+const firstFontSize = 'small';
 const FirstHead1 = styled.h1`
   color: ${firstColor};
   font-size: ${firstFontSize};
@@ -47,8 +47,8 @@ const SecondHead3 = styled(FirstHead3)`
   ${sharedFont}
 `;
 const CreateInput = styled.input.attrs((props: { size?: string }) => ({
-  type: "text",
-  size: props.size || "1em",
+  type: 'text',
+  size: props.size || '1em',
 }))`
   color: palevioletred;
   font-size: 1em;
@@ -63,16 +63,16 @@ const Box = styled.div`
 `;
 Box.defaultProps = {
   theme: {
-    color: "red",
+    color: 'red',
   },
 };
 // GlobalStyle
 const GlobalStyle = createGlobalStyle`
   h4 {
     color: ${(props: { whiteColor: boolean }) =>
-      props.whiteColor ? "white" : "black"};
+      props.whiteColor ? 'white' : 'black'};
     background-color: ${(props: { whiteColor: boolean }) =>
-      !props.whiteColor ? "white" : "black"};
+      !props.whiteColor ? 'white' : 'black'};
   }
 `;
 
@@ -96,7 +96,7 @@ export function DemoStyleApp() {
       <br />
       <h2>ThemeProvider</h2>
       <Box>I am mediumseagreen!</Box>
-      <ThemeProvider theme={{ color: "mediumseagreen" }}>
+      <ThemeProvider theme={{ color: 'mediumseagreen' }}>
         <Box>I am mediumseagreen!</Box>
       </ThemeProvider>
       <h2>GlobalStyle</h2>

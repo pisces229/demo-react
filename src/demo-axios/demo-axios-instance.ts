@@ -13,7 +13,7 @@ axiosDefaultInstance.interceptors.request.use(
   async (error) => {
     console.log(`request (error)`);
     return Promise.reject(error);
-  }
+  },
 );
 axiosDefaultInstance.interceptors.response.use(
   (response) => {
@@ -23,7 +23,7 @@ axiosDefaultInstance.interceptors.response.use(
   async (error) => {
     console.log(`response (error)`);
     return Promise.reject(error);
-  }
+  },
 );
 export const axiosAuthorizationInstance = axios.create({
   baseURL: 'https://localhost:44392/api/',
@@ -35,13 +35,13 @@ axiosAuthorizationInstance.interceptors.request.use(
   (config) => {
     config.headers = {
       ...config.headers,
-      Authorization: `Bearer ${localStorage.getItem('token')!}`
+      Authorization: `Bearer ${localStorage.getItem('token')!}`,
     };
     return config;
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 axiosAuthorizationInstance.interceptors.response.use(
   (response) => {
@@ -65,13 +65,16 @@ axiosAuthorizationInstance.interceptors.response.use(
       }
     }
     return Promise.reject(error);
-  }
+  },
 );
 // Refresh
 const RunRefresh = async () => {
   try {
     localStorage.setItem('refresh', `${true}`);
-    const refreshResponse = await axiosDefaultInstance.post('/login/Refresh', localStorage.getItem('token')!);
+    const refreshResponse = await axiosDefaultInstance.post(
+      '/login/Refresh',
+      localStorage.getItem('token')!,
+    );
     if (refreshResponse.status === 200) {
       localStorage.setItem('token', refreshResponse.data);
     } else {
@@ -80,6 +83,9 @@ const RunRefresh = async () => {
   } finally {
     localStorage.removeItem('refresh');
   }
-}
+};
 const DoingRefresh = () => localStorage.getItem('refresh');
-const WaitRefresh = () => new Promise((resolve) => setTimeout(() => resolve(!!localStorage.getItem('refresh')), 100));
+const WaitRefresh = () =>
+  new Promise((resolve) =>
+    setTimeout(() => resolve(!!localStorage.getItem('refresh')), 100),
+  );

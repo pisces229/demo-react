@@ -1,30 +1,30 @@
-import { useRoutes, RouteObject } from "react-router-dom";
-import { DemoAppPageLayout } from "./demo-app-page-layout";
-import { DemoAppPageFirst } from "./demo-app-page-first";
-import { DemoAppPageSecond } from "./demo-app-page-second";
-import { DemoAppPageNoMatch } from "./demo-app-page-nomatch";
-import { DemoAppPageHome } from "./demo-app-page-home";
+import { useRoutes, RouteObject } from 'react-router-dom';
+import { DemoAppPageLayout } from './demo-app-page-layout';
+import { DemoAppPageFirst } from './demo-app-page-first';
+import { DemoAppPageSecond } from './demo-app-page-second';
+import { DemoAppPageNoMatch } from './demo-app-page-nomatch';
+import { DemoAppPageHome } from './demo-app-page-home';
 
 export function DemoAppRouter() {
   let routeObject: RouteObject[] = [
     {
-      path: "",
+      path: '',
       element: <DemoAppPageLayout />,
       children: [
         {
-          path: "",
+          path: '',
           element: <DemoAppPageHome />,
         },
         {
-          path: "first",
+          path: 'first',
           element: <DemoAppPageFirst />,
         },
         {
-          path: "second",
+          path: 'second',
           element: <DemoAppPageSecond />,
         },
         {
-          path: "*",
+          path: '*',
           element: <DemoAppPageNoMatch />,
         },
       ],

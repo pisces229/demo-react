@@ -1,4 +1,4 @@
-import { Outlet, Link, useRoutes, RouteObject } from "react-router-dom";
+import { Outlet, Link, useRoutes, RouteObject } from 'react-router-dom';
 
 export function DemoRouterModel() {
   // let routeObject: RouteObject[] = [
@@ -72,7 +72,7 @@ export function DemoRouterModel() {
   // ];
   let routeObject: RouteObject[] = [
     {
-      path: "/",
+      path: '/',
       element: (
         <>
           <h1>DemoRouterModel</h1>
@@ -101,7 +101,7 @@ export function DemoRouterModel() {
           element: <h2>[index]</h2>,
         },
         {
-          path: "first",
+          path: 'first',
           element: (
             <>
               <h2>[FirstLayout]</h2>
@@ -130,21 +130,21 @@ export function DemoRouterModel() {
               element: <h2>[index]</h2>,
             },
             {
-              path: "first",
+              path: 'first',
               element: <h2>[first]</h2>,
             },
             {
-              path: "second",
+              path: 'second',
               element: <h2>[second]</h2>,
             },
             {
-              path: "*",
+              path: '*',
               element: <h2>[NoMatch]</h2>,
             },
           ],
         },
         {
-          path: "second",
+          path: 'second',
           element: (
             <>
               <h2>[SecondLayout]</h2>
@@ -173,21 +173,21 @@ export function DemoRouterModel() {
               element: <h2>[index]</h2>,
             },
             {
-              path: "first",
+              path: 'first',
               element: <h2>[first]</h2>,
             },
             {
-              path: "second",
+              path: 'second',
               element: <h2>[second]</h2>,
             },
             {
-              path: "*",
+              path: '*',
               element: <h2>[NoMatch]</h2>,
             },
           ],
         },
         {
-          path: "*",
+          path: '*',
           element: <h2>[NoMatch]</h2>,
         },
       ],

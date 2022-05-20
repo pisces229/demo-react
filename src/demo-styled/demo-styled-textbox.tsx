@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 const CssInput = css`
   color: red;
@@ -9,7 +9,7 @@ const StyledInput = styled.input`
   font-size: medium;
 `;
 const StyledInputText = styled.input.attrs({
-  type: "text",
+  type: 'text',
 })`
   ${CssInput}
   font-weight: bold;

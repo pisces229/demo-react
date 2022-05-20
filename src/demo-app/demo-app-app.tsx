@@ -1,7 +1,7 @@
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
-import { store } from "./demo-app-redux";
-import { DemoAppRouter } from "./demo-app-router";
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { store } from './demo-app-redux';
+import { DemoAppRouter } from './demo-app-router';
 
 export function DemoAppApp() {
   return (

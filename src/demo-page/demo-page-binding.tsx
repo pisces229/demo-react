@@ -1,25 +1,25 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from 'react';
 // hook
 function useConstructor(callBack = () => {}) {
   const [init, setInit] = useState(false);
   if (!init) {
-    console.log("useConstructor");
+    console.log('useConstructor');
     callBack();
     setInit(true);
   }
 }
 function useValueBinding<T>(
   state: T,
-  setState: React.Dispatch<React.SetStateAction<T>>
+  setState: React.Dispatch<React.SetStateAction<T>>,
 ) {
   const input = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.type) {
-      case "text": {
+      case 'text': {
         setState({ ...state, [e.target.name]: e.target.value });
         break;
       }
-      case "checkbox": {
-        if (e.target.value === "on") {
+      case 'checkbox': {
+        if (e.target.value === 'on') {
           setState({ ...state, [e.target.name]: e.target.checked });
         } else {
           let value = (state as any)[e.target.name] as string[];
@@ -36,11 +36,11 @@ function useValueBinding<T>(
         }
         break;
       }
-      case "radio": {
+      case 'radio': {
         setState({ ...state, [e.target.name]: e.target.value });
         break;
       }
-      case "file": {
+      case 'file': {
         if (e.target.files!.length! > 0) {
           setState({ ...state, [e.target.name]: e.target.files });
         } else {
@@ -70,17 +70,17 @@ function useValueBinding<T>(
 }
 function useGridValueBinding<T>(
   state: T[],
-  setState: React.Dispatch<React.SetStateAction<T[]>>
+  setState: React.Dispatch<React.SetStateAction<T[]>>,
 ) {
   const input = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.type) {
-      case "text": {
+      case 'text': {
         state[index] = { ...state[index], [e.target.name]: e.target.value };
         setState([...state]);
         break;
       }
-      case "checkbox": {
-        if (e.target.value === "on") {
+      case 'checkbox': {
+        if (e.target.value === 'on') {
           state[index] = { ...state[index], [e.target.name]: e.target.checked };
         } else {
           let value = (state[index] as any)[e.target.name] as string[];
@@ -99,12 +99,12 @@ function useGridValueBinding<T>(
         setState([...state]);
         break;
       }
-      case "radio": {
+      case 'radio': {
         state[index] = { ...state[index], [e.target.name]: e.target.value };
         setState([...state]);
         break;
       }
-      case "file": {
+      case 'file': {
         if (e.target.files!.length! > 0) {
           state[index] = { ...state[index], [e.target.name]: e.target.files };
         } else {
@@ -172,13 +172,13 @@ export function DemoPageBinding() {
   // useState
   const [option, setOption] = useState<CommonOptionModel[]>([]);
   const [form, setForm] = useState<FormModel>({
-    inputText: "InputText",
+    inputText: 'InputText',
     inputCheckbox: false,
-    inputCheckboxes: ["A"],
-    inputRadio: "",
-    selectSingle: "",
+    inputCheckboxes: ['A'],
+    inputRadio: '',
+    selectSingle: '',
     selectMultiple: [],
-    textarea: "Textarea",
+    textarea: 'Textarea',
     inputFile: null,
     inputFiles: null,
   });
@@ -186,11 +186,11 @@ export function DemoPageBinding() {
   // useConstructor
   useConstructor(() => {
     setOption([
-      { value: "A", text: "AAAAA" },
-      { value: "B", text: "BBBBB" },
-      { value: "C", text: "CCCCC" },
-      { value: "D", text: "DDDDD" },
-      { value: "E", text: "EEEEE" },
+      { value: 'A', text: 'AAAAA' },
+      { value: 'B', text: 'BBBBB' },
+      { value: 'C', text: 'CCCCC' },
+      { value: 'D', text: 'DDDDD' },
+      { value: 'E', text: 'EEEEE' },
     ]);
     for (let i = 0; i < 5; ++i) {
       grid.push({
@@ -198,9 +198,9 @@ export function DemoPageBinding() {
         checkbox: false,
         inputText: `InputText[${i}]`,
         inputCheckbox: false,
-        inputCheckboxes: ["A"],
-        inputRadio: "",
-        selectSingle: "",
+        inputCheckboxes: ['A'],
+        inputRadio: '',
+        selectSingle: '',
         selectMultiple: [],
         textarea: `Textarea[${i}]`,
         inputFile: null,
@@ -211,7 +211,7 @@ export function DemoPageBinding() {
   });
   // useEffect
   useEffect(() => {
-    console.log("useEffect");
+    console.log('useEffect');
   });
   // useBinding
   const {
@@ -367,8 +367,8 @@ export function DemoPageBinding() {
               <input
                 type="text"
                 onChange={(e) => {
-                  console.log("onChange1");
-                  console.log("onChange2");
+                  console.log('onChange1');
+                  console.log('onChange2');
                 }}
               />
             </td>
@@ -429,7 +429,7 @@ export function DemoPageBinding() {
                       name="inputCheckboxes"
                       value={optionItem.value}
                       checked={gridItem.inputCheckboxes.includes(
-                        optionItem.value
+                        optionItem.value,
                       )}
                       onChange={onChangeGridBindValueInput(gridIndex)}
                     />

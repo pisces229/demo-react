@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   useCommonConstructor,
   useCommonBindStateValue,
   useCommonBindStateArray,
   useCommonRouteGuard,
-} from "./demo-app-hook";
+} from './demo-app-hook';
 import {
   CommonOptionModel,
   FirstFormModel,
   FirstGridModel,
-} from "./demo-app-model";
+} from './demo-app-model';
 import {
   StoreState,
   firstSaveForm,
   firstSaveGrid,
   commonMessage,
   firstModifyCommonMessage,
-} from "./demo-app-redux";
-import { Head1, Head2, Head3 } from "./demo-app-page-first-styled";
+} from './demo-app-redux';
+import { Head1, Head2, Head3 } from './demo-app-page-first-styled';
 
 export function DemoAppPageFirst() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const common = useSelector(
-    (state: StoreState) => state.rootReducer.first.common
+    (state: StoreState) => state.rootReducer.first.common,
   );
   const [option, setOption] = useState<CommonOptionModel[]>([
-    { value: "A", text: "AAAAA" },
-    { value: "B", text: "BBBBB" },
-    { value: "C", text: "CCCCC" },
-    { value: "D", text: "DDDDD" },
-    { value: "E", text: "EEEEE" },
+    { value: 'A', text: 'AAAAA' },
+    { value: 'B', text: 'BBBBB' },
+    { value: 'C', text: 'CCCCC' },
+    { value: 'D', text: 'DDDDD' },
+    { value: 'E', text: 'EEEEE' },
   ]);
   const [form, setForm] = useState<FirstFormModel>({
     ...useSelector((state: StoreState) => state.rootReducer.first.form),
@@ -56,13 +56,13 @@ export function DemoAppPageFirst() {
   });
   // useEffect
   useEffect(() => {
-    console.log("MOUNTED");
-    return () => console.log("UNMOUNTED");
+    console.log('MOUNTED');
+    return () => console.log('UNMOUNTED');
   });
   const onClickNavigate = () => {
     dispatch(firstSaveForm(form));
     dispatch(firstSaveGrid(grid));
-    navigate("../second");
+    navigate('../second');
   };
   const onChangeSyncMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(commonMessage(e.target.value));
@@ -72,9 +72,9 @@ export function DemoAppPageFirst() {
   };
   const onClickFormClear = () => {
     setForm({
-      input: "",
-      select: "",
-      textarea: "",
+      input: '',
+      select: '',
+      textarea: '',
     });
   };
   const onClickGridCreate = () => {
@@ -83,7 +83,7 @@ export function DemoAppPageFirst() {
       row,
       checkbox: false,
       input: row.toString(),
-      select: "",
+      select: '',
       textarea: row.toString(),
     });
     setGrid([...grid]);

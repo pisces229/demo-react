@@ -1,10 +1,10 @@
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
 
 // useCommonConstructor
-export const useCommonConstructor = (callBack = () => { }) => {
+export const useCommonConstructor = (callBack = () => {}) => {
   const [init, setInit] = useState(false);
   if (!init) {
     callBack();
@@ -81,7 +81,10 @@ export const commonChangeEvent = <T>(data: T) => {
   return { input, select, textarea };
 };
 // useCommonBindStateValue
-export const useCommonBindStateValue = <T>(state: T, setState: React.Dispatch<React.SetStateAction<T>>) => {
+export const useCommonBindStateValue = <T>(
+  state: T,
+  setState: React.Dispatch<React.SetStateAction<T>>,
+) => {
   const input = (e: React.ChangeEvent<HTMLInputElement>) =>
     setState({ ...commonChangeEvent(state).input(e) });
   const select = (e: React.ChangeEvent<HTMLSelectElement>) =>
@@ -91,23 +94,31 @@ export const useCommonBindStateValue = <T>(state: T, setState: React.Dispatch<Re
   return { input, select, textarea };
 };
 // useCommonBindStateArray
-export const useCommonBindStateArray = <T>(state: T[], setState: React.Dispatch<React.SetStateAction<T[]>>) => {
+export const useCommonBindStateArray = <T>(
+  state: T[],
+  setState: React.Dispatch<React.SetStateAction<T[]>>,
+) => {
   const input = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
     state[index] = commonChangeEvent(state[index]).input(e);
     setState([...state]);
   };
-  const select = (index: number) => (e: React.ChangeEvent<HTMLSelectElement>) => {
-    state[index] = commonChangeEvent(state[index]).select(e);
-    setState([...state]);
-  };
-  const textarea = (index: number) => (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    state[index] = commonChangeEvent(state[index]).textarea(e);
-    setState([...state]);
-  };
+  const select =
+    (index: number) => (e: React.ChangeEvent<HTMLSelectElement>) => {
+      state[index] = commonChangeEvent(state[index]).select(e);
+      setState([...state]);
+    };
+  const textarea =
+    (index: number) => (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      state[index] = commonChangeEvent(state[index]).textarea(e);
+      setState([...state]);
+    };
   return { input, select, textarea };
 };
 // useCommonBindStoreStateValue
-export const useCommonBindStoreStateValue = <T>(storeState: T, action: ActionCreatorWithPayload<T>) => {
+export const useCommonBindStoreStateValue = <T>(
+  storeState: T,
+  action: ActionCreatorWithPayload<T>,
+) => {
   const dispatch = useDispatch();
   const input = (e: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(action({ ...commonChangeEvent(storeState).input(e) }));
@@ -118,19 +129,24 @@ export const useCommonBindStoreStateValue = <T>(storeState: T, action: ActionCre
   return { input, select, textarea };
 };
 // useCommonBindStateArray
-export const useCommonBindStoreStateArray = <T>(storeState: T[], action: ActionCreatorWithPayload<T[]>) => {
+export const useCommonBindStoreStateArray = <T>(
+  storeState: T[],
+  action: ActionCreatorWithPayload<T[]>,
+) => {
   const dispatch = useDispatch();
   const input = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
     storeState[index] = commonChangeEvent(storeState[index]).input(e);
     dispatch(action([...storeState]));
   };
-  const select = (index: number) => (e: React.ChangeEvent<HTMLSelectElement>) => {
-    storeState[index] = commonChangeEvent(storeState[index]).select(e);
-    dispatch(action([...storeState]));
-  };
-  const textarea = (index: number) => (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    storeState[index] = commonChangeEvent(storeState[index]).textarea(e);
-    dispatch(action([...storeState]));
-  };
+  const select =
+    (index: number) => (e: React.ChangeEvent<HTMLSelectElement>) => {
+      storeState[index] = commonChangeEvent(storeState[index]).select(e);
+      dispatch(action([...storeState]));
+    };
+  const textarea =
+    (index: number) => (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      storeState[index] = commonChangeEvent(storeState[index]).textarea(e);
+      dispatch(action([...storeState]));
+    };
   return { input, select, textarea };
 };
