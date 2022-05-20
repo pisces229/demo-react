@@ -1,77 +1,58 @@
 import {
-  combineReducers,
-  configureStore,
   createAction,
   createReducer,
 } from '@reduxjs/toolkit';
-import { commonAction } from './demo-redux-action';
-import { apiDefaultTest } from './demo-redux-thunk';
+import { commonAction, commonThunk } from './demo-redux-common';
 
 // action
-export const countActionIncrement = createAction('count/increment');
-export const countActionDecrement = createAction('count/decrement');
-export const countActionIncrementPayload = createAction<number>(
-  'count/incrementPayload',
-);
-export const countActionDecrementPayload = createAction<number>(
-  'count/decrementPayload',
-);
+export const actionIncrement = createAction('increment');
+export const actionDecrement = createAction('decrement');
+export const actionIncrementPayload = createAction<number>('incrementPayload');
+export const actionDecrementPayload = createAction<number>('decrementPayload');
 // reducer
 export const countReducer = createReducer({ value: 0 }, (builder) => {
   builder
     // action
-    .addCase(countActionIncrement, (state) => {
-      state.value++;
+    .addCase(actionIncrement, (state) => ({
+      value: state.value + 1,
+    }))
+    .addCase(actionDecrement, (state) => ({
+      value: state.value - 1,
+    }))
+    .addCase(actionIncrementPayload, (state, action) => {
+      console.log(`
+      Reducer.actionIncrementPayload
+      state:[${state.value}]
+      action:[${action.type}]
+      action:[${action.payload}]
+      `);
+      return { ...state, value: state.value + action.payload };
     })
-    .addCase(countActionDecrement, (state) => {
-      state.value--;
+    .addCase(actionDecrementPayload, (state, action) => {
+      console.log(`
+      Reducer.actionDecrementPayload
+      state:[${state.value}]
+      action:[${action.type}]
+      action:[${action.payload}]
+      `);
+      return { ...state, value: state.value - action.payload };
     })
-    .addCase(countActionIncrementPayload, (state, action) => {
-      state.value += action.payload;
-    })
-    .addCase(countActionDecrementPayload, (state, action) => {
-      state.value -= action.payload;
-    })
-    // common
+    // commonAction
     .addCase(commonAction, (state, action) => {
-      console.log(`countReducer.commonAction:${JSON.stringify(state)}`);
-      console.log(`countReducer.commonAction:${JSON.stringify(action)}`);
+      console.log(`Reducer.commonAction:${JSON.stringify(state)}`);
+      console.log(`Reducer.commonAction:${JSON.stringify(action)}`);
     })
-    // apiDefaultTest
-    .addCase(apiDefaultTest.pending, (state, action) => {
-      console.log(
-        `countReducer.apiDefaultTest.pending:${JSON.stringify(state)}`,
-      );
-      console.log(
-        `countReducer.apiDefaultTest.pending:${JSON.stringify(action)}`,
-      );
+    // commonThunk
+    .addCase(commonThunk.pending, (state, action) => {
+      console.log(`Reducer.commonThunk.pending:${JSON.stringify(state)}`);
+      console.log(`Reducer.commonThunk.pending:${JSON.stringify(action)}`);
     })
-    .addCase(apiDefaultTest.fulfilled, (state, action) => {
-      console.log(
-        `countReducer.apiDefaultTest.fulfilled:${JSON.stringify(state)}`,
-      );
-      console.log(
-        `countReducer.apiDefaultTest.fulfilled:${JSON.stringify(action)}`,
-      );
+    .addCase(commonThunk.fulfilled, (state, action) => {
+      console.log(`Reducer.commonThunk.fulfilled:${JSON.stringify(state)}`);
+      console.log(`Reducer.commonThunk.fulfilled:${JSON.stringify(action)}`);
     })
-    .addCase(apiDefaultTest.rejected, (state, action) => {
-      console.log(
-        `countReducer.apiDefaultTest.rejected:${JSON.stringify(state)}`,
-      );
-      console.log(
-        `countReducer.apiDefaultTest.rejected:${JSON.stringify(action)}`,
-      );
+    .addCase(commonThunk.rejected, (state, action) => {
+      console.log(`Reducer.commonThunk.rejected:${JSON.stringify(state)}`);
+      console.log(`Reducer.commonThunk.rejected:${JSON.stringify(action)}`);
     });
 });
-// rootReducer
-export const rootReducer = combineReducers({
-  count: countReducer,
-});
-// store
-export const store = configureStore({
-  reducer: {
-    rootReducer,
-  },
-});
-export type StoreState = ReturnType<typeof store.getState>;
-export type StoreDispatch = typeof store.dispatch;

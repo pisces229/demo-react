@@ -1,13 +1,10 @@
 import React, {
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react';
-
-const DemoHookContext = React.createContext({ value: 0 });
 
 export function DemoHookAll() {
   // useState
@@ -22,13 +19,20 @@ export function DemoHookAll() {
   };
   // useEffect
   useEffect(() => {
-    console.log('useEffect');
+    // MOUNTED...
+    // return () => {
+    //   // UNMOUNTED...
+    // };
   });
   useEffect(() => {
-    console.log('useEffect[state.value]');
+    console.log('useEffect.MOUNTED');
+    return () => {
+      console.log('useEffect.UNMOUNTED');
+    };
+  });
+  useEffect(() => {
+    console.log('useEffect[state.value].MOUNTED');
   }, [state.value]);
-  // useContext
-  const context = useContext(DemoHookContext);
   // useCallback
   const useCallbackValue = useCallback(
     () => `useCallback:[${state.value}]`,
@@ -51,12 +55,6 @@ export function DemoHookAll() {
       <h3>state.value:[{state.value}]</h3>
       <button onClick={onClickPlus}>plus</button>
       <button onClick={onClickClear}>clear</button>
-      <h3>context.value:[{context.value}]</h3>
-      <DemoHookContext.Provider value={{ value: state.value }}>
-        <DemoHookContext.Consumer>
-          {({ value }) => <h3>context.value:[{value}]</h3>}
-        </DemoHookContext.Consumer>
-      </DemoHookContext.Provider>
       <h3>useCallbackValue:[{useCallbackValue()}]</h3>
       <h3>useMemoValue:[{useMemoValue}]</h3>
       -----

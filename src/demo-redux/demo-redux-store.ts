@@ -1,12 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from './demo-redux-root-reducer';
-
+import { configureStore } from "@reduxjs/toolkit";
+import { countReducer as createReducer } from "./demo-redux-create-reducer";
+import { countReducer as createSlice } from "./demo-redux-create-slice";
+// const combineReducer = combineReducers({
+//   name: reducer,
+// });
+// store
 export const store = configureStore({
   reducer: {
-    rootReducer,
+    createReducer,
+    createSlice,
   },
-  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
-  // preloadedState,
 });
 export type StoreState = ReturnType<typeof store.getState>;
 export type StoreDispatch = typeof store.dispatch;

@@ -2,6 +2,9 @@ import { useState } from "react";
 import { DemoContextContext } from "./demo-context-context";
 import { DemoContextSecond } from "./demo-context-second";
 
+// DisplayName in the DevTools
+// DemoContextContext.displayName = "DemoContextContextName";
+
 export function DemoContextFirst() {
   const [count, setCount] = useState<number>(0);
   const plusCount = () => setCount(() => count + 1);
