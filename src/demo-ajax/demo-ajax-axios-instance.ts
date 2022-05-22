@@ -1,6 +1,8 @@
 import axios from 'axios';
+import { BASE_URL } from './demo-ajax-const';
+
 export const axiosDefaultInstance = axios.create({
-  baseURL: 'https://localhost:44392/api/',
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -26,7 +28,7 @@ axiosDefaultInstance.interceptors.response.use(
   },
 );
 export const axiosAuthorizationInstance = axios.create({
-  baseURL: 'https://localhost:44392/api/',
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -35,7 +37,8 @@ axiosAuthorizationInstance.interceptors.request.use(
   (config) => {
     config.headers = {
       ...config.headers,
-      Authorization: `Bearer ${localStorage.getItem('token')!}`,
+      // Authorization: `Bearer ${localStorage.getItem('token')!}`,
+      Token: `${localStorage.getItem('token')!}`,
     };
     return config;
   },
@@ -69,10 +72,11 @@ axiosAuthorizationInstance.interceptors.response.use(
 );
 // Refresh
 const RunRefresh = async () => {
+  console.log();
   try {
     localStorage.setItem('refresh', `${true}`);
     const refreshResponse = await axiosDefaultInstance.post(
-      '/login/Refresh',
+      '/Refresh',
       localStorage.getItem('token')!,
     );
     if (refreshResponse.status === 200) {

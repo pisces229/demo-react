@@ -17,22 +17,6 @@ export function DemoHookAll() {
     // console.log(e);
     setState({ value: 0 });
   };
-  // useEffect
-  useEffect(() => {
-    // MOUNTED...
-    // return () => {
-    //   // UNMOUNTED...
-    // };
-  });
-  useEffect(() => {
-    console.log('useEffect.MOUNTED');
-    return () => {
-      console.log('useEffect.UNMOUNTED');
-    };
-  });
-  useEffect(() => {
-    console.log('useEffect[state.value].MOUNTED');
-  }, [state.value]);
   // useCallback
   const useCallbackValue = useCallback(
     () => `useCallback:[${state.value}]`,

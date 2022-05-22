@@ -1,16 +1,8 @@
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
 
-// useCommonConstructor
-export const useCommonConstructor = (callBack = () => {}) => {
-  const [init, setInit] = useState(false);
-  if (!init) {
-    callBack();
-    setInit(true);
-  }
-};
 // useCommonRouteGuard
 export const useCommonRouteGuard = () => {
   let location = useLocation();

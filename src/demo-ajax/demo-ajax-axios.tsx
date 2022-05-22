@@ -2,25 +2,20 @@ import React, { useState } from 'react';
 import {
   axiosDefaultInstance,
   axiosAuthorizationInstance,
-} from './demo-axios-instance';
+} from './demo-ajax-axios-instance';
 
-interface CommonModel<T> {
-  Success: boolean;
-  Message: string;
-  Data: T;
-}
-export function DemoAxiosApp() {
+export function DemoAjaxAxios() {
   // Example
   const synchronous = () => {
     axiosDefaultInstance
-      .get<string>(`Default/Test`)
+      .get<string>(`/`)
       .then((response) => console.log(`then:[${JSON.stringify(response)}]`))
       .catch((error) => console.log(`catch:[${error}]`))
       .finally(() => console.log(`finally`));
   };
   const asynchronous = async () => {
     let result = await axiosDefaultInstance
-      .get<string>(`Default/Test`)
+      .get<string>(`/`)
       .then((response) => response.data)
       .catch((error) => console.log(`catch:[${error}]`))
       .finally(() => console.log(`finally`));
@@ -31,18 +26,18 @@ export function DemoAxiosApp() {
   // Login
   const onClickLoginSignIn = () => {
     axiosDefaultInstance
-      .post<CommonModel<string>>(`Login/SignIn`, {
-        Username: 'Username',
+      .post<string>(`/SignIn`, {
+        Account: 'Account',
         Password: 'Password',
       })
       .then((response) => {
         console.log(`data:[${JSON.stringify(response.data)}]`);
-        localStorage.setItem('token', response.data.Data);
+        localStorage.setItem('token', response.data);
       });
   };
   const onClickLoginRefresh = () => {
     axiosDefaultInstance
-      .post<string>(`Login/Refresh`, localStorage.getItem('token')!)
+      .post<string>(`/Refresh`, localStorage.getItem('token')!)
       .then((response) => {
         console.log(`data:[${JSON.stringify(response.data)}]`);
         localStorage.setItem('token', response.data);
@@ -50,7 +45,7 @@ export function DemoAxiosApp() {
   };
   const onClickLoginSignOut = () => {
     axiosDefaultInstance
-      .post<string>(`Login/SignOut`, localStorage.getItem('token')!)
+      .post<string>(`/SignOut`, localStorage.getItem('token')!)
       .then((response) => {
         console.log(`data:[${JSON.stringify(response.data)}]`);
         localStorage.removeItem('token');
@@ -59,22 +54,22 @@ export function DemoAxiosApp() {
   // Click
   const onClickTest = () => {
     axiosAuthorizationInstance
-      .get<string>(`Test/GetValueByValue?value=hello`)
+      .get<string>(`/ValueFromQuery?model=hello`)
       .then((response) => console.log(`data:[${response.data}]`));
     axiosAuthorizationInstance
-      .post(`Test/PostValueByValue`, 'hello')
+      .post(`/ValueFromBody`, 'hello')
       .then((response) => console.log(`data:[${response.data}]`));
     axiosAuthorizationInstance
-      .get<{ Name: string; Count: number; Date: Date }>(
-        `Test/GetValueByModel?Name=Pete&Count=1`,
+      .get<{ Text: string; Value: number; Date: Date }>(
+        `/JsonFromQuery?Text=Pete&Value=1&Date=2020-01-01`,
       )
       .then((response) =>
         console.log(`data:[${JSON.stringify(response.data)}]`),
       );
     axiosAuthorizationInstance
-      .post<{ Name: string; Count: number; Date: Date }>(
-        `Test/PostValueByModel`,
-        { Name: 'Pete', Count: 12, Date: new Date() },
+      .post<{ Text: string; Value: number; Date: Date }>(
+        `/JsonFromBody`,
+        { Text: 'Pete', Value: 12, Date: new Date() },
       )
       .then((response) =>
         console.log(`data:[${JSON.stringify(response.data)}]`),
@@ -85,9 +80,8 @@ export function DemoAxiosApp() {
     //   responseType: 'blob'
     // })
     axiosAuthorizationInstance
-      .post<Blob>(
-        `Test/Download`,
-        {},
+      .get<Blob>(
+        `/Download`,
         {
           responseType: 'blob',
         },
@@ -128,12 +122,10 @@ export function DemoAxiosApp() {
   const onClickUpload = () => {
     const formData = new FormData();
     if (file?.length! > 0) {
-      formData.append('UPLOAD_FILE', file?.item(0)!);
-      formData.append('UPLOAD_NAME', 'upload');
-      formData.append('UPLOAD_TYPE', 'txt');
+      formData.append('File', file?.item(0)!);
     }
     axiosAuthorizationInstance
-      .post<CommonModel<string>>(`Test/Upload`, formData)
+      .post<string>(`/Upload`, formData)
       .then((response) =>
         console.log(`data:[${JSON.stringify(response.data)}]`),
       );
@@ -142,13 +134,11 @@ export function DemoAxiosApp() {
     const formData = new FormData();
     if (file?.length! > 0) {
       for (let i = 0; i < file?.length!; ++i) {
-        formData.append(`[${i}].UPLOAD_FILE`, file?.item(i)!);
-        formData.append(`[${i}].UPLOAD_NAME`, `upload_${i}`);
-        formData.append(`[${i}].UPLOAD_TYPE`, 'txt');
+        formData.append(`[${i}].File`, file?.item(i)!);
       }
     }
     axiosAuthorizationInstance
-      .post<CommonModel<string>>(`Test/Uploads`, formData)
+      .post<string>(`/Upload`, formData)
       .then((response) =>
         console.log(`data:[${JSON.stringify(response.data)}]`),
       );

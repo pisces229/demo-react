@@ -1,3 +1,5 @@
+import { BASE_URL } from "./demo-ajax-const";
+
 const FetchDefault = async (request: Request) => {
   // console.log(`FetchDefault Request Interceptor`);
   const response = await fetch(request);
@@ -10,7 +12,8 @@ const FetchDefault = async (request: Request) => {
 const FetchAuthorizationGet = async (url: string) => {
   const headers = new Headers();
   headers.set('Content-Type', 'application/json');
-  headers.set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
+  // headers.set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
+  headers.set('Token', `${localStorage.getItem('token')!}`);
   const request = new Request(url, {
     method: 'GET',
     headers: headers,
@@ -25,7 +28,8 @@ const FetchAuthorizationGet = async (url: string) => {
       }
     }
     if (localStorage.getItem('token')) {
-      headers.set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
+      // headers.set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
+      headers.set('Token', `${localStorage.getItem('token')!}`);
       const retryRequest = new Request(url, {
         method: 'GET',
         headers: headers,
@@ -40,10 +44,11 @@ const FetchAuthorizationGet = async (url: string) => {
 };
 const FetchAuthorizationPost = async (url: string, body: string | FormData) => {
   const headers = new Headers();
-  if (body instanceof String) {
+  if (typeof body === 'string') {
     headers.set('Content-Type', 'application/json');
   }
-  headers.set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
+  // headers.set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
+  headers.set('Token', `${localStorage.getItem('token')!}`);
   const request = new Request(url, {
     method: 'POST',
     headers: headers,
@@ -59,7 +64,8 @@ const FetchAuthorizationPost = async (url: string, body: string | FormData) => {
       }
     }
     if (localStorage.getItem('token')) {
-      headers.set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
+      // headers.set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
+      headers.set('Token', `${localStorage.getItem('token')!}`);
       const retryRequest = new Request(url, {
         method: 'POST',
         headers: headers,
@@ -80,7 +86,7 @@ const RunRefresh = async () => {
     const refreshHeaders = new Headers();
     refreshHeaders.set('Content-Type', 'application/json');
     const refreshRequest = new Request(
-      `https://localhost:44392/api/login/Refresh`,
+      `${BASE_URL}/Refresh`,
       {
         method: 'POST',
         headers: refreshHeaders,
@@ -89,7 +95,7 @@ const RunRefresh = async () => {
     );
     const refreshResponse = await FetchDefault(refreshRequest);
     if (refreshResponse.ok) {
-      localStorage.setItem('token', await refreshResponse.text());
+      localStorage.setItem('token', JSON.parse(await refreshResponse.text()));
     } else {
       localStorage.removeItem('token');
     }

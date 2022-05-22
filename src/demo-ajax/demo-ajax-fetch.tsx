@@ -1,21 +1,17 @@
 import { useState } from 'react';
+import { BASE_URL } from './demo-ajax-const';
 import {
   FetchDefault,
   FetchAuthorizationGet,
   FetchAuthorizationPost,
-} from './demo-fetch-intercept';
-interface CommonModel<T> {
-  Success: boolean;
-  Message: string;
-  Data: T;
-}
-export function DemoFetchApp() {
+} from './demo-ajax-fetch-intercept';
+export function DemoAjaxFetch() {
   // Example
   const synchronous = () => {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
     FetchDefault(
-      new Request(`https://localhost:44392/api/Default/Test`, {
+      new Request(`${BASE_URL}/`, {
         method: 'GET',
         headers: headers,
       }),
@@ -29,7 +25,7 @@ export function DemoFetchApp() {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
     const result = await FetchDefault(
-      new Request(`https://localhost:44392/api/Default/Test`, {
+      new Request(`${BASE_URL}/`, {
         method: 'GET',
         headers: headers,
       }),
@@ -47,16 +43,16 @@ export function DemoFetchApp() {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
     FetchDefault(
-      new Request(`https://localhost:44392/api/Login/SignIn`, {
+      new Request(`${BASE_URL}/SignIn`, {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify({ Username: 'Username', Password: 'Password' }),
+        body: JSON.stringify({ Account: 'Account', Password: 'Password' }),
       }),
     ).then(async (response) => {
       if (response.ok) {
-        const value: CommonModel<string> = await response.json();
-        console.log(`value:[${JSON.stringify(value)}]`);
-        localStorage.setItem('token', value.Data);
+        const value = await response.text();
+        console.log(`value:[${JSON.parse(value)}]`);
+        localStorage.setItem('token', JSON.parse(value));
       }
     });
   };
@@ -64,7 +60,7 @@ export function DemoFetchApp() {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
     FetchDefault(
-      new Request(`https://localhost:44392/api/Login/Refresh`, {
+      new Request(`${BASE_URL}/Refresh`, {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(localStorage.getItem('token')!),
@@ -72,8 +68,8 @@ export function DemoFetchApp() {
     ).then(async (response) => {
       if (response.ok) {
         const value = await response.text();
-        console.log(`value:[${value}]`);
-        localStorage.setItem('token', value);
+        console.log(`value:[${JSON.parse(value)}]`);
+        localStorage.setItem('token', JSON.parse(value));
       }
     });
   };
@@ -81,7 +77,7 @@ export function DemoFetchApp() {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
     FetchDefault(
-      new Request(`https://localhost:44392/api/Login/SignOut`, {
+      new Request(`${BASE_URL}/SignOut`, {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(localStorage.getItem('token')!),
@@ -95,14 +91,14 @@ export function DemoFetchApp() {
   // Click
   const onClickTest = () => {
     FetchAuthorizationGet(
-      `https://localhost:44392/api/Test/GetValueByValue?value=hello`,
+      `${BASE_URL}/ValueFromQuery?model=hello`,
     ).then(async (response) => {
       if (response.ok) {
         console.log(`then:[${await response.text()}]`);
       }
     });
     FetchAuthorizationPost(
-      `https://localhost:44392/api/Test/PostValueByValue`,
+      `${BASE_URL}/ValueFromBody`,
       JSON.stringify('hello'),
     ).then(async (response) => {
       if (response.ok) {
@@ -110,15 +106,15 @@ export function DemoFetchApp() {
       }
     });
     FetchAuthorizationGet(
-      `https://localhost:44392/api/Test/GetValueByModel?Name=Pete&Count=1`,
+      `${BASE_URL}/JsonFromQuery?Text=Pete&Value=1&Date=2020-01-01`,
     ).then(async (response) => {
       if (response.ok) {
         console.log(`then:[${JSON.stringify(await response.json())}]`);
       }
     });
     FetchAuthorizationPost(
-      `https://localhost:44392/api/Test/PostValueByModel`,
-      JSON.stringify({ Name: 'Pete', Count: 12, Date: new Date() }),
+      `${BASE_URL}/JsonFromBody`,
+      JSON.stringify({ Text: 'Pete', Value: 12, Date: new Date() }),
     ).then(async (response) => {
       if (response.ok) {
         console.log(`then:[${JSON.stringify(await response.json())}]`);
@@ -126,15 +122,12 @@ export function DemoFetchApp() {
     });
   };
   const onClickDownload = () => {
-    FetchAuthorizationPost(
-      `https://localhost:44392/api/Test/Download`,
-      '',
+    FetchAuthorizationGet(
+      `${BASE_URL}/Download`
     ).then(async (response) => {
       if (response.ok) {
         console.log(response.headers.get('content-type'));
-        if (
-          response.headers.get('content-type') !== 'text/plain; charset=utf-8'
-        ) {
+        if (response.headers.get('content-type') !== 'text/plain') {
           const contentDispositionValues = response.headers
             .get('content-disposition')
             ?.split(';');
@@ -172,12 +165,10 @@ export function DemoFetchApp() {
   const onClickUpload = () => {
     const formData = new FormData();
     if (file?.length! > 0) {
-      formData.append('UPLOAD_FILE', file?.item(0)!);
-      formData.append('UPLOAD_NAME', 'upload');
-      formData.append('UPLOAD_TYPE', 'txt');
+      formData.append('File', file?.item(0)!);
     }
     FetchAuthorizationPost(
-      `https://localhost:44392/api/Test/Upload`,
+      `${BASE_URL}/Upload`,
       formData,
     ).then(async (response) => {
       if (response.ok) {
@@ -189,13 +180,11 @@ export function DemoFetchApp() {
     const formData = new FormData();
     if (file?.length! > 0) {
       for (let i = 0; i < file?.length!; ++i) {
-        formData.append(`[${i}].UPLOAD_FILE`, file?.item(i)!);
-        formData.append(`[${i}].UPLOAD_NAME`, `upload_${i}`);
-        formData.append(`[${i}].UPLOAD_TYPE`, 'txt');
+        formData.append(`[${i}].File`, file?.item(i)!);
       }
     }
     FetchAuthorizationPost(
-      `https://localhost:44392/api/Test/Uploads`,
+      `${BASE_URL}/Upload`,
       formData,
     ).then(async (response) => {
       if (response.ok) {
