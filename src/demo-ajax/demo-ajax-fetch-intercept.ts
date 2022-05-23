@@ -95,6 +95,7 @@ const RunRefresh = async () => {
     );
     const refreshResponse = await FetchDefault(refreshRequest);
     if (refreshResponse.ok) {
+      console.log(refreshResponse.headers.get('Content-Type'));
       localStorage.setItem('token', JSON.parse(await refreshResponse.text()));
     } else {
       localStorage.removeItem('token');

@@ -1,12 +1,11 @@
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation } from 'react-router';
 
 // useCommonRouteGuard
 export const useCommonRouteGuard = () => {
   let location = useLocation();
-  let navigate = useNavigate();
   useEffect(() => {
     console.log(`useEffect[location]:${JSON.stringify(location)}`);
     // do something

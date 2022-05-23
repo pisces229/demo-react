@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class DemoDefaultErrorBoundary extends React.Component<
+export class DemoComponentErrorBoundary extends React.Component<
   any,
   { hasError: boolean }
 > {
@@ -22,7 +22,11 @@ export class DemoDefaultErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       // 你可以 render 任何客製化的 fallback UI
-      return <h1>Something went wrong.</h1>;
+      return (
+        <>
+          <h2>DemoComponentErrorBoundary</h2>
+        </>
+      );
     }
     return this.props.children;
   }

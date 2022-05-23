@@ -9,21 +9,21 @@ export const axiosDefaultInstance = axios.create({
 });
 axiosDefaultInstance.interceptors.request.use(
   (config) => {
-    console.log(`request (config)`);
+    // console.log(`request (config)`);
     return config;
   },
   async (error) => {
-    console.log(`request (error)`);
+    // console.log(`request (error)`);
     return Promise.reject(error);
   },
 );
 axiosDefaultInstance.interceptors.response.use(
   (response) => {
-    console.log(`response (response)`);
+    // console.log(`response (response)`);
     return response;
   },
   async (error) => {
-    console.log(`response (error)`);
+    // console.log(`response (error)`);
     return Promise.reject(error);
   },
 );
@@ -72,14 +72,14 @@ axiosAuthorizationInstance.interceptors.response.use(
 );
 // Refresh
 const RunRefresh = async () => {
-  console.log();
   try {
     localStorage.setItem('refresh', `${true}`);
     const refreshResponse = await axiosDefaultInstance.post(
       '/Refresh',
-      localStorage.getItem('token')!,
+      JSON.stringify(localStorage.getItem('token')!),
     );
     if (refreshResponse.status === 200) {
+      console.log(refreshResponse.headers['content-type']);
       localStorage.setItem('token', refreshResponse.data);
     } else {
       localStorage.removeItem('token');

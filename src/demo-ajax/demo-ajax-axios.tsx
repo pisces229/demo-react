@@ -9,18 +9,29 @@ export function DemoAjaxAxios() {
   const synchronous = () => {
     axiosDefaultInstance
       .get<string>(`/`)
-      .then((response) => console.log(`then:[${JSON.stringify(response)}]`))
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.headers['content-type']);
+          console.log(response.data);
+        }
+      })
       .catch((error) => console.log(`catch:[${error}]`))
       .finally(() => console.log(`finally`));
   };
   const asynchronous = async () => {
     let result = await axiosDefaultInstance
       .get<string>(`/`)
-      .then((response) => response.data)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.headers['content-type']);
+          console.log(response.data);
+          return response.data;
+        }
+      })
       .catch((error) => console.log(`catch:[${error}]`))
       .finally(() => console.log(`finally`));
     if (result) {
-      console.log(`result:[${result}]`);
+      console.log(result);
     }
   };
   // Login
@@ -31,49 +42,77 @@ export function DemoAjaxAxios() {
         Password: 'Password',
       })
       .then((response) => {
-        console.log(`data:[${JSON.stringify(response.data)}]`);
-        localStorage.setItem('token', response.data);
-      });
+        if (response.status === 200) {
+          console.log(response.headers['content-type']);
+          console.log(response.data);
+          localStorage.setItem('token', response.data);
+        }
+      })
+      .finally(() => localStorage.removeItem('refresh'));
   };
   const onClickLoginRefresh = () => {
     axiosDefaultInstance
-      .post<string>(`/Refresh`, localStorage.getItem('token')!)
+      .post<string>(`/Refresh`, JSON.stringify(localStorage.getItem('token')!))
       .then((response) => {
-        console.log(`data:[${JSON.stringify(response.data)}]`);
-        localStorage.setItem('token', response.data);
-      });
+        localStorage.removeItem('refresh');
+        if (response.status === 200) {
+          console.log(response.headers['content-type']);
+          console.log(response.data);
+          localStorage.setItem('token', response.data);
+        }
+      })
+      .finally(() => localStorage.removeItem('refresh'));
   };
   const onClickLoginSignOut = () => {
     axiosDefaultInstance
       .post<string>(`/SignOut`, localStorage.getItem('token')!)
       .then((response) => {
-        console.log(`data:[${JSON.stringify(response.data)}]`);
-        localStorage.removeItem('token');
-      });
+        if (response.status === 200) {
+          console.log(response.headers['content-type']);
+          localStorage.removeItem('token');
+        }
+      })
+      .finally(() => localStorage.removeItem('refresh'));
   };
   // Click
   const onClickTest = () => {
     axiosAuthorizationInstance
       .get<string>(`/ValueFromQuery?model=hello`)
-      .then((response) => console.log(`data:[${response.data}]`));
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.headers['content-type']);
+          console.log(response.data);
+        }
+      });
     axiosAuthorizationInstance
       .post(`/ValueFromBody`, 'hello')
-      .then((response) => console.log(`data:[${response.data}]`));
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.headers['content-type']);
+          console.log(response.data);
+        }
+      });
     axiosAuthorizationInstance
       .get<{ Text: string; Value: number; Date: Date }>(
         `/JsonFromQuery?Text=Pete&Value=1&Date=2020-01-01`,
       )
-      .then((response) =>
-        console.log(`data:[${JSON.stringify(response.data)}]`),
-      );
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.headers['content-type']);
+          console.log(response.data);
+        }
+      });
     axiosAuthorizationInstance
       .post<{ Text: string; Value: number; Date: Date }>(
         `/JsonFromBody`,
         { Text: 'Pete', Value: 12, Date: new Date() },
       )
-      .then((response) =>
-        console.log(`data:[${JSON.stringify(response.data)}]`),
-      );
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.headers['content-type']);
+          console.log(response.data);
+        }
+      });
   };
   const onClickDownload = () => {
     // axiosAuthorizationInstance.get<Blob>(`Test/Download`, {
@@ -87,27 +126,31 @@ export function DemoAjaxAxios() {
         },
       )
       .then(async (response) => {
-        console.log(response.data.type);
-        if (response.data.type !== 'text/plain') {
-          const contentDispositionValues =
-            response.headers['content-disposition']?.split(';');
-          let filename = 'download';
-          contentDispositionValues?.forEach((f) => {
-            if (f.indexOf('filename') > -1) {
-              let texts = f.split('=');
-              if (texts.length > 1) {
-                filename = decodeURIComponent(texts[1]);
+        if (response.status === 200) {
+          console.log(response.headers['content-type']);
+          // console.log(response.data.type);
+          if (response.headers['content-type'] !== 'text/plain; charset=utf-8') {
+          // if (response.data.type !== 'text/plain') {
+            const contentDispositionValues =
+              response.headers['content-disposition']?.split(';');
+            let filename = 'download';
+            contentDispositionValues?.forEach((f) => {
+              if (f.indexOf('filename') > -1) {
+                let texts = f.split('=');
+                if (texts.length > 1) {
+                  filename = decodeURIComponent(texts[1]);
+                }
               }
-            }
-          });
-          const a = window.document.createElement('a');
-          a.href = window.URL.createObjectURL(new Blob([response.data]));
-          a.download = filename;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        } else {
-          console.log(await response.data.text());
+            });
+            const a = window.document.createElement('a');
+            a.href = window.URL.createObjectURL(new Blob([response.data]));
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          } else {
+            console.log(await response.data.text());
+          }
         }
       });
   };
@@ -126,9 +169,11 @@ export function DemoAjaxAxios() {
     }
     axiosAuthorizationInstance
       .post<string>(`/Upload`, formData)
-      .then((response) =>
-        console.log(`data:[${JSON.stringify(response.data)}]`),
-      );
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.headers['content-type']);
+        }
+      });
   };
   const onClickUploads = () => {
     const formData = new FormData();
@@ -139,9 +184,11 @@ export function DemoAjaxAxios() {
     }
     axiosAuthorizationInstance
       .post<string>(`/Upload`, formData)
-      .then((response) =>
-        console.log(`data:[${JSON.stringify(response.data)}]`),
-      );
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.headers['content-type']);
+        }
+      });
   };
   return (
     <>
