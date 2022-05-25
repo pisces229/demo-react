@@ -1,4 +1,4 @@
-import { BASE_URL } from "./demo-ajax-const";
+import { BASE_URL } from './demo-ajax-const';
 
 const FetchDefault = async (request: Request) => {
   // console.log(`FetchDefault Request Interceptor`);
@@ -85,14 +85,11 @@ const RunRefresh = async () => {
     localStorage.setItem('refresh', `${true}`);
     const refreshHeaders = new Headers();
     refreshHeaders.set('Content-Type', 'application/json');
-    const refreshRequest = new Request(
-      `${BASE_URL}/Refresh`,
-      {
-        method: 'POST',
-        headers: refreshHeaders,
-        body: JSON.stringify(localStorage.getItem('token')!),
-      },
-    );
+    const refreshRequest = new Request(`${BASE_URL}/Refresh`, {
+      method: 'POST',
+      headers: refreshHeaders,
+      body: JSON.stringify(localStorage.getItem('token')!),
+    });
     const refreshResponse = await FetchDefault(refreshRequest);
     if (refreshResponse.ok) {
       console.log(refreshResponse.headers.get('Content-Type'));

@@ -103,10 +103,11 @@ export function DemoAjaxAxios() {
         }
       });
     axiosAuthorizationInstance
-      .post<{ Text: string; Value: number; Date: Date }>(
-        `/JsonFromBody`,
-        { Text: 'Pete', Value: 12, Date: new Date() },
-      )
+      .post<{ Text: string; Value: number; Date: Date }>(`/JsonFromBody`, {
+        Text: 'Pete',
+        Value: 12,
+        Date: new Date(),
+      })
       .then((response) => {
         if (response.status === 200) {
           console.log(response.headers['content-type']);
@@ -119,18 +120,17 @@ export function DemoAjaxAxios() {
     //   responseType: 'blob'
     // })
     axiosAuthorizationInstance
-      .get<Blob>(
-        `/Download`,
-        {
-          responseType: 'blob',
-        },
-      )
+      .get<Blob>(`/Download`, {
+        responseType: 'blob',
+      })
       .then(async (response) => {
         if (response.status === 200) {
           console.log(response.headers['content-type']);
           // console.log(response.data.type);
-          if (response.headers['content-type'] !== 'text/plain; charset=utf-8') {
-          // if (response.data.type !== 'text/plain') {
+          if (
+            response.headers['content-type'] !== 'text/plain; charset=utf-8'
+          ) {
+            // if (response.data.type !== 'text/plain') {
             const contentDispositionValues =
               response.headers['content-disposition']?.split(';');
             let filename = 'download';

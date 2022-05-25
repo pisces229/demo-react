@@ -9,6 +9,7 @@ import { DemoPageApp } from './demo-page/demo-page-app';
 import { DemoStyleApp } from './demo-styled/demo-styled-app';
 import { DemoAjaxApp } from './demo-ajax/demo-ajax-app';
 import { DemoComponentApp } from './demo-component/demo-component-app';
+import { DemoConstApp } from './demo-const/demo-const-app';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as any);
 // React Strict Mode does is run certain callbacks/methods twice (in DEV mode ONLY).
@@ -18,11 +19,12 @@ root.render(
     {/* <DemoComponentApp /> */}
     {/* <DemoHookApp /> */}
     {/* <DemoReduxApp /> */}
-    <DemoRouterApp />
+    {/* <DemoRouterApp /> */}
     {/* <DemoStyleApp /> */}
     {/* <DemoPageApp /> */}
     {/* <DemoAjaxApp /> */}
-  </>
+    <DemoConstApp />
+  </>,
   // </React.StrictMode>
 );
 

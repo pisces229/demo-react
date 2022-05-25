@@ -59,12 +59,8 @@ function DemoSecond() {
       <div>countValue:[{countValue}]</div>
       <button onClick={handleIncrement}>actionIncrement</button>
       <button onClick={handleDecrement}>actionDecrement</button>
-      <button onClick={handleIncrementPayload}>
-        actionIncrementPayload
-      </button>
-      <button onClick={handleDecrementPayload}>
-        actionDecrementPayload
-      </button>
+      <button onClick={handleIncrementPayload}>actionIncrementPayload</button>
+      <button onClick={handleDecrementPayload}>actionDecrementPayload</button>
     </>
   );
 }
@@ -80,4 +76,3 @@ export function DemoReduxCreateSliceApp() {
     </>
   );
 }
-

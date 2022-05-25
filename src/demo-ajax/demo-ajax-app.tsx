@@ -1,5 +1,5 @@
-import { DemoAjaxAxios } from "./demo-ajax-axios";
-import { DemoAjaxFetch } from "./demo-ajax-fetch";
+import { DemoAjaxAxios } from './demo-ajax-axios';
+import { DemoAjaxFetch } from './demo-ajax-fetch';
 
 export function DemoAjaxApp() {
   return (

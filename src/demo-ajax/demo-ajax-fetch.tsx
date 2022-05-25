@@ -51,15 +51,16 @@ export function DemoAjaxFetch() {
         headers: headers,
         body: JSON.stringify({ Account: 'Account', Password: 'Password' }),
       }),
-    ).then(async (response) => {
-      if (response.ok) {
-        console.log(response.headers.get('Content-Type'));
-        const value = await response.text();
-        console.log(value);
-        localStorage.setItem('token', JSON.parse(value));
-      }
-    })
-    .finally(() => localStorage.removeItem('refresh'));
+    )
+      .then(async (response) => {
+        if (response.ok) {
+          console.log(response.headers.get('Content-Type'));
+          const value = await response.text();
+          console.log(value);
+          localStorage.setItem('token', JSON.parse(value));
+        }
+      })
+      .finally(() => localStorage.removeItem('refresh'));
   };
   const onClickLoginRefresh = () => {
     const headers = new Headers();
@@ -70,15 +71,16 @@ export function DemoAjaxFetch() {
         headers: headers,
         body: JSON.stringify(localStorage.getItem('token')!),
       }),
-    ).then(async (response) => {
-      if (response.ok) {
-        console.log(response.headers.get('Content-Type'));
-        const value = await response.text();
-        console.log(value);
-        localStorage.setItem('token', JSON.parse(value));
-      }
-    })
-    .finally(() => localStorage.removeItem('refresh'));
+    )
+      .then(async (response) => {
+        if (response.ok) {
+          console.log(response.headers.get('Content-Type'));
+          const value = await response.text();
+          console.log(value);
+          localStorage.setItem('token', JSON.parse(value));
+        }
+      })
+      .finally(() => localStorage.removeItem('refresh'));
   };
   const onClickLoginSignOut = () => {
     const headers = new Headers();
@@ -89,25 +91,26 @@ export function DemoAjaxFetch() {
         headers: headers,
         body: JSON.stringify(localStorage.getItem('token')!),
       }),
-    ).then(async (response) => {
-      if (response.ok) {
-        console.log(response.headers.get('Content-Type'));
-        localStorage.removeItem('token');
-      }
-    })
-    .finally(() => localStorage.removeItem('refresh'));
+    )
+      .then(async (response) => {
+        if (response.ok) {
+          console.log(response.headers.get('Content-Type'));
+          localStorage.removeItem('token');
+        }
+      })
+      .finally(() => localStorage.removeItem('refresh'));
   };
   // Click
   const onClickTest = () => {
-    FetchAuthorizationGet(
-      `${BASE_URL}/ValueFromQuery?model=hello`,
-    ).then(async (response) => {
-      if (response.ok) {
-        console.log(response.headers.get('Content-Type'));
-        const value = await response.text();
-        console.log(value);
-      }
-    });
+    FetchAuthorizationGet(`${BASE_URL}/ValueFromQuery?model=hello`).then(
+      async (response) => {
+        if (response.ok) {
+          console.log(response.headers.get('Content-Type'));
+          const value = await response.text();
+          console.log(value);
+        }
+      },
+    );
     FetchAuthorizationPost(
       `${BASE_URL}/ValueFromBody`,
       JSON.stringify('hello'),
@@ -139,12 +142,12 @@ export function DemoAjaxFetch() {
     });
   };
   const onClickDownload = () => {
-    FetchAuthorizationGet(
-      `${BASE_URL}/Download`
-    ).then(async (response) => {
+    FetchAuthorizationGet(`${BASE_URL}/Download`).then(async (response) => {
       if (response.ok) {
         console.log(response.headers.get('content-type'));
-        if (response.headers.get('content-type') !== 'text/plain; charset=utf-8') {
+        if (
+          response.headers.get('content-type') !== 'text/plain; charset=utf-8'
+        ) {
           const contentDispositionValues = response.headers
             .get('content-disposition')
             ?.split(';');
@@ -184,14 +187,13 @@ export function DemoAjaxFetch() {
     if (file?.length! > 0) {
       formData.append('File', file?.item(0)!);
     }
-    FetchAuthorizationPost(
-      `${BASE_URL}/Upload`,
-      formData,
-    ).then(async (response) => {
-      if (response.ok) {
-        console.log(response.headers.get('content-type'));
-      }
-    });
+    FetchAuthorizationPost(`${BASE_URL}/Upload`, formData).then(
+      async (response) => {
+        if (response.ok) {
+          console.log(response.headers.get('content-type'));
+        }
+      },
+    );
   };
   const onClickUploads = () => {
     const formData = new FormData();
@@ -200,14 +202,13 @@ export function DemoAjaxFetch() {
         formData.append(`[${i}].File`, file?.item(i)!);
       }
     }
-    FetchAuthorizationPost(
-      `${BASE_URL}/Upload`,
-      formData,
-    ).then(async (response) => {
-      if (response.ok) {
-        console.log(response.headers.get('content-type'));
-      }
-    });
+    FetchAuthorizationPost(`${BASE_URL}/Upload`, formData).then(
+      async (response) => {
+        if (response.ok) {
+          console.log(response.headers.get('content-type'));
+        }
+      },
+    );
   };
   return (
     <>

@@ -1,4 +1,4 @@
-import { useState, useTransition } from "react";
+import { useState, useTransition } from 'react';
 
 export function DemoHookTransition() {
   const [transition, startTransition] = useTransition();
@@ -9,7 +9,10 @@ export function DemoHookTransition() {
       <h4>transition:[{transition}]</h4>
       <button
         disabled={transition}
-        onClick={() => startTransition(() => setState(() => (!state)))}>Click</button>
+        onClick={() => startTransition(() => setState(() => !state))}
+      >
+        Click
+      </button>
     </>
   );
 }

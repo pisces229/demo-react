@@ -1,6 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { countReducer as createReducer } from "./demo-redux-create-reducer";
-import { countReducer as createSlice } from "./demo-redux-create-slice";
+import { configureStore } from '@reduxjs/toolkit';
+import { countReducer as createReducer } from './demo-redux-create-reducer';
+import { countReducer as createSlice } from './demo-redux-create-slice';
 // const combineReducer = combineReducers({
 //   name: reducer,
 // });

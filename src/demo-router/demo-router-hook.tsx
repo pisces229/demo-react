@@ -17,7 +17,7 @@ export function DemoRouterHook() {
       <nav>
         <ul>
           <li>
-            <Link to="first" >First</Link>
+            <Link to="first">First</Link>
           </li>
           <li>
             <Link to="second">Second</Link>
@@ -53,11 +53,12 @@ const DemoRouterFirst = () => {
     }
     return () => {
       console.log('DemoRouterFirst.UNMOUNT');
-    }
-  }, []);
+    };
+  }, [location, match, navigationType]);
   // useDemoRouterHook();
   const onClickTo = () => {
-    setValue((state) => (state + 1));
+    setValue((state) => state + 1);
+    // history.state
     navigate(`/second`, {
       state: { start: value },
     });
@@ -68,12 +69,14 @@ const DemoRouterFirst = () => {
   return (
     <>
       <h2>DemoRouterFirst[{value}]</h2>
-      <button onClick={() => setValue((state) => (state + 1))}>onClickPlus</button>
+      <button onClick={() => setValue((state) => state + 1)}>
+        onClickPlus
+      </button>
       <button onClick={onClickTo}>onClickTo</button>
       <button onClick={onClickBack}>onClickBack</button>
     </>
   );
-}
+};
 const DemoRouterSecond = () => {
   const navigate = useNavigate();
   const navigationType = useNavigationType();
@@ -93,12 +96,13 @@ const DemoRouterSecond = () => {
     }
     return () => {
       console.log('DemoRouterSecond.UNMOUNT');
-    }
-  }, [location]);
+    };
+  }, [location, match, navigationType]);
 
   // useDemoRouterHook();
   const onClickTo = () => {
-    setValue((state) => (state + 1));
+    setValue((state) => state + 1);
+    // history.state
     navigate(`/first`, {
       state: { start: value },
     });
@@ -109,9 +113,11 @@ const DemoRouterSecond = () => {
   return (
     <>
       <h2>DemoRouterSecond[{value}]</h2>
-      <button onClick={() => setValue((state) => (state + 1))}>onClickPlus</button>
+      <button onClick={() => setValue((state) => state + 1)}>
+        onClickPlus
+      </button>
       <button onClick={onClickTo}>onClickTo</button>
       <button onClick={onClickBack}>onClickBack</button>
     </>
   );
-}
+};

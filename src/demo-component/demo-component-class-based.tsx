@@ -1,6 +1,9 @@
 import React from 'react';
 
-export class DemoComponentClassBased extends React.Component<{}, { value: boolean }> {
+export class DemoComponentClassBased extends React.Component<
+  {},
+  { value: boolean }
+> {
   constructor(props: {}) {
     super(props);
     this.state = { value: true };
@@ -9,7 +12,11 @@ export class DemoComponentClassBased extends React.Component<{}, { value: boolea
     return (
       <>
         <h2>DemoComponentClassBased</h2>
-        <button onClick={() => this.setState((state) => ({ value: !state.value }))}>Change</button>
+        <button
+          onClick={() => this.setState((state) => ({ value: !state.value }))}
+        >
+          Change
+        </button>
         {this.state.value && <DemoLifeCycle />}
         <DemoNoProp />
         <DemoWithProp value="React" />
@@ -40,7 +47,9 @@ class DemoLifeCycle extends React.Component<{}, { value: number }> {
           onClick={() =>
             this.setState((state) => ({ ...state, value: state.value + 1 }))
           }
-        >Click</button>
+        >
+          Click
+        </button>
       </>
     );
   }

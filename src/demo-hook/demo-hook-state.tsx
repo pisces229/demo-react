@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export function DemoHookState() {
   const [first, setFirst] = useState<number>(0);
   const onClickFirst = () => {
-    setFirst(() => (first + 1));
-    setFirst(() => (first + 1));
-    setFirst(() => (first + 1));
+    setFirst(() => first + 1);
+    setFirst(() => first + 1);
+    setFirst(() => first + 1);
   };
   const [second, setSecond] = useState<number>(0);
   const onClickSecond = () => {
-    setSecond((state) => (state + 1));
-    setSecond((state) => (state + 1));
-    setSecond((state) => (state + 1));
+    setSecond((state) => state + 1);
+    setSecond((state) => state + 1);
+    setSecond((state) => state + 1);
   };
   return (
     <>

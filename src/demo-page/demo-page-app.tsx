@@ -1,5 +1,8 @@
 import { Fragment, useEffect, useState } from 'react';
-import { useCommonBindStateArray, useCommonBindStateValue } from './demo-page-hook';
+import {
+  useCommonBindStateArray,
+  useCommonBindStateValue,
+} from './demo-page-hook';
 
 // interface
 interface CommonOptionModel {
@@ -70,7 +73,7 @@ export function DemoPageApp() {
       });
     }
     setGrid([...grid]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // useCommonBind
   const {

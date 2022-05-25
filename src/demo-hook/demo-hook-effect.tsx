@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export function DemoHookEffect() {
-  const [state, setState] = useState<{ first: number, second: number }>({ first: 0, second: 0 });
+  const [state, setState] = useState<{ first: number; second: number }>({
+    first: 0,
+    second: 0,
+  });
   // any effect
   useEffect(() => {
     // do ssomething
@@ -50,11 +53,21 @@ export function DemoHookEffect() {
   return (
     <>
       <h3>DemoHookDemo</h3>
-      <button onClick={() => setState(() => ({ first: 0, second: 0 }))}>Clear</button>
+      <button onClick={() => setState(() => ({ first: 0, second: 0 }))}>
+        Clear
+      </button>
       <h4>first:[{state.first}]</h4>
-      <button onClick={() => setState(() => ({ ...state, first: state.first + 1 }))}>Plus</button>
+      <button
+        onClick={() => setState(() => ({ ...state, first: state.first + 1 }))}
+      >
+        Plus
+      </button>
       <h4>second:[{state.second}]</h4>
-      <button onClick={() => setState(() => ({ ...state, second: state.second + 1 }))}>Plus</button>
+      <button
+        onClick={() => setState(() => ({ ...state, second: state.second + 1 }))}
+      >
+        Plus
+      </button>
       {/* <p>counts:[{count}]</p> */}
     </>
   );

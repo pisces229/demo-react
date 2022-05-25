@@ -41,28 +41,16 @@ const slice = createSlice({
       })
       // commonThunk
       .addCase(commonThunk.pending, (state, action) => {
-        console.log(
-          `Slice.commonThunk.pending:${JSON.stringify(state)}`,
-        );
-        console.log(
-          `Slice.commonThunk.pending:${JSON.stringify(action)}`,
-        );
+        console.log(`Slice.commonThunk.pending:${JSON.stringify(state)}`);
+        console.log(`Slice.commonThunk.pending:${JSON.stringify(action)}`);
       })
       .addCase(commonThunk.fulfilled, (state, action) => {
-        console.log(
-          `Slice.commonThunk.fulfilled:${JSON.stringify(state)}`,
-        );
-        console.log(
-          `Slice.commonThunk.fulfilled:${JSON.stringify(action)}`,
-        );
+        console.log(`Slice.commonThunk.fulfilled:${JSON.stringify(state)}`);
+        console.log(`Slice.commonThunk.fulfilled:${JSON.stringify(action)}`);
       })
       .addCase(commonThunk.rejected, (state, action) => {
-        console.log(
-          `Slice.commonThunk.rejected:${JSON.stringify(state)}`,
-        );
-        console.log(
-          `Slice.commonThunk.rejected:${JSON.stringify(action)}`,
-        );
+        console.log(`Slice.commonThunk.rejected:${JSON.stringify(state)}`);
+        console.log(`Slice.commonThunk.rejected:${JSON.stringify(action)}`);
       });
   },
 });

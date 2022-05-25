@@ -10,9 +10,7 @@ export const commonAction = createAction('common/action', (value: string) => {
 export const commonThunk = createAsyncThunk(
   'commonThunk',
   async (postData: string, thunkAPI: {}) => {
-    const response = await axios.get<string>(
-      `https://localhost:9100`,
-    );
+    const response = await axios.get<string>(`https://localhost:9100`);
     return response.data;
   },
 );

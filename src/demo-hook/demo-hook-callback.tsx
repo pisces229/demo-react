@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useCallback, useState } from "react";
+import { useCallback, useState } from 'react';
 
 export function DemoHookCallback() {
   console.log('DemoHookCallback');
@@ -16,7 +16,7 @@ export function DemoHookCallback() {
     <>
       <h3>DemoHookCallback</h3>
       <h4>state:[{state}]</h4>
-      <button onClick={() => setState((state) => (state + 1))}>Change</button>
+      <button onClick={() => setState((state) => state + 1)}>Change</button>
       <h4>Click</h4>
       <button onClick={onClick}>Click</button>
     </>
