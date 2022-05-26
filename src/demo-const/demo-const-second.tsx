@@ -1,24 +1,38 @@
-import { useEffect } from 'react';
-import { DemoConstStore } from './demo-const-store';
+import { useEffect, useState } from 'react';
+import { DemoConstStoreModel } from './demo-const-model';
+import { demoConstStore } from './demo-const-store';
 
 export function DemoCostSecond() {
-  const store = DemoConstStore;
+  const [state, setState] = useState<DemoConstStoreModel>({
+    text: '',
+    value: 0,
+  });
   useEffect(() => {
-    console.log('DemoCostSecond.MOUNT');
+    console.log('DemoCostFirst.MOUNT');
+    if (demoConstStore.get()) {
+      setState({ ...demoConstStore.get()! });
+    }
     return () => {
-      console.log('DemoCostSecond.UNMOUNT');
+      console.log('DemoCostFirst.UNMOUNT');
     };
   }, []);
+  useEffect(() => {
+    demoConstStore.set({ ...state });
+  }, [state]);
+  const doValue = () =>
+    setState((state) => ({ ...state, value: ++state.value }));
+  const doText = () =>
+    setState((state) => ({ ...state, text: state.value.toString() }));
+  const doClear = () => demoConstStore.set(undefined);
   return (
     <>
       <h3>DemoCostSecond</h3>
       <p>
-        text:[{store.text}] value:[{store.value}]
+        text:[{state!.text}] value:[{state!.value}]
       </p>
-      <button onClick={() => ++store.value}>Value</button>
-      <button onClick={() => (store.text = store.value.toString())}>
-        Text
-      </button>
+      <button onClick={doValue}>Value</button>
+      <button onClick={doText}>Text</button>
+      <button onClick={doClear}>Clear</button>
     </>
   );
 }
