@@ -40,19 +40,21 @@ const reducer = (
 
 export function DemoHookReducer() {
   const [state, dispatch] = useReducer(reducer, reducerState);
+  const onClickPlus = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log(event);
+    dispatch({ type: ReducerAction.Plus, payload: 1 });
+  };
+  const onClickReset = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log(event);
+    dispatch({ type: ReducerAction.Reset });
+  };
   return (
     <>
       <h2>DemoHookReducer</h2>
       <p>Action:[{state.action}]</p>
       <p>Count:[{state.count}]</p>
-      <button
-        onClick={() => dispatch({ type: ReducerAction.Plus, payload: 1 })}
-      >
-        Plus
-      </button>
-      <button onClick={() => dispatch({ type: ReducerAction.Reset })}>
-        Reset
-      </button>
+      <button onClick={onClickPlus}>Plus</button>
+      <button onClick={onClickReset}>Reset</button>
     </>
   );
 }

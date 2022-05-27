@@ -6,8 +6,8 @@ import {
   FetchAuthorizationPost,
 } from './demo-ajax-fetch-intercept';
 export function DemoAjaxFetch() {
-  // Example
   const synchronous = () => {
+    console.log('before');
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
     FetchDefault(
@@ -15,31 +15,38 @@ export function DemoAjaxFetch() {
         method: 'GET',
         headers: headers,
       }),
-    ).then(async (response) => {
-      if (response.ok) {
-        console.log(response.headers.get('Content-Type'));
-        const value = await response.text();
-        console.log(value);
-      }
-    });
+    )
+      .then(async (response) => {
+        if (response.ok) {
+          console.log(response.headers.get('Content-Type'));
+          const value = await response.text();
+          console.log(value);
+        }
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('finally'));
+    console.log('after');
   };
   const asynchronous = async () => {
+    console.log('before');
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
-    const result = await FetchDefault(
+    await FetchDefault(
       new Request(`${BASE_URL}/`, {
         method: 'GET',
         headers: headers,
       }),
-    ).then((response) => {
-      if (response.ok) {
-        console.log(response.headers.get('Content-Type'));
-        return response.text();
-      }
-    });
-    if (result) {
-      console.log(result);
-    }
+    )
+      .then(async (response) => {
+        if (response.ok) {
+          console.log(response.headers.get('Content-Type'));
+          const value = await response.text();
+          console.log(value);
+        }
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('finally'));
+    console.log('after');
   };
   // Login
   const onClickLoginSignIn = () => {
@@ -60,6 +67,7 @@ export function DemoAjaxFetch() {
           localStorage.setItem('token', JSON.parse(value));
         }
       })
+      .catch((error) => console.log(error))
       .finally(() => localStorage.removeItem('refresh'));
   };
   const onClickLoginRefresh = () => {
@@ -80,6 +88,7 @@ export function DemoAjaxFetch() {
           localStorage.setItem('token', JSON.parse(value));
         }
       })
+      .catch((error) => console.log(error))
       .finally(() => localStorage.removeItem('refresh'));
   };
   const onClickLoginSignOut = () => {
@@ -98,81 +107,92 @@ export function DemoAjaxFetch() {
           localStorage.removeItem('token');
         }
       })
+      .catch((error) => console.log(error))
       .finally(() => localStorage.removeItem('refresh'));
   };
   // Click
   const onClickTest = () => {
-    FetchAuthorizationGet(`${BASE_URL}/ValueFromQuery?model=hello`).then(
-      async (response) => {
+    FetchAuthorizationGet(`${BASE_URL}/ValueFromQuery?model=hello`)
+      .then(async (response) => {
         if (response.ok) {
           console.log(response.headers.get('Content-Type'));
           const value = await response.text();
           console.log(value);
         }
-      },
-    );
-    FetchAuthorizationPost(
-      `${BASE_URL}/ValueFromBody`,
-      JSON.stringify('hello'),
-    ).then(async (response) => {
-      if (response.ok) {
-        console.log(response.headers.get('Content-Type'));
-        const value = await response.text();
-        console.log(value);
-      }
-    });
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('ValueFromQuery'));
+    FetchAuthorizationPost(`${BASE_URL}/ValueFromBody`, JSON.stringify('hello'))
+      .then(async (response) => {
+        if (response.ok) {
+          console.log(response.headers.get('Content-Type'));
+          const value = await response.text();
+          console.log(value);
+        }
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('ValueFromBody'));
     FetchAuthorizationGet(
       `${BASE_URL}/JsonFromQuery?Text=Pete&Value=1&Date=2020-01-01`,
-    ).then(async (response) => {
-      if (response.ok) {
-        console.log(response.headers.get('Content-Type'));
-        const value = await response.json();
-        console.log(value);
-      }
-    });
+    )
+      .then(async (response) => {
+        if (response.ok) {
+          console.log(response.headers.get('Content-Type'));
+          const value = await response.json();
+          console.log(value);
+        }
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('JsonFromQuery'));
     FetchAuthorizationPost(
       `${BASE_URL}/JsonFromBody`,
       JSON.stringify({ Text: 'Pete', Value: 12, Date: new Date() }),
-    ).then(async (response) => {
-      if (response.ok) {
-        console.log(response.headers.get('Content-Type'));
-        const value = await response.json();
-        console.log(value);
-      }
-    });
+    )
+      .then(async (response) => {
+        if (response.ok) {
+          console.log(response.headers.get('Content-Type'));
+          const value = await response.json();
+          console.log(value);
+        }
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('JsonFromBody'));
   };
   const onClickDownload = () => {
-    FetchAuthorizationGet(`${BASE_URL}/Download`).then(async (response) => {
-      if (response.ok) {
-        console.log(response.headers.get('content-type'));
-        if (
-          response.headers.get('content-type') !== 'text/plain; charset=utf-8'
-        ) {
-          const contentDispositionValues = response.headers
-            .get('content-disposition')
-            ?.split(';');
-          let filename = 'download';
-          contentDispositionValues?.forEach((f) => {
-            if (f.indexOf('filename') > -1) {
-              let texts = f.split('=');
-              if (texts.length > 1) {
-                filename = decodeURIComponent(texts[1]);
+    FetchAuthorizationGet(`${BASE_URL}/Download`)
+      .then(async (response) => {
+        if (response.ok) {
+          console.log(response.headers.get('content-type'));
+          if (
+            response.headers.get('content-type') !== 'text/plain; charset=utf-8'
+          ) {
+            const contentDispositionValues = response.headers
+              .get('content-disposition')
+              ?.split(';');
+            let filename = 'download';
+            contentDispositionValues?.forEach((f) => {
+              if (f.indexOf('filename') > -1) {
+                let texts = f.split('=');
+                if (texts.length > 1) {
+                  filename = decodeURIComponent(texts[1]);
+                }
               }
-            }
-          });
-          const a = window.document.createElement('a');
-          a.href = window.URL.createObjectURL(
-            new Blob([await response.blob()]),
-          );
-          a.download = filename;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        } else {
-          console.log(await response.text());
+            });
+            const a = window.document.createElement('a');
+            a.href = window.URL.createObjectURL(
+              new Blob([await response.blob()]),
+            );
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          } else {
+            console.log(await response.text());
+          }
         }
-      }
-    });
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('Download'));
   };
   const [file, setFile] = useState<FileList | null>();
   const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -187,13 +207,14 @@ export function DemoAjaxFetch() {
     if (file?.length! > 0) {
       formData.append('File', file?.item(0)!);
     }
-    FetchAuthorizationPost(`${BASE_URL}/Upload`, formData).then(
-      async (response) => {
+    FetchAuthorizationPost(`${BASE_URL}/Upload`, formData)
+      .then(async (response) => {
         if (response.ok) {
           console.log(response.headers.get('content-type'));
         }
-      },
-    );
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('Upload'));
   };
   const onClickUploads = () => {
     const formData = new FormData();

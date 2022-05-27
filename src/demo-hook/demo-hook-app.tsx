@@ -12,8 +12,8 @@ export function DemoHookApp() {
     <>
       <h2>DemoHookApp</h2>
       {/* State */}
-      <DemoHookState />
-      {/* <DemoHookReducer /> */}
+      {/* <DemoHookState /> */}
+      <DemoHookReducer />
       {/* <DemoHookContext /> */}
       {/* Effect */}
       {/* <DemoHookEffect /> */}

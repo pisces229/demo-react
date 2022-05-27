@@ -13,7 +13,7 @@ export class DemoComponentClassBased extends React.Component<
       <>
         <h2>DemoComponentClassBased</h2>
         <button
-          onClick={() => this.setState((state) => ({ value: !state.value }))}
+          onClick={async () => this.setState((state) => ({ value: !state.value }))}
         >
           Change
         </button>
@@ -44,7 +44,7 @@ class DemoLifeCycle extends React.Component<{}, { value: number }> {
         <h3>DemoLifeCycle</h3>
         <h3>state.value:{this.state.value}</h3>
         <button
-          onClick={() =>
+          onClick={async () =>
             this.setState((state) => ({ ...state, value: state.value + 1 }))
           }
         >

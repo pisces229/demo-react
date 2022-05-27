@@ -5,7 +5,7 @@ export function DemoComponentFunctional() {
   return (
     <>
       <h2>DemoComponentFunctional</h2>
-      <button onClick={() => setValue((state) => !state)}>Change</button>
+      <button onClick={async () => setValue((state) => !state)}>Change</button>
       {value && <DemoLifeCycle />}
       <DemoNoProp />
       <DemoWithProp value="React" />
@@ -32,7 +32,7 @@ const DemoLifeCycle = () => {
     <>
       <h3>DemoLifeCycle</h3>
       <h3>state.value:{value}</h3>
-      <button onClick={() => setValue((state) => state + 1)}>Click</button>
+      <button onClick={async () => setValue((state) => state + 1)}>Click</button>
     </>
   );
 };

@@ -5,8 +5,8 @@ import {
 } from './demo-ajax-axios-instance';
 
 export function DemoAjaxAxios() {
-  // Example
   const synchronous = () => {
+    console.log('before');
     axiosDefaultInstance
       .get<string>(`/`)
       .then((response) => {
@@ -15,24 +15,23 @@ export function DemoAjaxAxios() {
           console.log(response.data);
         }
       })
-      .catch((error) => console.log(`catch:[${error}]`))
-      .finally(() => console.log(`finally`));
+      .catch((error) => console.log(error))
+      .finally(() => console.log('finally'));
+    console.log('after');
   };
   const asynchronous = async () => {
-    let result = await axiosDefaultInstance
+    console.log('before');
+    await axiosDefaultInstance
       .get<string>(`/`)
       .then((response) => {
         if (response.status === 200) {
           console.log(response.headers['content-type']);
           console.log(response.data);
-          return response.data;
         }
       })
-      .catch((error) => console.log(`catch:[${error}]`))
-      .finally(() => console.log(`finally`));
-    if (result) {
-      console.log(result);
-    }
+      .catch((error) => console.log(error))
+      .finally(() => console.log('finally'));
+    console.log('after');
   };
   // Login
   const onClickLoginSignIn = () => {
@@ -48,6 +47,7 @@ export function DemoAjaxAxios() {
           localStorage.setItem('token', response.data);
         }
       })
+      .catch((error) => console.log(error))
       .finally(() => localStorage.removeItem('refresh'));
   };
   const onClickLoginRefresh = () => {
@@ -61,6 +61,7 @@ export function DemoAjaxAxios() {
           localStorage.setItem('token', response.data);
         }
       })
+      .catch((error) => console.log(error))
       .finally(() => localStorage.removeItem('refresh'));
   };
   const onClickLoginSignOut = () => {
@@ -72,18 +73,21 @@ export function DemoAjaxAxios() {
           localStorage.removeItem('token');
         }
       })
+      .catch((error) => console.log(error))
       .finally(() => localStorage.removeItem('refresh'));
   };
   // Click
   const onClickTest = () => {
     axiosAuthorizationInstance
-      .get<string>(`/ValueFromQuery?model=hello`)
+      .get<string>(`/ValueFromQuery`, { params: { model: 'hello' } })
       .then((response) => {
         if (response.status === 200) {
           console.log(response.headers['content-type']);
           console.log(response.data);
         }
-      });
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('ValueFromQuery'));
     axiosAuthorizationInstance
       .post(`/ValueFromBody`, 'hello')
       .then((response) => {
@@ -91,17 +95,21 @@ export function DemoAjaxAxios() {
           console.log(response.headers['content-type']);
           console.log(response.data);
         }
-      });
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('ValueFromBody'));
     axiosAuthorizationInstance
-      .get<{ Text: string; Value: number; Date: Date }>(
-        `/JsonFromQuery?Text=Pete&Value=1&Date=2020-01-01`,
-      )
+      .get<{ Text: string; Value: number; Date: Date }>(`/JsonFromQuery`, {
+        params: { Text: 'Pete', Value: 12, Date: new Date() },
+      })
       .then((response) => {
         if (response.status === 200) {
           console.log(response.headers['content-type']);
           console.log(response.data);
         }
-      });
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('JsonFromQuery'));
     axiosAuthorizationInstance
       .post<{ Text: string; Value: number; Date: Date }>(`/JsonFromBody`, {
         Text: 'Pete',
@@ -113,7 +121,9 @@ export function DemoAjaxAxios() {
           console.log(response.headers['content-type']);
           console.log(response.data);
         }
-      });
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('JsonFromBody'));
   };
   const onClickDownload = () => {
     // axiosAuthorizationInstance.get<Blob>(`Test/Download`, {
@@ -152,7 +162,9 @@ export function DemoAjaxAxios() {
             console.log(await response.data.text());
           }
         }
-      });
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('Download'));
   };
   const [file, setFile] = useState<FileList | null>();
   const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -173,7 +185,9 @@ export function DemoAjaxAxios() {
         if (response.status === 200) {
           console.log(response.headers['content-type']);
         }
-      });
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('Upload'));
   };
   const onClickUploads = () => {
     const formData = new FormData();
