@@ -36,7 +36,7 @@ export function DemoAjaxAxios() {
   // Login
   const onClickLoginSignIn = () => {
     axiosDefaultInstance
-      .post<string>(`/SignIn`, {
+      .post<string>(`/signIn`, {
         Account: 'Account',
         Password: 'Password',
       })
@@ -52,7 +52,7 @@ export function DemoAjaxAxios() {
   };
   const onClickLoginRefresh = () => {
     axiosDefaultInstance
-      .post<string>(`/Refresh`, JSON.stringify(localStorage.getItem('token')!))
+      .post<string>(`/refresh`, JSON.stringify(localStorage.getItem('token')!))
       .then((response) => {
         localStorage.removeItem('refresh');
         if (response.status === 200) {
@@ -66,7 +66,7 @@ export function DemoAjaxAxios() {
   };
   const onClickLoginSignOut = () => {
     axiosDefaultInstance
-      .post<string>(`/SignOut`, localStorage.getItem('token')!)
+      .post<string>(`/signOut`, localStorage.getItem('token')!)
       .then((response) => {
         if (response.status === 200) {
           console.log(response.headers['content-type']);
@@ -79,7 +79,7 @@ export function DemoAjaxAxios() {
   // Click
   const onClickTest = () => {
     axiosAuthorizationInstance
-      .get<string>(`/ValueFromQuery`, { params: { model: 'hello' } })
+      .get<string>(`/valueFromQuery`, { params: { model: 'hello' } })
       .then((response) => {
         if (response.status === 200) {
           console.log(response.headers['content-type']);
@@ -87,9 +87,9 @@ export function DemoAjaxAxios() {
         }
       })
       .catch((error) => console.log(error))
-      .finally(() => console.log('ValueFromQuery'));
+      .finally(() => console.log('valueFromQuery'));
     axiosAuthorizationInstance
-      .post(`/ValueFromBody`, 'hello')
+      .post(`/valueFromBody`, 'hello')
       .then((response) => {
         if (response.status === 200) {
           console.log(response.headers['content-type']);
@@ -97,9 +97,9 @@ export function DemoAjaxAxios() {
         }
       })
       .catch((error) => console.log(error))
-      .finally(() => console.log('ValueFromBody'));
+      .finally(() => console.log('valueFromBody'));
     axiosAuthorizationInstance
-      .get<{ Text: string; Value: number; Date: Date }>(`/JsonFromQuery`, {
+      .get<{ Text: string; Value: number; Date: Date }>(`/jsonFromQuery`, {
         params: { Text: 'Pete', Value: 12, Date: new Date() },
       })
       .then((response) => {
@@ -109,9 +109,9 @@ export function DemoAjaxAxios() {
         }
       })
       .catch((error) => console.log(error))
-      .finally(() => console.log('JsonFromQuery'));
+      .finally(() => console.log('jsonFromQuery'));
     axiosAuthorizationInstance
-      .post<{ Text: string; Value: number; Date: Date }>(`/JsonFromBody`, {
+      .post<{ Text: string; Value: number; Date: Date }>(`/jsonFromBody`, {
         Text: 'Pete',
         Value: 12,
         Date: new Date(),
@@ -123,14 +123,14 @@ export function DemoAjaxAxios() {
         }
       })
       .catch((error) => console.log(error))
-      .finally(() => console.log('JsonFromBody'));
+      .finally(() => console.log('jsonFromBody'));
   };
   const onClickDownload = () => {
     // axiosAuthorizationInstance.get<Blob>(`Test/Download`, {
     //   responseType: 'blob'
     // })
     axiosAuthorizationInstance
-      .get<Blob>(`/Download`, {
+      .get<Blob>(`/download`, {
         responseType: 'blob',
       })
       .then(async (response) => {
@@ -164,7 +164,7 @@ export function DemoAjaxAxios() {
         }
       })
       .catch((error) => console.log(error))
-      .finally(() => console.log('Download'));
+      .finally(() => console.log('download'));
   };
   const [file, setFile] = useState<FileList | null>();
   const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -180,14 +180,14 @@ export function DemoAjaxAxios() {
       formData.append('File', file?.item(0)!);
     }
     axiosAuthorizationInstance
-      .post<string>(`/Upload`, formData)
+      .post<string>(`/upload`, formData)
       .then((response) => {
         if (response.status === 200) {
           console.log(response.headers['content-type']);
         }
       })
       .catch((error) => console.log(error))
-      .finally(() => console.log('Upload'));
+      .finally(() => console.log('upload'));
   };
   const onClickUploads = () => {
     const formData = new FormData();
@@ -197,12 +197,14 @@ export function DemoAjaxAxios() {
       }
     }
     axiosAuthorizationInstance
-      .post<string>(`/Upload`, formData)
+      .post<string>(`/upload`, formData)
       .then((response) => {
         if (response.status === 200) {
           console.log(response.headers['content-type']);
         }
-      });
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('upload'));
   };
   return (
     <>

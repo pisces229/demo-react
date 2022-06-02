@@ -12,13 +12,13 @@ const DemoComponentLazy = lazy(() =>
 export function DemoComponentApp() {
   return (
     <>
-      <DemoComponentClassBased />
+      {/* <DemoComponentClassBased /> */}
       <DemoComponentFunctional />
-      <DemoComponentErrorBoundary>
+      {/* <DemoComponentErrorBoundary>
         <Suspense fallback={<div>Loading...</div>}>
           <DemoComponentLazy />
         </Suspense>
-      </DemoComponentErrorBoundary>
+      </DemoComponentErrorBoundary> */}
     </>
   );
 }

@@ -53,7 +53,7 @@ export function DemoAjaxFetch() {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
     FetchDefault(
-      new Request(`${BASE_URL}/SignIn`, {
+      new Request(`${BASE_URL}/signIn`, {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({ Account: 'Account', Password: 'Password' }),
@@ -74,7 +74,7 @@ export function DemoAjaxFetch() {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
     FetchDefault(
-      new Request(`${BASE_URL}/Refresh`, {
+      new Request(`${BASE_URL}/refresh`, {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(localStorage.getItem('token')!),
@@ -95,7 +95,7 @@ export function DemoAjaxFetch() {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
     FetchDefault(
-      new Request(`${BASE_URL}/SignOut`, {
+      new Request(`${BASE_URL}/signOut`, {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(localStorage.getItem('token')!),
@@ -112,7 +112,7 @@ export function DemoAjaxFetch() {
   };
   // Click
   const onClickTest = () => {
-    FetchAuthorizationGet(`${BASE_URL}/ValueFromQuery?model=hello`)
+    FetchAuthorizationGet(`${BASE_URL}/valueFromQuery?model=hello`)
       .then(async (response) => {
         if (response.ok) {
           console.log(response.headers.get('Content-Type'));
@@ -121,8 +121,8 @@ export function DemoAjaxFetch() {
         }
       })
       .catch((error) => console.log(error))
-      .finally(() => console.log('ValueFromQuery'));
-    FetchAuthorizationPost(`${BASE_URL}/ValueFromBody`, JSON.stringify('hello'))
+      .finally(() => console.log('valueFromQuery'));
+    FetchAuthorizationPost(`${BASE_URL}/valueFromBody`, JSON.stringify('hello'))
       .then(async (response) => {
         if (response.ok) {
           console.log(response.headers.get('Content-Type'));
@@ -131,9 +131,9 @@ export function DemoAjaxFetch() {
         }
       })
       .catch((error) => console.log(error))
-      .finally(() => console.log('ValueFromBody'));
+      .finally(() => console.log('valueFromBody'));
     FetchAuthorizationGet(
-      `${BASE_URL}/JsonFromQuery?Text=Pete&Value=1&Date=2020-01-01`,
+      `${BASE_URL}/jsonFromQuery?Text=Pete&Value=1&Date=2020-01-01`,
     )
       .then(async (response) => {
         if (response.ok) {
@@ -143,9 +143,9 @@ export function DemoAjaxFetch() {
         }
       })
       .catch((error) => console.log(error))
-      .finally(() => console.log('JsonFromQuery'));
+      .finally(() => console.log('jsonFromQuery'));
     FetchAuthorizationPost(
-      `${BASE_URL}/JsonFromBody`,
+      `${BASE_URL}/jsonFromBody`,
       JSON.stringify({ Text: 'Pete', Value: 12, Date: new Date() }),
     )
       .then(async (response) => {
@@ -156,10 +156,10 @@ export function DemoAjaxFetch() {
         }
       })
       .catch((error) => console.log(error))
-      .finally(() => console.log('JsonFromBody'));
+      .finally(() => console.log('jsonFromBody'));
   };
   const onClickDownload = () => {
-    FetchAuthorizationGet(`${BASE_URL}/Download`)
+    FetchAuthorizationGet(`${BASE_URL}/download`)
       .then(async (response) => {
         if (response.ok) {
           console.log(response.headers.get('content-type'));
@@ -192,7 +192,7 @@ export function DemoAjaxFetch() {
         }
       })
       .catch((error) => console.log(error))
-      .finally(() => console.log('Download'));
+      .finally(() => console.log('download'));
   };
   const [file, setFile] = useState<FileList | null>();
   const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -207,14 +207,14 @@ export function DemoAjaxFetch() {
     if (file?.length! > 0) {
       formData.append('File', file?.item(0)!);
     }
-    FetchAuthorizationPost(`${BASE_URL}/Upload`, formData)
+    FetchAuthorizationPost(`${BASE_URL}/upload`, formData)
       .then(async (response) => {
         if (response.ok) {
           console.log(response.headers.get('content-type'));
         }
       })
       .catch((error) => console.log(error))
-      .finally(() => console.log('Upload'));
+      .finally(() => console.log('upload'));
   };
   const onClickUploads = () => {
     const formData = new FormData();
@@ -223,13 +223,14 @@ export function DemoAjaxFetch() {
         formData.append(`[${i}].File`, file?.item(i)!);
       }
     }
-    FetchAuthorizationPost(`${BASE_URL}/Upload`, formData).then(
-      async (response) => {
+    FetchAuthorizationPost(`${BASE_URL}/upload`, formData)
+      .then(async (response) => {
         if (response.ok) {
           console.log(response.headers.get('content-type'));
         }
-      },
-    );
+      })
+      .catch((error) => console.log(error))
+      .finally(() => console.log('upload'));
   };
   return (
     <>

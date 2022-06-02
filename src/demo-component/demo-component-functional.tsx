@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react';
 
 export function DemoComponentFunctional() {
-  const [value, setValue] = useState<boolean>(true);
+  const [state, setState] = useState<boolean>(true);
+  const onCallback = async (value: string) => {
+    console.log('onCallback', value);
+  };
   return (
     <>
       <h2>DemoComponentFunctional</h2>
-      <button onClick={async () => setValue((state) => !state)}>Change</button>
-      {value && <DemoLifeCycle />}
-      <DemoNoProp />
-      <DemoWithProp value="React" />
+      <button onClick={async () => setState((state) => !state)}>Change</button>
+      {state && <DemoLifeCycle />}
+      {/* <DemoNoProp /> */}
+      {/* <DemoWithProp value="React" /> */}
+      <DemoWithCallback message="DemoComponentFunctional" callback={onCallback} />
     </>
   );
 }
@@ -48,6 +52,18 @@ const DemoWithProp = (prop: { value: string }) => {
     <>
       <h3>DemoWithProp</h3>
       <h4>prop.value:{prop.value}</h4>
+    </>
+  );
+};
+const DemoWithCallback = (prop: { message: string, callback: ((value: string) => {}) }) => {
+  const onClick = async () => {
+    prop.callback('DemoWithCallback');
+  };
+  return (
+    <>
+      <h3>DemoWithFunction</h3>
+      <h4>{prop.message}</h4>
+      <button onClick={onClick}>Callback</button>
     </>
   );
 };

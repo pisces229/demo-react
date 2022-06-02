@@ -85,7 +85,7 @@ const RunRefresh = async () => {
     localStorage.setItem('refresh', `${true}`);
     const refreshHeaders = new Headers();
     refreshHeaders.set('Content-Type', 'application/json');
-    const refreshRequest = new Request(`${BASE_URL}/Refresh`, {
+    const refreshRequest = new Request(`${BASE_URL}/refresh`, {
       method: 'POST',
       headers: refreshHeaders,
       body: JSON.stringify(localStorage.getItem('token')!),

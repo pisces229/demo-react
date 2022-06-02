@@ -75,7 +75,7 @@ const RunRefresh = async () => {
   try {
     localStorage.setItem('refresh', `${true}`);
     const refreshResponse = await axiosDefaultInstance.post(
-      '/Refresh',
+      '/refresh',
       JSON.stringify(localStorage.getItem('token')!),
     );
     if (refreshResponse.status === 200) {
