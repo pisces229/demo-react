@@ -1,5 +1,6 @@
 import { DemoHookCallback } from './demo-hook-callback';
 import { DemoHookContext } from './demo-hook-context';
+import { DemoHookDeferredValue } from './demo-hook-deferred-value';
 import { DemoHookEffect } from './demo-hook-effect';
 import { DemoHookMemo } from './demo-hook-memo';
 import { DemoHookReducer } from './demo-hook-reducer';
@@ -22,6 +23,7 @@ export function DemoHookApp() {
       {/* Other */}
       {/* <DemoHookRef /> */}
       {/* <DemoHookTransition /> */}
+      {/* <DemoHookDeferredValue /> */}
     </>
   );
 }

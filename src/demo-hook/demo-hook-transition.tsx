@@ -1,41 +1,42 @@
-import { Suspense, useState, useTransition } from 'react';
-
-const LazyCompoent = () => {
-  console.log('LazyCompoent');
-  const [state, setState] = useState(0);
-  let count = 0;
-  while (count < 5000) {
-    console.log(++count);
-    // ++count;
-  }
-  return (
-    <>
-      <p>LazyCompoent</p>
-      <p>{state}</p>
-      <button onClick={() => setState((state) => state + 1)}>Plus</button>
-    </>
-  );
-};
+import React, { useEffect, useState, useTransition } from 'react';
 
 export function DemoHookTransition() {
+  const [first, setFirst] = useState('');
+  const [second, setSecond] = useState('');
   const [transition, startTransition] = useTransition();
-  console.log(`transition:[${transition}]`);
-  const onClick = async () => {
-    console.log('startTransition.1');
+  useEffect(() => {
+    console.log(`[second]:[${second}]`);
+  }, [second]);
+  useEffect(() => {
+    console.log(`[first]:[${first}]`);
+  }, [first]);
+  useEffect(() => {
+    console.log(`[second]:[${second}]`);
+  }, [second]);
+  const onChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(`1`);
     startTransition(() => {
-      console.log(`startTransition:[${transition}]`);
-      console.log('startTransition.2');
+      console.log(`2`);
+      setSecond(() => event.target.value);
+      console.log(`3`);
     });
-    console.log('startTransition.3');
+    console.log(`4`);
+    setFirst(() => event.target.value);
+    console.log(`5`);
   };
   return (
     <>
       <h3>DemoHookTransition</h3>
-      <p>transition:[{transition.toString()}]</p>
-      <button disabled={transition} onClick={onClick}>
-        Click
-      </button>
-      {transition ? <p>Loading</p> : <LazyCompoent />}
+      <p>[first]:[{first}]</p>
+      <p>[second]:[{second}]</p>
+      <input type="text" onChange={onChange} />
+      <br />
+      {Array(5000)
+        .fill(0, 0, 5000)
+        .map((item, index) => (
+          <p key={index}>{first}</p>
+        ))}
+      {/* {Array(5000).fill(0, 0, 5000).map((item, index) => (<p key={index}>{second}</p>))} */}
     </>
   );
 }
