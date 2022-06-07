@@ -13,13 +13,13 @@ export function DemoHookApp() {
       <h2>DemoHookApp</h2>
       {/* State */}
       {/* <DemoHookState /> */}
-      <DemoHookReducer />
+      {/* <DemoHookReducer /> */}
       {/* <DemoHookContext /> */}
       {/* Effect */}
       {/* <DemoHookEffect /> */}
       {/* <DemoHookMemo /> */}
       {/* <DemoHookCallback /> */}
-      {/* Otehr */}
+      {/* Other */}
       {/* <DemoHookRef /> */}
       {/* <DemoHookTransition /> */}
     </>

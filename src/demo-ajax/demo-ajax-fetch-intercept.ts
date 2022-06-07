@@ -20,13 +20,7 @@ const FetchAuthorizationGet = async (url: string) => {
   });
   const response = await FetchDefault(request);
   if (response.status === 401) {
-    if (!DoingRefresh()) {
-      await RunRefresh();
-    } else {
-      while (DoingRefresh()) {
-        await WaitRefresh();
-      }
-    }
+    await RunRefresh();
     if (localStorage.getItem('token')) {
       // headers.set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
       headers.set('Token', `${localStorage.getItem('token')!}`);
@@ -56,13 +50,7 @@ const FetchAuthorizationPost = async (url: string, body: string | FormData) => {
   });
   const response = await FetchDefault(request);
   if (response.status === 401) {
-    if (!DoingRefresh()) {
-      await RunRefresh();
-    } else {
-      while (DoingRefresh()) {
-        await WaitRefresh();
-      }
-    }
+    await RunRefresh();
     if (localStorage.getItem('token')) {
       // headers.set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
       headers.set('Token', `${localStorage.getItem('token')!}`);
@@ -101,9 +89,4 @@ const RunRefresh = async () => {
     localStorage.removeItem('refresh');
   }
 };
-const DoingRefresh = () => localStorage.getItem('refresh');
-const WaitRefresh = () =>
-  new Promise((resolve) =>
-    setTimeout(() => resolve(!!localStorage.getItem('refresh')), 100),
-  );
 export { FetchDefault, FetchAuthorizationGet, FetchAuthorizationPost };

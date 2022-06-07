@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as any);
 root.render(
   // <React.StrictMode>
   <>
-    <DemoComponentApp />
+    {/* <DemoComponentApp /> */}
     {/* <DemoHookApp /> */}
     {/* <DemoReduxApp /> */}
     {/* <DemoRouterApp /> */}

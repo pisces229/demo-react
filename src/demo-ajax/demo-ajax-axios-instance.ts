@@ -54,13 +54,7 @@ axiosAuthorizationInstance.interceptors.response.use(
     const originalConfig = error.config;
     if (error.response.status === 401 && !originalConfig._retry) {
       originalConfig._retry = true;
-      if (!DoingRefresh()) {
-        await RunRefresh();
-      } else {
-        while (DoingRefresh()) {
-          await WaitRefresh();
-        }
-      }
+      await RunRefresh();
       if (localStorage.getItem('token')) {
         return axiosAuthorizationInstance(originalConfig);
       } else {
@@ -88,8 +82,3 @@ const RunRefresh = async () => {
     localStorage.removeItem('refresh');
   }
 };
-const DoingRefresh = () => localStorage.getItem('refresh');
-const WaitRefresh = () =>
-  new Promise((resolve) =>
-    setTimeout(() => resolve(!!localStorage.getItem('refresh')), 100),
-  );
