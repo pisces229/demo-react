@@ -6,12 +6,14 @@ export function DemoHookState() {
     setFirst(() => first + 1);
     setFirst(() => first + 1);
     setFirst(() => first + 1);
+    // +1
   };
   const [second, setSecond] = useState<number>(0);
   const onClickSecond = () => {
     setSecond((state) => state + 1);
     setSecond((state) => state + 1);
     setSecond((state) => state + 1);
+    // +3
   };
   return (
     <>

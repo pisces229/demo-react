@@ -45,10 +45,14 @@ export function DemoHookEffect() {
   // setInterval
   // const [count, setCount] = useState(0);
   // useEffect(() => {
-  //   const interval = setInterval(function () {
-  //     setCount((prev) => prev + 1);
+  //   console.log('setInterval');
+  //   const interval = setInterval(() => {
+  //     setCount((state) => (state + 1));
   //   }, 1000);
-  //   return () => clearInterval(interval);
+  //   return () => {
+  //     console.log('clearInterval');
+  //     clearInterval(interval);
+  //   };
   // }, []);
   return (
     <>

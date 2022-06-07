@@ -7,46 +7,53 @@ import {
 } from 'react';
 
 // state
-export interface DemoStateContextModel {
+interface DemoStateContextModel {
   stateValue: number;
-  plusStateValue: Function;
+  plusStateValue: (value: number) => void;
 }
-export const DemoStateContext = createContext<DemoStateContextModel>({
+const DemoStateContext = createContext<DemoStateContextModel>({
   stateValue: 1,
   plusStateValue: () => {},
 });
-
 // reducer
-export interface DemoReducerContextModel {
+interface DemoReducerContextModel {
   reducerValue: number;
-  reducerDispatch: Function;
-  // reducerDispatch: Dispatch<{ type: DemoReducerAction }>;
+  // reducerDispatch: Function;
+  reducerDispatch: Dispatch<{ type: DemoReducerAction; payload: number }>;
 }
-export const DemoReducerContext = createContext<DemoReducerContextModel>({
+const DemoReducerContext = createContext<DemoReducerContextModel>({
   reducerValue: 1,
   reducerDispatch: () => {},
 });
 enum DemoReducerAction {
   Plus,
 }
-const demoReducer = (state: number, action: { type: DemoReducerAction }) => {
+const demoReducer = (
+  state: number,
+  action: { type: DemoReducerAction; payload: number },
+) => {
   switch (action.type) {
     case DemoReducerAction.Plus:
-      return state + 1;
+      return state + action.payload;
   }
 };
 
 const DemoFirst = () => {
   const [stateValue, setSataValue] = useState<number>(0);
-  const plusStateValue = () => setSataValue((state) => state + 1);
+  const plusStateValue = (value: number) =>
+    setSataValue((state) => state + value);
   const [reducerValue, reducerDispatch] = useReducer(demoReducer, 0);
   return (
     <>
       <h3>DemoContextFirst</h3>
       <p>stateValue:[{stateValue}]</p>
-      <button onClick={() => plusStateValue()}>plusStateValue</button>
+      <button onClick={() => plusStateValue(2)}>plusStateValue</button>
       <p>reducerValue:[{reducerValue}]</p>
-      <button onClick={() => reducerDispatch({ type: DemoReducerAction.Plus })}>
+      <button
+        onClick={() =>
+          reducerDispatch({ type: DemoReducerAction.Plus, payload: 2 })
+        }
+      >
         DemoReducerAction.Plus
       </button>
       <DemoStateContext.Provider value={{ stateValue, plusStateValue }}>
@@ -65,13 +72,16 @@ const DemoSecond = () => {
     <>
       <h3>DemoContextSecond</h3>
       <p>stateValue:[{stateContext.stateValue}]</p>
-      <button onClick={() => stateContext.plusStateValue()}>
+      <button onClick={() => stateContext.plusStateValue(3)}>
         plusStateCount
       </button>
       <p>reducerValue:[{reducerContext.reducerValue}]</p>
       <button
         onClick={() =>
-          reducerContext.reducerDispatch({ type: DemoReducerAction.Plus })
+          reducerContext.reducerDispatch({
+            type: DemoReducerAction.Plus,
+            payload: 3,
+          })
         }
       >
         DemoReducerAction.Plus

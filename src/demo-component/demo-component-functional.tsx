@@ -12,7 +12,10 @@ export function DemoComponentFunctional() {
       {state && <DemoLifeCycle />}
       {/* <DemoNoProp /> */}
       {/* <DemoWithProp value="React" /> */}
-      <DemoWithCallback message="DemoComponentFunctional" callback={onCallback} />
+      <DemoWithCallback
+        message="DemoComponentFunctional"
+        callback={onCallback}
+      />
     </>
   );
 }
@@ -36,7 +39,9 @@ const DemoLifeCycle = () => {
     <>
       <h3>DemoLifeCycle</h3>
       <h3>state.value:{value}</h3>
-      <button onClick={async () => setValue((state) => state + 1)}>Click</button>
+      <button onClick={async () => setValue((state) => state + 1)}>
+        Click
+      </button>
     </>
   );
 };
@@ -55,7 +60,10 @@ const DemoWithProp = (prop: { value: string }) => {
     </>
   );
 };
-const DemoWithCallback = (prop: { message: string, callback: ((value: string) => {}) }) => {
+const DemoWithCallback = (prop: {
+  message: string;
+  callback: (value: string) => {};
+}) => {
   const onClick = async () => {
     prop.callback('DemoWithCallback');
   };

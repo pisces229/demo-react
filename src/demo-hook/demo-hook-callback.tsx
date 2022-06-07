@@ -4,21 +4,21 @@ import { useCallback, useState } from 'react';
 export function DemoHookCallback() {
   console.log('DemoHookCallback');
   const [state, setState] = useState(0);
-  const callbackOriginal = useCallback(() => state, []);
-  // const callbackOriginal = useCallback(() => state, [state]);
-  const callbackCurrent = useCallback(() => state, [state]);
-  // const callbackCurrent = useCallback(() => state, []);
-  const onClick = () => {
-    console.log('callbackOriginal():', callbackOriginal());
-    console.log('callbackCurrent():', callbackCurrent());
-  };
+  const callbackOriginal = useCallback(
+    (value: string) => `[${value}][${state}]`,
+    [],
+  );
+  const callbackCurrent = useCallback(
+    (value: string) => `[${value}][${state}]`,
+    [state],
+  );
   return (
     <>
       <h3>DemoHookCallback</h3>
-      <h4>state:[{state}]</h4>
+      <p>state:[{state}]</p>
+      <p>{callbackOriginal('callbackOriginal')}</p>
+      <p>{callbackCurrent('callbackCurrent')}</p>
       <button onClick={() => setState((state) => state + 1)}>Change</button>
-      <h4>Click</h4>
-      <button onClick={onClick}>Click</button>
     </>
   );
 }

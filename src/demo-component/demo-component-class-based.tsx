@@ -13,7 +13,9 @@ export class DemoComponentClassBased extends React.Component<
       <>
         <h2>DemoComponentClassBased</h2>
         <button
-          onClick={async () => this.setState((state) => ({ value: !state.value }))}
+          onClick={async () =>
+            this.setState((state) => ({ value: !state.value }))
+          }
         >
           Change
         </button>

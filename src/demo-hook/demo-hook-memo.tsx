@@ -25,7 +25,9 @@ export function DemoHookMemo() {
       <h4>constFirst:[{constFirst}]</h4>
       <h4>memoFirst:[{memoFirst}]</h4>
       <button
-        onClick={() => setState((state) => ({ ...state, first: state.first + 1 }))}
+        onClick={() =>
+          setState((state) => ({ ...state, first: state.first + 1 }))
+        }
       >
         Plus
       </button>
@@ -33,7 +35,9 @@ export function DemoHookMemo() {
       <h4>constSecond:[{constSecond}]</h4>
       <h4>memoSecond:[{memoSecond}]</h4>
       <button
-        onClick={() => setState((state) => ({ ...state, second: state.second + 1 }))}
+        onClick={() =>
+          setState((state) => ({ ...state, second: state.second + 1 }))
+        }
       >
         Plus
       </button>
