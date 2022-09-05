@@ -2,18 +2,18 @@ import { useEffect, useState } from 'react';
 import { DemoConstStoreModel } from './demo-const-model';
 import { demoConstStore } from './demo-const-store';
 
-export function DemoCostFirst() {
+export function DemoConstFirst() {
   const [state, setState] = useState<DemoConstStoreModel>({
     text: '',
     value: 0,
   });
   useEffect(() => {
-    console.log('DemoCostFirst.MOUNT');
+    console.log('DemoConstFirst.MOUNT');
     if (demoConstStore.get()) {
       setState({ ...demoConstStore.get()! });
     }
     return () => {
-      console.log('DemoCostFirst.UNMOUNT');
+      console.log('DemoConstFirst.UNMOUNT');
     };
   }, []);
   useEffect(() => {
