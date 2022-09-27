@@ -11,6 +11,7 @@ import { DemoAjaxApp } from './demo-ajax/demo-ajax-app';
 import { DemoComponentApp } from './demo-component/demo-component-app';
 import { DemoConstApp } from './demo-const/demo-const-app';
 import { DemoTestApp } from './demo-test/demo-test-app';
+import { DemoTopApp } from './demo-top/demo-top-app';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as any);
 // React Strict Mode does is run certain callbacks/methods twice (in DEV mode ONLY).
@@ -25,6 +26,7 @@ root.render(
     {/* <DemoPageApp /> */}
     {/* <DemoAjaxApp /> */}
     {/* <DemoConstApp /> */}
+    {/* <DemoTopApp /> */}
     <DemoTestApp />
   </>,
   // </React.StrictMode>
