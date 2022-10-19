@@ -5,13 +5,17 @@ export function DemoHookCallback() {
   console.log('DemoHookCallback');
   const [state, setState] = useState(0);
   const callbackOriginal = useCallback(
-    (value: string) => `[${value}][${state}]`,
-    [],
-  );
+    (value: string) => {
+      console.log('useCallback[]');
+      return `[${value}][${state}]`;
+    }
+  , []);
   const callbackCurrent = useCallback(
-    (value: string) => `[${value}][${state}]`,
-    [state],
-  );
+    (value: string) => {
+      console.log('useCallback[state]');
+      return `[${value}][${state}]`;
+    }
+  , [state]);
   return (
     <>
       <h3>DemoHookCallback</h3>

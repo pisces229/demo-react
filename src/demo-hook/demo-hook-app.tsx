@@ -2,6 +2,7 @@ import { DemoHookCallback } from './demo-hook-callback';
 import { DemoHookContext } from './demo-hook-context';
 import { DemoHookDeferredValue } from './demo-hook-deferred-value';
 import { DemoHookEffect } from './demo-hook-effect';
+import { DemoHookLayoutEffect } from './demo-hook-layout-effect';
 import { DemoHookMemo } from './demo-hook-memo';
 import { DemoHookReducer } from './demo-hook-reducer';
 import { DemoHookRef } from './demo-hook-ref';
@@ -20,6 +21,7 @@ export function DemoHookApp() {
       {/* <DemoHookEffect /> */}
       {/* <DemoHookMemo /> */}
       {/* <DemoHookCallback /> */}
+      {/* <DemoHookLayoutEffect /> */}
       {/* Other */}
       {/* <DemoHookRef /> */}
       {/* <DemoHookTransition /> */}

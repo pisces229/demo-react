@@ -10,9 +10,19 @@ export function DemoHookMemo() {
   const constFirst = `[${state.first}]`;
   const constSecond = `[${state.second}]`;
   // memo
-  const memoValue = useMemo(() => new Date().toString(), []);
-  const memoFirst = useMemo(() => `[${state.first}]`, [state.first]);
-  const memoSecond = useMemo(() => `[${state.second}]`, []);
+  const memoValue = useMemo(() => {
+    console.log('useMemo,[]');
+    return new Date().toString();
+  }, []);
+  const memoFirst = useMemo(() => {
+    console.log('useMemo,[state.first]');
+    return `[${state.first}]`;
+  }, [state.first]);
+  const memoSecond = useMemo(() => {
+    console.log('useMemo,[state.second]');
+    // return `[${state.second}]`;
+    return DoSomething(state.second);
+  }, [state.second]);
   return (
     <>
       <h3>DemoHookDemo</h3>
@@ -41,6 +51,18 @@ export function DemoHookMemo() {
       >
         Plus
       </button>
+    </>
+  );
+}
+
+const DoSomething = (value: number) => {
+  console.log("Calculating...");
+  for (let i = 0; i < 1000000000; i++) {
+    value += 1;
+  }
+  return (
+    <>
+      {value}
     </>
   );
 }

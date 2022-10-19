@@ -56,7 +56,7 @@ export function DemoHookEffect() {
   // }, []);
   return (
     <>
-      <h3>DemoHookDemo</h3>
+      <h3>DemoHookEffect</h3>
       <button onClick={() => setState(() => ({ first: 0, second: 0 }))}>
         Clear
       </button>
