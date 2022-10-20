@@ -14,15 +14,19 @@
 
 ### Package
 
-Router
+[Router]
 
 `npm install --save react-router react-router-dom`
 
-Redux
+[Redux]
 
 `npm install --save redux react-redux @types/react-redux @reduxjs/toolkit`
 
-AXIOS
+[Zustand](https://github.com/pmndrs/zustand)
+
+`npm install --save zustand`
+
+[AXIOS]
 
 `npm install --save axios`
 

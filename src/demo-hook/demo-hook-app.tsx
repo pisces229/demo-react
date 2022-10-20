@@ -8,6 +8,7 @@ import { DemoHookReducer } from './demo-hook-reducer';
 import { DemoHookRef } from './demo-hook-ref';
 import { DemoHookState } from './demo-hook-state';
 import { DemoHookTransition } from './demo-hook-transition';
+import { DemoHookZustand } from './demo-hook-zustand';
 
 export function DemoHookApp() {
   return (
@@ -17,6 +18,7 @@ export function DemoHookApp() {
       {/* <DemoHookState /> */}
       {/* <DemoHookReducer /> */}
       {/* <DemoHookContext /> */}
+      <DemoHookZustand />
       {/* Effect */}
       {/* <DemoHookEffect /> */}
       {/* <DemoHookMemo /> */}
