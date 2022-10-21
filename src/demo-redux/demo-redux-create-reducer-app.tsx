@@ -6,10 +6,10 @@ import {
   actionIncrementPayload,
 } from './demo-redux-create-reducer';
 import { commonAction, commonThunk } from './demo-redux-common';
-import { StoreState } from './demo-redux-store';
+import { StoreDispatch, StoreState } from './demo-redux-store';
 
 function DemoFirst() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<StoreDispatch>();
   const countValue = useSelector(
     (state: StoreState) => state.createReducer.value,
   );

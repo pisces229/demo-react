@@ -7,10 +7,10 @@ import {
   actionDecrementPayload,
 } from './demo-redux-create-slice';
 import { commonAction, commonThunk } from './demo-redux-common';
-import { StoreState } from './demo-redux-store';
+import { StoreDispatch, StoreState } from './demo-redux-store';
 
 function DemoFirst() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<StoreDispatch>();
   const countValue = useSelector(
     (state: StoreState) => state.createSlice.value,
   );
