@@ -19,7 +19,7 @@ root.render(
   // <React.StrictMode>
   <>
     {/* <DemoComponentApp /> */}
-    <DemoHookApp />
+    {/* <DemoHookApp /> */}
     {/* <DemoReduxApp /> */}
     {/* <DemoRouterApp /> */}
     {/* <DemoStyleApp /> */}
