@@ -1,8 +1,13 @@
 import { useState } from 'react';
+import { flushSync } from 'react-dom';
 
 export function DemoHookState() {
   const [first, setFirst] = useState<number>(0);
   const onClickFirst = () => {
+    flushSync(() => {
+      setFirst(() => first + 1);
+    });
+    // +1
     setFirst(() => first + 1);
     setFirst(() => first + 1);
     setFirst(() => first + 1);
