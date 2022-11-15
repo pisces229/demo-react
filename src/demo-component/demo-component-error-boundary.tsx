@@ -1,32 +1,27 @@
-import React from 'react';
+import { Component, ErrorInfo, ReactNode } from "react";
 
-export class DemoComponentErrorBoundary extends React.Component<
-  any,
-  { hasError: boolean }
-> {
-  constructor(props: any) {
-    super(props);
-    this.state = { hasError: false };
-  }
-  static getDerivedStateFromError(error: any) {
-    console.log(error);
-    // 更新 state 以至於下一個 render 會顯示 fallback UI
+interface Props {
+  children?: ReactNode;
+}
+
+interface State {
+  hasError: boolean;
+}
+
+export class DemoComponentErrorBoundary extends Component<Props, State> {
+  state: State = {
+    hasError: false
+  };
+  static getDerivedStateFromError(_: Error): State {
+    // Update state so the next render will show the fallback UI.
     return { hasError: true };
   }
-  componentDidCatch(error: any, errorInfo: any) {
-    console.log(error);
-    console.log(errorInfo);
-    // 你也可以把錯誤記錄到一個錯誤回報系統服務
-    // logErrorToMyService(error, errorInfo);
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error("Uncaught error:", error, errorInfo);
   }
   render() {
     if (this.state.hasError) {
-      // 你可以 render 任何客製化的 fallback UI
-      return (
-        <>
-          <h2>DemoComponentErrorBoundary</h2>
-        </>
-      );
+      return <h1>There was an error.</h1>;
     }
     return this.props.children;
   }

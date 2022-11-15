@@ -14,11 +14,11 @@ export function DemoComponentApp() {
     <>
       {/* <DemoComponentClassBased /> */}
       <DemoComponentFunctional />
-      {/* <DemoComponentErrorBoundary>
+      <DemoComponentErrorBoundary>
         <Suspense fallback={<div>Loading...</div>}>
           <DemoComponentLazy />
         </Suspense>
-      </DemoComponentErrorBoundary> */}
+      </DemoComponentErrorBoundary>
     </>
   );
 }
