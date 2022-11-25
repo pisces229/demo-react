@@ -9,37 +9,39 @@ interface CountState {
   fetch: () => Promise<void>
 }
 
-const useCountStore = create<CountState>()(
-  (set, get) => ({
-    count: 0,
-    getCount: () => get().count,
-    plus: (count) => set((state) => ({ count: state.count + count })),
-    reset: () => set(() => ({ count: 0 })),
-    fetch: async () => {
-      const response = await fetch('');
-      set({ count: await response.json() })
-    },
-  })
-);
+// const useCountStore = create<CountState>()(
+//   (set, get) => ({
+//     count: 0,
+//     getCount: () => get().count,
+//     plus: (count) => set((state) => ({ count: state.count + count })),
+//     reset: () => set(() => ({ count: 0 })),
+//     fetch: async () => {
+//       const response = await fetch('');
+//       set({ count: await response.json() })
+//     },
+//   })
+// );
 
 // You can persist your store's data using any kind of storage.
-// const useCountStore = create<CountState>()(
-//   persist(
-//     (set) => ({
-//       count: 0,
-//       plus: (count) => set((state) => ({ count: state.count + count })),
-//       reset: () => set((state) => ({ count: 0 })),
-//       fetch: async () => {
-//         const response = await fetch('');
-//         set({ count: await response.json() })
-//       },
-//     }),
-//     {
-//       name: 'CountStore',
-//       getStorage: () => sessionStorage,
-//     }
-//   )
-// );
+const useCountStore = create<CountState>()(
+  persist(
+    (set, get) => ({
+      count: 0,
+      getCount: () => get().count,
+      plus: (count) => set((state) => ({ count: state.count + count })),
+      reset: () => set((state) => ({ count: 0 })),
+      fetch: async () => {
+        const response = await fetch('');
+        set({ count: await response.json() })
+      },
+    }),
+    {
+      name: 'CountStore',
+      // getStorage: () => sessionStorage,
+      getStorage: () => localStorage,
+    }
+  )
+);
 
 // const { getState, setState, subscribe, destroy } = useCountStore;
 useCountStore.subscribe(console.log);
