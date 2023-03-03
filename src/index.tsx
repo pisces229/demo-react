@@ -13,6 +13,11 @@ import { DemoConstApp } from './demo-const/demo-const-app';
 import { DemoTestApp } from './demo-test/demo-test-app';
 import { DemoTopApp } from './demo-top/demo-top-app';
 
+if (process.env.NODE_ENV === 'development') {
+  const { worker } = require('./mocks/browser');
+  worker.start();
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root') as any);
 // React Strict Mode does is run certain callbacks/methods twice (in DEV mode ONLY).
 root.render(

@@ -48,6 +48,10 @@ Prettier
 
 `npm install --save-dev prettier`
 
+[Mock Service Worker](https://mswjs.io/)
+
+`npm install msw --save-dev`
+
 ### Self Certification
 
 [Install Chocolatey with PowerShell](https://docs.chocolatey.org/en-us/choco/setup)
