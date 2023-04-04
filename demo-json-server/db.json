@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "First"
+    },
+    {
+      "id": "2",
+      "name": "Second"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "name": "First",
+      "messgae": "111"
+    },
+    {
+      "id": "2",
+      "name": "Second",
+      "messgae": "222"
+    }
+  ]
+}
