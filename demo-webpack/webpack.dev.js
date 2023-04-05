@@ -17,35 +17,23 @@ module.exports = {
   devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    // alias: {
-    //   '@': path.resolve(__dirname, 'src'),
-    // },
   },
   module: {
     rules: [
       {
-        test: /.tsx$/,
+        test: /.(ts|tsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            cacheDirectory: true,
             presets: [
               '@babel/typescript', 
-              ["@babel/preset-react", {"runtime": "automatic"}], 
+              ['@babel/preset-react', { runtime: 'automatic' }], 
               '@babel/preset-env',
             ],
-          },
-        },
-      },
-      {
-        test: /.ts$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
+            plugins: ["@babel/plugin-transform-runtime"],
             cacheDirectory: true,
-            presets: ['@babel/typescript', '@babel/preset-env'],
+            cacheCompression: false,
           },
         },
       },

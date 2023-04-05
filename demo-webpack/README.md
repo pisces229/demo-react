@@ -58,6 +58,10 @@
 
 `npm install --save-dev webpack-bundle-analyzer`
 
+## source-map-explorer
+
+`npm install -g source-map-explorer`
+
 ## web-vitals
 
 `npm install --dev-save web-vitals`

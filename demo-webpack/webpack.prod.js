@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const Webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -7,9 +8,10 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const CompressionPlugin = require('compression-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
+  target: ['browserslist'],
   mode: 'production',
   entry: {
     index: path.resolve(__dirname, './src/index.tsx'),
@@ -18,35 +20,26 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'static/js/[name].[contenthash].js',
   },
+  // devtool: 'source-map',
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json'],
-    // alias: {
-    //   '@': path.resolve(__dirname, 'src'),
-    // },
+    extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
     rules: [
       {
-        test: /.tsx$/,
+        test: /.(ts|tsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: [
               '@babel/typescript', 
-              ['@babel/preset-react', {'runtime': 'automatic'}], 
-              '@babel/preset-env',
+              ['@babel/preset-react', { runtime: 'automatic' }],
+              "@babel/preset-env"
             ],
-          },
-        },
-      },
-      {
-        test: /.ts$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/typescript', '@babel/preset-env'],
+            plugins: ["@babel/plugin-transform-runtime"],
+            cacheDirectory: true,
+            cacheCompression: false,
           },
         },
       },
@@ -76,15 +69,15 @@ module.exports = {
     ],
   },
   optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          name: 'main',
-          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-          chunks: 'all'
-        }
-      }
-    },
+    // splitChunks: {
+    //   cacheGroups: {
+    //     vendors: {
+    //       name: 'main',
+    //       test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+    //       chunks: 'all'
+    //     }
+    //   }
+    // },
     minimize: true,
     minimizer: [
       new CssMinimizerPlugin(),
@@ -125,6 +118,18 @@ module.exports = {
       // favicon: path.join(__dirname, 'public', 'favicon.ico'),
       template: path.join(__dirname, 'public', 'index.html'),
       filename: 'index.html',
+      // minify: {
+      //   removeComments: true,
+      //   collapseWhitespace: true,
+      //   removeRedundantAttributes: true,
+      //   useShortDoctype: true,
+      //   removeEmptyAttributes: true,
+      //   removeStyleLinkTypeAttributes: true,
+      //   keepClosingSlash: true,
+      //   minifyJS: true,
+      //   minifyCSS: true,
+      //   minifyURLs: true,
+      // },
     }),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash].css',
@@ -136,6 +141,7 @@ module.exports = {
     //   minRatio: 0.8
     // }),
     new CleanWebpackPlugin(),
+    // new Webpack.optimize.ModuleConcatenationPlugin(),
     // new BundleAnalyzerPlugin({ analyzerPort: 7788 }),
   ],
 };
