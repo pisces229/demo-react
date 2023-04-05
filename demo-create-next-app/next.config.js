@@ -3,11 +3,25 @@
 //   reactStrictMode: true,
 // }
 
+const CONFIG = {
+  ENVIRONMENT: '',
+  ENDPOINT: '',
+};
+switch (process.env.NODE_ENV) {
+  case 'prod': {
+    CONFIG.ENVIRONMENT = 'PRODUCTION';
+    break;
+  }
+  default: {
+    CONFIG.ENVIRONMENT = 'DEVELOPMENT';
+  }
+}
+
 // https://nextjs.org/docs/api-reference/next.config.js/exportPathMap
 const nextConfig = {
   env: {
-    // NODE_TLS_REJECT_UNAUTHORIZED: 0,
-    name: 'Demo Create Next App',
+    ENVIRONMENT: CONFIG.ENVIRONMENT,
+    NAME: 'Demo Create Next App',
   },
   reactStrictMode: true,
   images: {
@@ -23,7 +37,7 @@ const nextConfig = {
     // console.log(dev, dir, outDir, distDir, buildId);
     return {
       '/': { page: '/' },
-      '/first': { page: '/first' },
+      '/login': { page: '/login' },
     }
   },
 }

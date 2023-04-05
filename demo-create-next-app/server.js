@@ -7,11 +7,10 @@ const fs = require("fs");
 // [Error: UNABLE_TO_VERIFY_LEAF_SIGNATURE]
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
-const dev = process.env.NODE_ENV !== 'production';
 const hostname = 'localhost';
 const port = 9012;
 // when using middleware `hostname` and `port` must be provided below
-const app = next({ dev, hostname, port });
+const app = next({ dev: true, hostname, port });
 const handle = app.getRequestHandler();
 
 const httpsOptions = {
@@ -35,6 +34,6 @@ app.prepare().then(() => {
     process.exit(1);
   })
   .listen(port, () => {
-    console.log(`> Ready on https://${hostname}:${port}`);
+    console.log(`>Ready on https://${hostname}:${port}`);
   });
 });

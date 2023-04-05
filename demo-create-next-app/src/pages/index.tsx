@@ -6,10 +6,10 @@ const Index: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>{process.env.name}</title>
+        <title>{process.env.NAME}-{process.env.ENVIRONMENT}</title>
       </Head>
-      <h3 className={styles.color}>{process.env.name}</h3>
-      <h3 className="globals-color">{process.env.name}</h3>
+      <h3 className={styles.color}>{process.env.NAME}</h3>
+      <h3 className="globals-color">{process.env.NAME}</h3>
     </>
   );
 };
