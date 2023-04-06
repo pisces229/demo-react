@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import logo from './assets/logo.svg';
-import charlie from './assets/charlie.jpg';
-import App from './pages/app-api/app';
-// import App from './pages/app-hook/app';
-import reportWebVitals from './reportWebVitals';
+import '@appSrc/index.css';
+import logo from '@appSrc/assets/logo.svg';
+import charlie from '@appSrc/assets/charlie.jpg';
+import App from '@appSrc/pages/app-api/app';
+// import App from '@src/pages/app-hook/app';
+import reportWebVitals from '@appSrc/reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 

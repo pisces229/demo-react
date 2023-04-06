@@ -24,7 +24,10 @@ module.exports = {
   },
   // devtool: 'source-map',
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    alias: {
+      '@appSrc': path.resolve(__dirname, 'src'),
+    },
   },
   module: {
     rules: [

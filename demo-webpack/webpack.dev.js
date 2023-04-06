@@ -4,6 +4,7 @@ const Webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
@@ -18,6 +19,9 @@ module.exports = {
   devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    alias: {
+      '@appSrc': path.resolve(__dirname, 'src'),
+    },
   },
   module: {
     rules: [
@@ -89,6 +93,9 @@ module.exports = {
       // favicon: path.join(__dirname, 'public', 'favicon.ico'),
       template: path.join(__dirname, 'public', 'index.html'),
       filename: 'index.html',
+      templateParameters: {
+        ENVIRONMENT: 'DEVELOPMENT',
+      },
     }),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].css',
