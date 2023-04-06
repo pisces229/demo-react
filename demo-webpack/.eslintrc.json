@@ -23,5 +23,15 @@
 	],
 	"ignorePatterns": ["*.js"],
 	"rules": {
+		// "@typescript-eslint/ban-types": "off",
+		// "@typescript-eslint/no-empty-interface": "off",
+		// "@typescript-eslint/no-explicit-any": "off",
+		// "@typescript-eslint/no-inferrable-types": "off",
+		// "@typescript-eslint/no-non-null-assertion": "off",
+		// "@typescript-eslint/no-unused-vars": "off",
+		// "no-irregular-whitespace": "off",
+		// "no-extra-boolean-cast": "off",
+		// "no-var": "off",
+		// "prefer-const": "off"
 	}
 }

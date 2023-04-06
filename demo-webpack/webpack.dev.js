@@ -4,6 +4,7 @@ const Webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -92,7 +93,19 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].css',
     }),
+    new ForkTsCheckerWebpackPlugin({
+      async: true,
+    }),
+    new ESLintWebpackPlugin({
+      extensions: ['ts', 'tsx'],
+      eslintPath: require.resolve('eslint'),
+      failOnError: true,
+      failOnWarning: false,
+    }),
   ],
+  watchOptions: {
+    ignored: /node_modules/,
+  },
   devServer: {
     port: 9900,
     http2: true,

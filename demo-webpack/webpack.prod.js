@@ -9,6 +9,8 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const CompressionPlugin = require('compression-webpack-plugin');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   target: ['browserslist'],
@@ -69,6 +71,9 @@ module.exports = {
     ],
   },
   optimization: {
+    // Tree Shaking
+    // usedExports: true,
+    // SplitChunksPlugin
     // splitChunks: {
     //   cacheGroups: {
     //     vendors: {
@@ -85,6 +90,9 @@ module.exports = {
         test: /\.js(\?.*)?$/i,
         extractComments: false,
         terserOptions: {
+          compress: {
+            drop_console: true,
+          },
           format: {
             comments: false,
           },
@@ -118,18 +126,10 @@ module.exports = {
       // favicon: path.join(__dirname, 'public', 'favicon.ico'),
       template: path.join(__dirname, 'public', 'index.html'),
       filename: 'index.html',
-      // minify: {
-      //   removeComments: true,
-      //   collapseWhitespace: true,
-      //   removeRedundantAttributes: true,
-      //   useShortDoctype: true,
-      //   removeEmptyAttributes: true,
-      //   removeStyleLinkTypeAttributes: true,
-      //   keepClosingSlash: true,
-      //   minifyJS: true,
-      //   minifyCSS: true,
-      //   minifyURLs: true,
-      // },
+      minifyJS: true,
+      templateParameters: {
+        ENVIRONMENT: 'Porduction',
+      },
     }),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash].css',
@@ -143,5 +143,17 @@ module.exports = {
     new CleanWebpackPlugin(),
     // new Webpack.optimize.ModuleConcatenationPlugin(),
     // new BundleAnalyzerPlugin({ analyzerPort: 7788 }),
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
+    }),
+    new ESLintWebpackPlugin({
+      extensions: ['ts', 'tsx'],
+      eslintPath: require.resolve('eslint'),
+      failOnError: true,
+      failOnWarning: false,
+    }),
   ],
+  watchOptions: {
+    ignored: /node_modules/,
+  },
 };
