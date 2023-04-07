@@ -14,6 +14,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
+    // publicPath: '/',
     filename: 'static/js/[name].js',
   },
   devtool: 'source-map',
@@ -115,11 +116,11 @@ module.exports = {
   },
   devServer: {
     port: 9900,
-    http2: true,
     https: {
       key: fs.readFileSync('c:/workspace/mkcert/localhost+2-key.pem'),
       cert: fs.readFileSync('c:/workspace/mkcert/localhost+2.pem'),
     },
+    historyApiFallback: true,
     hot: true,
     open: true,
   },
