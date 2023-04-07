@@ -5,7 +5,7 @@ import { CommonOutputModel } from '../services/app-service/model';
 const listToArray = (fileList: FileList | null) => {
   const result: File[] = [];
   if (fileList) {
-    for (let i = 0; i < fileList!.length; ++i) {
+    for (let i = 0; i < fileList?.length; ++i) {
       if (fileList.item(i)) {
         result.push(fileList.item(i)!);
       }

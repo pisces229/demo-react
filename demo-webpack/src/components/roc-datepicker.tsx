@@ -118,7 +118,7 @@ const DateSpaceItem = styled.div`
   padding-right: 0.2rem;
 `;
 
-const Index = (props: { value: string; disabled?: boolean; hidden?: boolean; onChange: Function }) => {
+const Index = (props: { value: string; disabled?: boolean; hidden?: boolean; onChange: (value: string) => void}) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [calendarPosition, setCalendarPosition] = useState<{
     style: { top: number; left: number };
@@ -130,7 +130,7 @@ const Index = (props: { value: string; disabled?: boolean; hidden?: boolean; onC
   const calendarRefCallback = useCallback(
     (node: HTMLDivElement) => {
       if (node !== null) {
-        let inputNode = inputRef!.current!;
+        const inputNode = inputRef!.current!;
         setCalendarPosition({
           style: {
             top:
@@ -194,8 +194,8 @@ const Index = (props: { value: string; disabled?: boolean; hidden?: boolean; onC
     );
   };
   const renderCalendar = () => {
-    let yearsVelue = yearValue - 20;
-    let yeareVelue = yearValue + 20;
+    const yearsVelue = yearValue - 20;
+    const yeareVelue = yearValue + 20;
     const YearOption: { value: number; text: string }[] = [];
     for (let i = yearsVelue; i < yeareVelue; i++) {
       let text = (i - 1911).toString();
@@ -207,12 +207,12 @@ const Index = (props: { value: string; disabled?: boolean; hidden?: boolean; onC
         text: `${text}年`,
       });
     }
-    let theMonthBegin = new Date(yearValue, monthValue, 0);
-    let theMonthEnd = new Date(yearValue, monthValue + 1, 0);
-    let theMonthDays = Math.round(Math.abs((theMonthEnd.getTime() - theMonthBegin.getTime()) / (24 * 60 * 60 * 1000)));
-    let weekItems: Date[][] = [];
+    const theMonthBegin = new Date(yearValue, monthValue, 0);
+    const theMonthEnd = new Date(yearValue, monthValue + 1, 0);
+    const theMonthDays = Math.round(Math.abs((theMonthEnd.getTime() - theMonthBegin.getTime()) / (24 * 60 * 60 * 1000)));
+    const weekItems: Date[][] = [];
     weekItems.push([]);
-    let firstDay = new Date(yearValue, monthValue, 1);
+    const firstDay = new Date(yearValue, monthValue, 1);
     for (let i = 0; i < firstDay.getDay(); i++) {
       weekItems[0].push(new Date(yearValue, monthValue, i - firstDay.getDay()));
     }
@@ -222,11 +222,11 @@ const Index = (props: { value: string; disabled?: boolean; hidden?: boolean; onC
       }
       weekItems[weekItems.length - 1].push(new Date(yearValue, monthValue, i));
     }
-    let lastDay = weekItems[weekItems.length - 1][weekItems[weekItems.length - 1].length - 1].getDay();
+    const lastDay = weekItems[weekItems.length - 1][weekItems[weekItems.length - 1].length - 1].getDay();
     for (let i = 1; i < 7 - lastDay; i++) {
       weekItems[weekItems.length - 1].push(new Date(yearValue, monthValue, theMonthDays + i));
     }
-    let spaceItems: string[] = [];
+    const spaceItems: string[] = [];
     for (let i = weekItems.length; i < 6; i++) {
       spaceItems.push('');
     }
@@ -248,10 +248,10 @@ const Index = (props: { value: string; disabled?: boolean; hidden?: boolean; onC
       );
     };
     const onClickDateItem = (value: Date) => () => {
-      let year = '00' + (value.getFullYear() - 1911).toString();
-      let month = '0' + (value.getMonth() + 1).toString();
-      let date = '0' + value.getDate().toString();
-      let changeValue =
+      const year = '00' + (value.getFullYear() - 1911).toString();
+      const month = '0' + (value.getMonth() + 1).toString();
+      const date = '0' + value.getDate().toString();
+      const changeValue =
         year.substring(year.length - 3, year.length) +
         month.substring(month.length - 2, month.length) +
         date.substring(date.length - 2, date.length);
@@ -360,9 +360,9 @@ const Index = (props: { value: string; disabled?: boolean; hidden?: boolean; onC
       if (state !== value) {
         if (value) {
           if (props.value && !state) {
-            let defaultDate = new Date();
+            const defaultDate = new Date();
             if (props.value.length === 7) {
-              let date = new Date(
+              const date = new Date(
                 Number(props.value.substring(0, 3)) + 1911,
                 Number(props.value.substring(3, 5)) - 1,
                 Number(props.value.substring(5, 7)),
@@ -389,7 +389,7 @@ const Index = (props: { value: string; disabled?: boolean; hidden?: boolean; onC
   };
   const validateValue = (value: string) => {
     if (value.length === 7) {
-      let date = new Date(
+      const date = new Date(
         Number(value.substring(0, 3)) + 1911,
         Number(value.substring(3, 5)) - 1,
         Number(value.substring(5, 7)),
@@ -422,8 +422,8 @@ const PopperWrapper = styled.div`
 const PopperComponent = (props: {
   datepickerInput: JSX.Element;
   datepickerCalendar: JSX.Element;
-  openCalendar: Function;
-  closeCalendar: Function;
+  openCalendar: () => void;
+  closeCalendar: () => void;
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
