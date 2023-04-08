@@ -1,4 +1,10 @@
-import { createContext, Dispatch, useContext, useReducer, useState } from 'react';
+import {
+  createContext,
+  Dispatch,
+  useContext,
+  useReducer,
+  useState,
+} from 'react';
 
 // state
 interface StateContextModel {
@@ -22,7 +28,10 @@ const ReducerContext = createContext<ReducerContextModel>({
 enum ReducerAction {
   Plus,
 }
-const demoReducer = (state: number, action: { type: ReducerAction; payload: number }) => {
+const demoReducer = (
+  state: number,
+  action: { type: ReducerAction; payload: number },
+) => {
   switch (action.type) {
     case ReducerAction.Plus:
       return state + action.payload;
@@ -31,7 +40,8 @@ const demoReducer = (state: number, action: { type: ReducerAction; payload: numb
 
 const First = () => {
   const [stateValue, setSataValue] = useState<number>(0);
-  const plusStateValue = (value: number) => setSataValue((state) => state + value);
+  const plusStateValue = (value: number) =>
+    setSataValue((state) => state + value);
   const [reducerValue, reducerDispatch] = useReducer(demoReducer, 0);
   return (
     <>
@@ -39,7 +49,13 @@ const First = () => {
       <p>stateValue:[{stateValue}]</p>
       <button onClick={() => plusStateValue(2)}>plusStateValue</button>
       <p>reducerValue:[{reducerValue}]</p>
-      <button onClick={() => reducerDispatch({ type: ReducerAction.Plus, payload: 2 })}>ReducerAction.Plus</button>
+      <button
+        onClick={() =>
+          reducerDispatch({ type: ReducerAction.Plus, payload: 2 })
+        }
+      >
+        ReducerAction.Plus
+      </button>
       <StateContext.Provider value={{ stateValue, plusStateValue }}>
         <ReducerContext.Provider value={{ reducerValue, reducerDispatch }}>
           <Second />
@@ -56,7 +72,9 @@ const Second = () => {
     <>
       <h4>Second</h4>
       <p>stateValue:[{stateContext.stateValue}]</p>
-      <button onClick={() => stateContext.plusStateValue(3)}>plusStateCount</button>
+      <button onClick={() => stateContext.plusStateValue(3)}>
+        plusStateCount
+      </button>
       <p>reducerValue:[{reducerContext.reducerValue}]</p>
       <button
         onClick={() =>

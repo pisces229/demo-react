@@ -13,7 +13,10 @@ const util = axios.create({
 util.interceptors.request.use(
   (config) => {
     if (localStorage.getItem('token')) {
-      config.headers.set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
+      config.headers.set(
+        'Authorization',
+        `Bearer ${localStorage.getItem('token')!}`,
+      );
     }
     return config;
   },

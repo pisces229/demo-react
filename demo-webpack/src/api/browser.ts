@@ -1,4 +1,4 @@
 import { setupWorker } from 'msw';
-import { handlers } from '@appSrc/api/handlers';
+import { handlers } from '@/api/handlers';
 
 export const worker = setupWorker(...handlers);

@@ -1,8 +1,8 @@
 import { Suspense, lazy } from 'react';
-import ErrorBoundary from '../../components/error-boundary';
-// import LazyComponent from "../../components/lazy-component";
+import ErrorBoundary from '@/components/error-boundary';
+// import LazyComponent from "@/components/lazy-component";
 const LazyComponent = lazy(() =>
-  import('../../components/lazy-component').then((module) => ({
+  import('@/components/lazy-component').then((module) => ({
     default: module.default,
   })),
 );

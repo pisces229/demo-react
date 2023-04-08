@@ -14,7 +14,10 @@ const Index = () => {
       <h3>DeferredValue</h3>
       <p>[value]:[{value}]</p>
       <p>[deferredValue]:[{deferredValue}]</p>
-      <input type="text" onChange={(event) => setValue(() => event.target.value)} />
+      <input
+        type="text"
+        onChange={(event) => setValue(() => event.target.value)}
+      />
       <hr></hr>
       {Array(5000)
         .fill(value, 0, 5000)

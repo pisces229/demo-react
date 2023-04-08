@@ -7,6 +7,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 
+console.log('[webpack.dev]');
+
 module.exports = {
   mode: 'development',
   entry: {
@@ -14,14 +16,14 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    // publicPath: '/',
     filename: 'static/js/[name].js',
+    assetModuleFilename: 'static/media/[name][ext]',
   },
   devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
-      '@appSrc': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, 'src'),
     },
   },
   module: {
@@ -33,38 +35,26 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: [
-              '@babel/typescript', 
-              ['@babel/preset-react', { runtime: 'automatic' }], 
               '@babel/preset-env',
+              ['@babel/preset-react', { runtime: 'automatic' }],
+              '@babel/typescript', 
             ],
-            plugins: ["@babel/plugin-transform-runtime"],
+            plugins: ['@babel/plugin-transform-runtime'],
             cacheDirectory: true,
             cacheCompression: false,
           },
         },
       },
       {
-        test: /\.css$/i,
+        test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
         ],
       },
-      // {
-      //   test: /\.(jpg|png|svg)$/,
-      //   loader: 'url-loader',
-      //   options: {
-      //     limit: 25000,
-      //   },
-      // },
       {
         test: /\.(jpg|png|svg)$/,
-        loader: 'file-loader',
-        options: {
-          publicPath: '/static/media',
-          name: '[name].[ext]',
-          outputPath: 'static/media',
-        },
+        type: 'asset/resource',
       },
     ],
   },

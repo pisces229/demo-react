@@ -1,10 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import produce from 'immer';
-import { usePageLayoutStore } from '../../stores/app-page/page-layout-store';
-import { usePageActionStore } from '../../stores/app-page/page-action';
-import { PageFirstAction, usePageFirstStore } from '../../stores/app-page/page-first-store';
-import { PageSecondAction, usePageSecondStore } from '../../stores/app-page/page-second-store';
+import { usePageLayoutStore } from '@/stores/app-page/page-layout-store';
+import { usePageActionStore } from '@/stores/app-page/page-action';
+import {
+  PageFirstAction,
+  usePageFirstStore,
+} from '@/stores/app-page/page-first-store';
+import {
+  PageSecondAction,
+  usePageSecondStore,
+} from '@/stores/app-page/page-second-store';
 
 interface FormState {
   stringValue?: string;
@@ -70,7 +76,10 @@ const Index = () => {
     <>
       <h3>Page First</h3>
       <p>Action:[{action}]</p>
-      <button type="button" onClick={() => usePageLayoutStore.getState().setMessage('First')}>
+      <button
+        type="button"
+        onClick={() => usePageLayoutStore.getState().setMessage('First')}
+      >
         Message
       </button>
       <table>

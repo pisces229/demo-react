@@ -9,7 +9,7 @@ const initForm: Form = {
   stringValue: '',
   numberValue: 0,
   booleanValue: false,
-}
+};
 
 interface StoreCreator {
   form: Form;

@@ -82,12 +82,14 @@ const Index = () => {
   // const countPlus = useCountStore((state) => (state.plus));
   // const countReset = useCountStore((state) => (state.reset));
   // const countFetch = useCountStore((state) => (state.fetch));
-  const { countState, countPlus, countReset, countFetch } = useCountStore((state) => ({
-    countState: state.count,
-    countPlus: state.plus,
-    countReset: state.reset,
-    countFetch: state.fetch,
-  }));
+  const { countState, countPlus, countReset, countFetch } = useCountStore(
+    (state) => ({
+      countState: state.count,
+      countPlus: state.plus,
+      countReset: state.reset,
+      countFetch: state.fetch,
+    }),
+  );
   return (
     <>
       <h3>Zustand</h3>

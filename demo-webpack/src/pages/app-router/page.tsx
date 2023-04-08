@@ -1,5 +1,11 @@
 import { ReactNode, useEffect, useRef } from 'react';
-import { useLocation, useNavigationType, useNavigate, useMatch, useParams } from 'react-router-dom';
+import {
+  useLocation,
+  useNavigationType,
+  useNavigate,
+  useMatch,
+  useParams,
+} from 'react-router-dom';
 
 const Index = (props: { children: ReactNode }) => {
   const init = useRef(true);

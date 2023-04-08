@@ -23,13 +23,27 @@ const Index = () => {
     <>
       <h3>Memo</h3>
       <p>memoValue:[{memoValue}]</p>
-      <button onClick={() => setState(() => ({ first: 0, second: 0 }))}>Clear</button>
+      <button onClick={() => setState(() => ({ first: 0, second: 0 }))}>
+        Clear
+      </button>
       <p>first:[{state.first}]</p>
       <p>memoFirst:[{memoFirst}]</p>
-      <button onClick={() => setState((state) => ({ ...state, first: state.first + 1 }))}>Plus</button>
+      <button
+        onClick={() =>
+          setState((state) => ({ ...state, first: state.first + 1 }))
+        }
+      >
+        Plus
+      </button>
       <p>second:[{state.second}]</p>
       <p>memoSecond:[{memoSecond}]</p>
-      <button onClick={() => setState((state) => ({ ...state, second: state.second + 1 }))}>Plus</button>
+      <button
+        onClick={() =>
+          setState((state) => ({ ...state, second: state.second + 1 }))
+        }
+      >
+        Plus
+      </button>
     </>
   );
 };

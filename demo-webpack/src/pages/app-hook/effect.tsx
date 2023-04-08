@@ -57,11 +57,21 @@ const Index = () => {
   return (
     <>
       <h3>Effect</h3>
-      <button onClick={() => setState(() => ({ first: 0, second: 0 }))}>Clear</button>
+      <button onClick={() => setState(() => ({ first: 0, second: 0 }))}>
+        Clear
+      </button>
       <p>first:[{state.first}]</p>
-      <button onClick={() => setState(() => ({ ...state, first: state.first + 1 }))}>Plus</button>
+      <button
+        onClick={() => setState(() => ({ ...state, first: state.first + 1 }))}
+      >
+        Plus
+      </button>
       <p>second:[{state.second}]</p>
-      <button onClick={() => setState(() => ({ ...state, second: state.second + 1 }))}>Plus</button>
+      <button
+        onClick={() => setState(() => ({ ...state, second: state.second + 1 }))}
+      >
+        Plus
+      </button>
       {/* <p>counts:[{count}]</p> */}
     </>
   );

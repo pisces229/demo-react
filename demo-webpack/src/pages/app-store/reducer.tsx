@@ -1,17 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { commonAction, commonThunk } from '../../stores/app-redux/common';
+import { commonAction, commonThunk } from '@/stores/app-redux/common';
 import {
   actionDecrement,
   actionDecrementPayload,
   actionIncrement,
   actionIncrementPayload,
-} from '../../stores/app-redux/create-reducer';
+} from '@/stores/app-redux/create-reducer';
 
-import { StoreDispatch, StoreState } from '../../stores/app-redux/store';
+import { StoreDispatch, StoreState } from '@/stores/app-redux/store';
 
 const FirstIndex = () => {
   const dispatch = useDispatch<StoreDispatch>();
-  const countValue = useSelector((state: StoreState) => state.firstReducer.value);
+  const countValue = useSelector(
+    (state: StoreState) => state.firstReducer.value,
+  );
   const handleIncrement = () => {
     dispatch(actionIncrement());
   };
@@ -38,7 +40,9 @@ const FirstIndex = () => {
 
 const SecondIndex = () => {
   const dispatch = useDispatch();
-  const countValue = useSelector((state: StoreState) => state.firstReducer.value);
+  const countValue = useSelector(
+    (state: StoreState) => state.firstReducer.value,
+  );
   const handleIncrement = () => {
     dispatch(actionIncrement());
   };

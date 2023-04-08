@@ -17,7 +17,8 @@ const listToArray = (fileList: FileList | null) => {
 const axiosResponseDownload = async (response: AxiosResponse<Blob, any>) => {
   console.log(response);
   if (response.headers['content-type'] !== 'application/json; charset=utf-8') {
-    const contentDispositionValues = response.headers['content-disposition']?.split(';');
+    const contentDispositionValues =
+      response.headers['content-disposition']?.split(';');
     let filename = 'download';
     contentDispositionValues?.forEach((f: string) => {
       if (f.indexOf('filename') > -1) {
@@ -52,7 +53,9 @@ const axiosResponseDownload = async (response: AxiosResponse<Blob, any>) => {
 const axiosResponseOpen = async (response: AxiosResponse<Blob, any>) => {
   console.log(response);
   if (response.headers['content-type'] !== 'application/json; charset=utf-8') {
-    const fileURL = window.URL.createObjectURL(new Blob([response.data], { type: response.data.type }));
+    const fileURL = window.URL.createObjectURL(
+      new Blob([response.data], { type: response.data.type }),
+    );
     window.open(fileURL);
     const value: CommonOutputModel<string> = {
       success: true,
@@ -70,8 +73,12 @@ const axiosResponseOpen = async (response: AxiosResponse<Blob, any>) => {
 
 const fetchResponseDownload = async (response: Response) => {
   console.log(response);
-  if (response.headers.get('content-type') !== 'application/json; charset=utf-8') {
-    const contentDispositionValues = response.headers.get('content-disposition')?.split(';');
+  if (
+    response.headers.get('content-type') !== 'application/json; charset=utf-8'
+  ) {
+    const contentDispositionValues = response.headers
+      .get('content-disposition')
+      ?.split(';');
     let filename = 'download';
     contentDispositionValues?.forEach((f: string) => {
       if (f.indexOf('filename') > -1) {
@@ -105,9 +112,13 @@ const fetchResponseDownload = async (response: Response) => {
 
 const fetchResponseOpen = async (response: Response) => {
   console.log(response);
-  if (response.headers.get('content-type') !== 'application/json; charset=utf-8') {
+  if (
+    response.headers.get('content-type') !== 'application/json; charset=utf-8'
+  ) {
     const data = await response.blob();
-    const fileURL = window.URL.createObjectURL(new Blob([data], { type: data.type }));
+    const fileURL = window.URL.createObjectURL(
+      new Blob([data], { type: data.type }),
+    );
     window.open(fileURL);
     const value: CommonOutputModel<string> = {
       success: true,

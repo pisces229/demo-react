@@ -14,7 +14,11 @@ const Index = () => {
   return (
     <>
       <h3>App Hook</h3>
-      <a href="https://react.dev/reference/react" target="_blank" rel="noreferrer">
+      <a
+        href="https://react.dev/reference/react"
+        target="_blank"
+        rel="noreferrer"
+      >
         Built-in React Hooks
       </a>
       <Hook />

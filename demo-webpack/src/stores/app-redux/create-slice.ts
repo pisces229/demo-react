@@ -55,6 +55,11 @@ const slice = createSlice({
   },
 });
 // action
-export const { actionIncrement, actionDecrement, actionIncrementPayload, actionDecrementPayload } = slice.actions;
+export const {
+  actionIncrement,
+  actionDecrement,
+  actionIncrementPayload,
+  actionDecrementPayload,
+} = slice.actions;
 // reducer
 export const reducer = slice.reducer;

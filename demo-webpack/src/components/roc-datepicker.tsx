@@ -1,4 +1,10 @@
-import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  Fragment,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import styled from 'styled-components';
 
 const WeekTitleItems: string[] = ['日', '一', '二', '三', '四', '五', '六'];
@@ -118,7 +124,12 @@ const DateSpaceItem = styled.div`
   padding-right: 0.2rem;
 `;
 
-const Index = (props: { value: string; disabled?: boolean; hidden?: boolean; onChange: (value: string) => void}) => {
+const Index = (props: {
+  value: string;
+  disabled?: boolean;
+  hidden?: boolean;
+  onChange: (value: string) => void;
+}) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [calendarPosition, setCalendarPosition] = useState<{
     style: { top: number; left: number };
@@ -138,14 +149,19 @@ const Index = (props: { value: string; disabled?: boolean; hidden?: boolean; onC
                 inputNode.getBoundingClientRect().height +
                 node.getBoundingClientRect().height <
               window.innerHeight - 20
-                ? inputNode.getBoundingClientRect().bottom + window.document!.scrollingElement!.scrollTop + 5
+                ? inputNode.getBoundingClientRect().bottom +
+                  window.document!.scrollingElement!.scrollTop +
+                  5
                 : inputNode.getBoundingClientRect().top -
                   node.getBoundingClientRect().height +
                   window.document!.scrollingElement!.scrollTop -
                   5,
             left:
-              inputNode.getBoundingClientRect().left + node.getBoundingClientRect().width < window.innerWidth - 20
-                ? inputNode.getBoundingClientRect().left + window.document!.scrollingElement!.scrollLeft
+              inputNode.getBoundingClientRect().left +
+                node.getBoundingClientRect().width <
+              window.innerWidth - 20
+                ? inputNode.getBoundingClientRect().left +
+                  window.document!.scrollingElement!.scrollLeft
                 : inputNode.getBoundingClientRect().left +
                   inputNode.getBoundingClientRect().width -
                   node.getBoundingClientRect().width +
@@ -209,7 +225,12 @@ const Index = (props: { value: string; disabled?: boolean; hidden?: boolean; onC
     }
     const theMonthBegin = new Date(yearValue, monthValue, 0);
     const theMonthEnd = new Date(yearValue, monthValue + 1, 0);
-    const theMonthDays = Math.round(Math.abs((theMonthEnd.getTime() - theMonthBegin.getTime()) / (24 * 60 * 60 * 1000)));
+    const theMonthDays = Math.round(
+      Math.abs(
+        (theMonthEnd.getTime() - theMonthBegin.getTime()) /
+          (24 * 60 * 60 * 1000),
+      ),
+    );
     const weekItems: Date[][] = [];
     weekItems.push([]);
     const firstDay = new Date(yearValue, monthValue, 1);
@@ -222,9 +243,14 @@ const Index = (props: { value: string; disabled?: boolean; hidden?: boolean; onC
       }
       weekItems[weekItems.length - 1].push(new Date(yearValue, monthValue, i));
     }
-    const lastDay = weekItems[weekItems.length - 1][weekItems[weekItems.length - 1].length - 1].getDay();
+    const lastDay =
+      weekItems[weekItems.length - 1][
+        weekItems[weekItems.length - 1].length - 1
+      ].getDay();
     for (let i = 1; i < 7 - lastDay; i++) {
-      weekItems[weekItems.length - 1].push(new Date(yearValue, monthValue, theMonthDays + i));
+      weekItems[weekItems.length - 1].push(
+        new Date(yearValue, monthValue, theMonthDays + i),
+      );
     }
     const spaceItems: string[] = [];
     for (let i = weekItems.length; i < 6; i++) {
@@ -233,16 +259,25 @@ const Index = (props: { value: string; disabled?: boolean; hidden?: boolean; onC
     const renderDateItem = (value: Date) => {
       return (
         <>
-          {value.getFullYear() === yearValue && value.getMonth() === monthValue && value.getDate() !== dateValue && (
-            <DateDefaultItem onClick={onClickDateItem(value)}>{value.getDate()}</DateDefaultItem>
-          )}
-          {value.getFullYear() === yearValue && value.getMonth() === monthValue && value.getDate() === dateValue && (
-            <DateCurrentItem tabIndex={0} onClick={onClickDateItem(value)}>
+          {value.getFullYear() === yearValue &&
+            value.getMonth() === monthValue &&
+            value.getDate() !== dateValue && (
+              <DateDefaultItem onClick={onClickDateItem(value)}>
+                {value.getDate()}
+              </DateDefaultItem>
+            )}
+          {value.getFullYear() === yearValue &&
+            value.getMonth() === monthValue &&
+            value.getDate() === dateValue && (
+              <DateCurrentItem tabIndex={0} onClick={onClickDateItem(value)}>
+                {value.getDate()}
+              </DateCurrentItem>
+            )}
+          {(value.getFullYear() !== yearValue ||
+            value.getMonth() !== monthValue) && (
+            <DateOtherItem onClick={onClickDateItem(value)}>
               {value.getDate()}
-            </DateCurrentItem>
-          )}
-          {(value.getFullYear() !== yearValue || value.getMonth() !== monthValue) && (
-            <DateOtherItem onClick={onClickDateItem(value)}>{value.getDate()}</DateOtherItem>
+            </DateOtherItem>
           )}
         </>
       );
@@ -269,17 +304,20 @@ const Index = (props: { value: string; disabled?: boolean; hidden?: boolean; onC
         setMonthValue((state) => state + value);
       }
     };
-    const onKeyboardYearMonthChange = (value: number) => (event: React.KeyboardEvent<HTMLDivElement>) => {
-      const eventKey = event.key;
-      if (eventKey === 'Escape') {
-        event.preventDefault();
-        setDisplay(false);
-      } else if (eventKey === 'Enter') {
-        event.preventDefault();
-        onClickYearMonthChange(value)();
-      }
-    };
-    const onKeyboardYearMonthSelect = (event: React.KeyboardEvent<HTMLSelectElement>) => {
+    const onKeyboardYearMonthChange =
+      (value: number) => (event: React.KeyboardEvent<HTMLDivElement>) => {
+        const eventKey = event.key;
+        if (eventKey === 'Escape') {
+          event.preventDefault();
+          setDisplay(false);
+        } else if (eventKey === 'Enter') {
+          event.preventDefault();
+          onClickYearMonthChange(value)();
+        }
+      };
+    const onKeyboardYearMonthSelect = (
+      event: React.KeyboardEvent<HTMLSelectElement>,
+    ) => {
       const eventKey = event.key;
       if (eventKey === 'Escape') {
         event.preventDefault();
@@ -481,10 +519,15 @@ const TabLoopComponent = (props: { children: JSX.Element }) => {
   const getChildren = () =>
     Array.prototype.slice
       .call(wrapperRef!.current!.querySelectorAll('[tabindex]'), 1, -1)
-      .filter((node: { disabled: boolean; tabIndex: number }) => !node.disabled && node.tabIndex !== -1);
+      .filter(
+        (node: { disabled: boolean; tabIndex: number }) =>
+          !node.disabled && node.tabIndex !== -1,
+      );
   const onFocusStart = (event: React.FocusEvent<HTMLDivElement>) => {
     const tabChildren = getChildren();
-    tabChildren && tabChildren.length > 1 && tabChildren[tabChildren.length - 1].focus();
+    tabChildren &&
+      tabChildren.length > 1 &&
+      tabChildren[tabChildren.length - 1].focus();
   };
   const onFocusEnd = (event: React.FocusEvent<HTMLDivElement>) => {
     const tabChildren = getChildren();

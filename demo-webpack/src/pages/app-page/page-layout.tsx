@@ -2,8 +2,7 @@ import produce from 'immer';
 import { useState } from 'react';
 import { Outlet } from 'react-router';
 import { Link } from 'react-router-dom';
-import { usePageLayoutStore } from '../../stores/app-page/page-layout-store';
-import { stat } from 'fs';
+import { usePageLayoutStore } from '@/stores/app-page/page-layout-store';
 
 const Index = () => {
   const [count, setCount] = useState(0);
@@ -16,7 +15,9 @@ const Index = () => {
       <h3>Page Layout</h3>
       <p>message:[{message}]</p>
       <p>[{count}]</p>
-      <button onClick={() => setCount(produce((draft) => ++draft))}>Plus</button>
+      <button onClick={() => setCount(produce((draft) => ++draft))}>
+        Plus
+      </button>
       <nav>
         <ul>
           <li>

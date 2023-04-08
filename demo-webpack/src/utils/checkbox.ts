@@ -1,5 +1,9 @@
 const allChecked = (list: string[], values: string[]) => {
-  return values.length > 0 && list.length === values.length && values.filter((f) => !list.includes(f)).length === 0;
+  return (
+    values.length > 0 &&
+    list.length === values.length &&
+    values.filter((f) => !list.includes(f)).length === 0
+  );
 };
 
 const allChange = (values: string[], checked: boolean) => {

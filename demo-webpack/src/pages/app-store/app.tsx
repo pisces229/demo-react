@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux';
-import { store } from '../../stores/app-redux/store';
+import { store } from '@/stores/app-redux/store';
 import ReducerIndex from './reducer';
 import SliceIndex from './slice';
 

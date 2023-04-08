@@ -13,7 +13,10 @@ const reducerState: ReducerState = {
   action: ReducerAction.Empty,
   count: 0,
 };
-const reducer = (state: ReducerState, action: { type: ReducerAction; payload?: number }) => {
+const reducer = (
+  state: ReducerState,
+  action: { type: ReducerAction; payload?: number },
+) => {
   switch (action.type) {
     case ReducerAction.Plus:
       return {
@@ -42,8 +45,14 @@ const Index = () => {
       <h3>Reducer</h3>
       <p>Action:[{state.action}]</p>
       <p>Count:[{state.count}]</p>
-      <button onClick={async () => dispatch({ type: ReducerAction.Plus, payload: 1 })}>Plus</button>
-      <button onClick={async () => dispatch({ type: ReducerAction.Reset })}>Reset</button>
+      <button
+        onClick={async () => dispatch({ type: ReducerAction.Plus, payload: 1 })}
+      >
+        Plus
+      </button>
+      <button onClick={async () => dispatch({ type: ReducerAction.Reset })}>
+        Reset
+      </button>
     </>
   );
 };

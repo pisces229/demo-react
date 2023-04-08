@@ -1,8 +1,9 @@
 import React, { ForwardedRef } from 'react';
 
-const ForwardRefButton = (props: { children: string }, ref: ForwardedRef<HTMLButtonElement>) => (
-  <button ref={ref}>{props.children}</button>
-);
+const ForwardRefButton = (
+  props: { children: string },
+  ref: ForwardedRef<HTMLButtonElement>,
+) => <button ref={ref}>{props.children}</button>;
 
 const ForwardRef = React.forwardRef(ForwardRefButton);
 

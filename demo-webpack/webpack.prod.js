@@ -12,21 +12,25 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 
+console.log('[webpack.prod]');
+
 module.exports = {
-  target: ['browserslist'],
   mode: 'production',
+  // stats: 'detailed',
+  target: ['browserslist'],
   entry: {
     index: path.resolve(__dirname, './src/index.tsx'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'static/js/[name].[contenthash].js',
+    filename: 'static/js/[name].[contenthash:8].js',
+    assetModuleFilename: 'static/media/[name].[contenthash:8][ext]',
   },
   // devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
-      '@appSrc': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, 'src'),
     },
   },
   module: {
@@ -38,38 +42,27 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: [
-              '@babel/typescript', 
+              '@babel/preset-env',
               ['@babel/preset-react', { runtime: 'automatic' }],
-              "@babel/preset-env"
+              '@babel/typescript', 
             ],
-            plugins: ["@babel/plugin-transform-runtime"],
+            plugins: ['@babel/plugin-transform-runtime'],
             cacheDirectory: true,
             cacheCompression: false,
           },
         },
       },
       {
-        test: /\.css$/i,
+        test: /\.css$/,
+        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
         ],
       },
-      // {
-      //   test: /\.(jpg|png|svg)$/,
-      //   loader: 'url-loader',
-      //   options: {
-      //     limit: 25000,
-      //   },
-      // },
       {
         test: /\.(jpg|png|svg)$/,
-        loader: 'file-loader',
-        options: {
-          publicPath: '/static/media',
-          name: '[name].[contenthash].[ext]',
-          outputPath: 'static/media',
-        },
+        type: 'asset/resource',
       },
     ],
   },
@@ -135,7 +128,7 @@ module.exports = {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: 'static/css/[name].[contenthash].css',
+      filename: 'static/css/[name].[contenthash:8].css',
     }),
     // new CompressionPlugin({
     //   algorithm: 'gzip',
@@ -149,14 +142,11 @@ module.exports = {
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
-    new ESLintWebpackPlugin({
-      extensions: ['ts', 'tsx'],
-      eslintPath: require.resolve('eslint'),
-      failOnError: true,
-      failOnWarning: false,
-    }),
+    // new ESLintWebpackPlugin({
+    //   extensions: ['ts', 'tsx'],
+    //   eslintPath: require.resolve('eslint'),
+    //   failOnError: true,
+    //   failOnWarning: false,
+    // }),
   ],
-  watchOptions: {
-    ignored: /node_modules/,
-  },
 };

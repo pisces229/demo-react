@@ -1,5 +1,6 @@
 import { Outlet, Link, useRoutes, RouteObject } from 'react-router-dom';
 import Page from './page';
+
 const Index = () => {
   const routeObject: RouteObject[] = [
     {

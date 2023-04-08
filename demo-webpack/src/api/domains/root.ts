@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import CONFIG from '@appSrc/config';
+import CONFIG from '@/config';
 
 export const handlers = [
   rest.get(`${CONFIG.ENDPOINT}/api/get`, (req, res, ctx) => {

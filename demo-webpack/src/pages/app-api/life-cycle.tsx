@@ -23,7 +23,13 @@ class Index extends React.Component<{ value: string }, { value: string }> {
         <h3>Life Cycle</h3>
         <p>props.value:{this.props.value}</p>
         <p>state.value:{this.state.value}</p>
-        <button onClick={async () => this.setState((state) => ({ ...state, value: state.value + 1 }))}>Click</button>
+        <button
+          onClick={async () =>
+            this.setState((state) => ({ ...state, value: state.value + 1 }))
+          }
+        >
+          Click
+        </button>
       </>
     );
   }

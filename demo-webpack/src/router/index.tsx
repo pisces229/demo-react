@@ -1,7 +1,7 @@
 import { RouteObject, useRoutes } from 'react-router';
-import PageLayout from '../pages/app-page/page-layout';
-import PageFirst from '../pages/app-page/page-first';
-import PageSecond from '../pages/app-page/page-second';
+import PageLayout from '@/pages/app-page/page-layout';
+import PageFirst from '@/pages/app-page/page-first';
+import PageSecond from '@/pages/app-page/page-second';
 
 const Index = () => {
   const routeObject: RouteObject[] = [

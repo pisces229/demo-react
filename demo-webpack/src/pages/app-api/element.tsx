@@ -20,14 +20,22 @@ const Index = () => {
   return (
     <>
       <p>React.createElement</p>
-      {React.createElement('button', { type: 'button', onClick: onClick }, count)}
+      {React.createElement(
+        'button',
+        { type: 'button', onClick: onClick },
+        count,
+      )}
       <br />
       {React.createElement('div', { style: { color: 'red' } }, 'createElement')}
       <br />
       {React.createElement(
         'div',
         { style: { backgroundColor: 'red' } },
-        React.createElement('div', { style: { color: 'blue' } }, 'createElement'),
+        React.createElement(
+          'div',
+          { style: { color: 'blue' } },
+          'createElement',
+        ),
       )}
       <hr></hr>
       <p>React.cloneElement</p>

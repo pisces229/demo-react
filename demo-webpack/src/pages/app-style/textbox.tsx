@@ -18,7 +18,11 @@ const StyledInputText = styled.input.attrs({
 const Index = (props: { message: string }) => {
   return (
     <>
-      <input className={StyledInput.toString()} type="text" defaultValue={props.message} />
+      <input
+        className={StyledInput.toString()}
+        type="text"
+        defaultValue={props.message}
+      />
       <StyledInputText defaultValue={props.message} />
     </>
   );

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import AppService from '../../services/app-service/axios';
-import { CommonOutputModel } from '../../services/app-service/model';
-import FileUtil from '../../utils/file';
+import AppService from '@/services/app-service/axios';
+import { CommonOutputModel } from '@/services/app-service/model';
+import FileUtil from '@/utils/file';
 
 const onStorage = (event: StorageEvent) => {
   console.log(event);

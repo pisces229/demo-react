@@ -4,7 +4,10 @@ import AppService from '../services/app-service/fetch';
 
 const fetchInterceptor = async (request: Request) => {
   if (localStorage.getItem('token')) {
-    request.headers.set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
+    request.headers.set(
+      'Authorization',
+      `Bearer ${localStorage.getItem('token')!}`,
+    );
   }
   return fetch(request).catch((error) => {
     console.log(error);
@@ -12,7 +15,11 @@ const fetchInterceptor = async (request: Request) => {
   });
 };
 
-const execute = async (url: string, method: string, body?: string | FormData) => {
+const execute = async (
+  url: string,
+  method: string,
+  body?: string | FormData,
+) => {
   const header = new Headers();
   switch (method) {
     case 'GET':
@@ -78,7 +85,9 @@ const execute = async (url: string, method: string, body?: string | FormData) =>
 
 const util = {
   get: async (url: string) => execute(url, 'GET'),
-  post: async (url: string, body: string | FormData) => execute(url, 'POST', body),
-  put: async (url: string, body: string | FormData) => execute(url, 'PUT', body),
+  post: async (url: string, body: string | FormData) =>
+    execute(url, 'POST', body),
+  put: async (url: string, body: string | FormData) =>
+    execute(url, 'PUT', body),
 };
 export default util;
