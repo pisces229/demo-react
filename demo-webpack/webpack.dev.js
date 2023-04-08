@@ -47,6 +47,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
+        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
@@ -54,6 +55,7 @@ module.exports = {
       },
       {
         test: /\.(jpg|png|svg)$/,
+        exclude: /node_modules/,
         type: 'asset/resource',
       },
     ],

@@ -5,25 +5,16 @@
 ## webpack 
 
 `npm install --save-dev webpack webpack-cli webpack-dev-server`
-
-`npm install --save-dev dotenv`
+`npm install --save-dev webpack-bundle-analyzer`
 
 `npm install --save-dev clean-webpack-plugin`
-
 `npm install --save-dev copy-webpack-plugin`
-
 `npm install --save-dev html-webpack-plugin`
-
 `npm install --save-dev css-minimizer-webpack-plugin`
-
 `npm install --save-dev mini-css-extract-plugin`
-
 `npm install --save-dev terser-webpack-plugin`
-
 `npm install --save-dev compression-webpack-plugin`
-
 `npm install --save-dev fork-ts-checker-webpack-plugin`
-
 `npm install --save-dev eslint-webpack-plugin`
 
 ## babel
@@ -37,83 +28,88 @@
 
 ## loader
 
-`npm install --save-dev css-loader style-loader`
-
 `npm install --save-dev source-map-loader`
-
-`npm install --save-dev url-loader`
-
-`npm install --save-dev file-loader`
+`npm install --save-dev css-loader style-loader`
 
 ## typescript
 
 `npm install --save-dev typescript`
+`npm install --save-dev @types/node`
 
-[What is a tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
+## browserslist
 
-[0](https://ithelp.ithome.com.tw/articles/10263733)
+`npm install --save-dev browserslist`
+
+## source-map-explorer
+
+`npm install source-map-explorer`
+
+## Eslint
+
+`npm install --save-dev eslint`
+`npx eslint --init`
+`npm install --save-dev eslint-plugin-react`
+`npm install --save-dev eslint-plugin-react-hooks`
+
+## Prettier
+
+`npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier`
 
 ## React
 
 `npm install --save react react-dom`
-
 `npm install --save-dev @types/react @types/react-dom`
 
-`npm install --save-dev @types/node`
+`npm install --save react-router react-router-dom`
+`npm install --save-dev @types/react-router @types/react-router-dom`
 
-## webpack bundle analyzer
+`npm install --save redux react-redux @reduxjs/toolkit`
 
-[webpack bundle analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
+## Other
 
-`npm install --save-dev webpack-bundle-analyzer`
+`npm install --save axios`
 
-## source-map-explorer
+`npm install --save file-saver`
+`npm install --save-dev @types/file-saver`
 
-`npm install -g source-map-explorer`
+`npm install --save immer`
+
+`npm install --save styled-components`
+`npm install --save-dev @types/styled-components`
+
+`npm install --save zustand`
 
 ## web-vitals
 
 `npm install --dev-save web-vitals`
 
-## Eslint
+## MSW
 
-`npm install --save-dev eslint`
-
-`npx eslint --init`
-
-`npm install --save-dev eslint-plugin-react`
-
-`npm install --save-dev eslint-plugin-react-hooks`
-
-## Prettier
-
-`npm install --save-dev prettier`
-
-`npm install --save-dev eslint-config-prettier eslint-plugin-prettier`
+`npm install --save-dev msw`
 
 ## Testing
 
-[Jest](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest)
-
-`npm install --save-dev jest jest-environment-jsdom`
-
-`npm install --save-dev ts-jest @types/jest`
-
+`npm install --save-dev jest @types/jest ts-jest jest-environment-jsdom`
 `npm install --save-dev @testing-library/jest-dom`
-
 `npm install --save-dev @testing-library/react`
 
 ## Reference
 
 [webpack](https://webpack.js.org/)
 
+[webpack bundle analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
+
 [typescript](https://www.typescriptlang.org/)
 
 [babel](https://babeljs.io/)
 
+[browsersl](https://browsersl.ist/)
+
 [eslint](https://eslint.org/)
 
 [jest](https://jestjs.io/)
+
+[vscode jest](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest)
 
 [0](https://juejin.cn/post/7129747165794009101)
 

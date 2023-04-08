@@ -17,7 +17,6 @@ console.log('[webpack.prod]');
 module.exports = {
   mode: 'production',
   // stats: 'detailed',
-  target: ['browserslist'],
   entry: {
     index: path.resolve(__dirname, './src/index.tsx'),
   },
@@ -33,6 +32,7 @@ module.exports = {
       '@': path.resolve(__dirname, 'src'),
     },
   },
+  target: ['browserslist'],
   module: {
     rules: [
       {
@@ -62,6 +62,7 @@ module.exports = {
       },
       {
         test: /\.(jpg|png|svg)$/,
+        exclude: /node_modules/,
         type: 'asset/resource',
       },
     ],
@@ -119,7 +120,6 @@ module.exports = {
       ],
     }),
     new HtmlWebPackPlugin({
-      // favicon: path.join(__dirname, 'public', 'favicon.ico'),
       template: path.join(__dirname, 'public', 'index.html'),
       filename: 'index.html',
       minifyJS: true,
@@ -142,11 +142,11 @@ module.exports = {
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
-    // new ESLintWebpackPlugin({
-    //   extensions: ['ts', 'tsx'],
-    //   eslintPath: require.resolve('eslint'),
-    //   failOnError: true,
-    //   failOnWarning: false,
-    // }),
+    new ESLintWebpackPlugin({
+      extensions: ['ts', 'tsx'],
+      eslintPath: require.resolve('eslint'),
+      failOnError: true,
+      failOnWarning: false,
+    }),
   ],
 };
