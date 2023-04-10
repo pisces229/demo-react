@@ -6,7 +6,7 @@
     "start": "webpack server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "/build": "webpack --profile --progress --config webpack.prod.js",
-    "test": "jest --watch",
+    "test": "jest",
     "prettier": "prettier --write \"**/*.{tsx,ts}\" ",
     "lint": "eslint \"**/*.{tsx,ts}\" ",
     "analyze": "source-map-explorer 'dist/static/js/*.js'"
@@ -101,6 +101,9 @@
       "\\.(css)$": "<rootDir>/__mocks__/css-mock.js",
       "\\.(jpg|png|svg)$": "<rootDir>/__mocks__/file-mock.js",
       "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "transform": {
+      "^.+\\.ts?$": ["ts-jest", { "isolatedModules": true }]
     },
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/"
