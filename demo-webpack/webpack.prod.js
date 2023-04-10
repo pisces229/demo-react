@@ -149,4 +149,9 @@ module.exports = {
       failOnWarning: false,
     }),
   ],
+  performance: {
+    hints: true,
+    maxEntrypointSize: 1024000,
+    maxAssetSize: 1024000
+  },
 };

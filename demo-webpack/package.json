@@ -8,6 +8,7 @@
     "/build": "webpack --profile --progress --config webpack.prod.js",
     "test": "jest --watch",
     "prettier": "prettier --write \"**/*.{tsx,ts}\" ",
+    "lint": "eslint \"**/*.{tsx,ts}\" ",
     "analyze": "source-map-explorer 'dist/static/js/*.js'"
   },
   "devDependencies": {
