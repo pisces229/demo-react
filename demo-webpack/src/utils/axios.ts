@@ -5,13 +5,13 @@ import AppService from '../services/app-service/axios';
 
 const util = axios.create({
   baseURL: `${CONFIG.ENDPOINT}/api`,
-  headers: {
-    'Content-Type': 'application/json',
-  },
 });
 
 util.interceptors.request.use(
   (config) => {
+    if (typeof config.data === 'string') {
+      config.headers.set('Content-Type', 'application/json');
+    }
     if (localStorage.getItem('token')) {
       config.headers.set(
         'Authorization',
