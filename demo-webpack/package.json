@@ -6,7 +6,7 @@
     "start": "webpack server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "/build": "webpack --profile --progress --config webpack.prod.js",
-    "test": "jest",
+    "test": "jest --runInBand",
     "prettier": "prettier --write \"**/*.{tsx,ts}\" ",
     "lint": "eslint \"**/*.{tsx,ts}\" ",
     "analyze": "source-map-explorer 'dist/static/js/*.js'"
@@ -107,6 +107,7 @@
     },
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/"
-    ]
+    ],
+    "cacheDirectory": "<rootDir>/__cache__/"
   }
 }
