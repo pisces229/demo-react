@@ -6,7 +6,7 @@ const fetchInterceptor = async (request: Request) => {
   if (localStorage.getItem('token')) {
     request.headers.set(
       'Authorization',
-      `Bearer ${localStorage.getItem('token')!}`,
+      `Bearer ${localStorage.getItem('token') || ''}`,
     );
   }
   return fetch(request).catch((error) => {
@@ -45,7 +45,7 @@ const execute = async (
       if (localStorage.getItem('token')) {
         if (!RefreshUtil.do) {
           RefreshUtil.do = true;
-          AppService.refresh(localStorage.getItem('token')!)
+          AppService.refresh(localStorage.getItem('token') || '')
             .then((response) => {
               if (response.success) {
                 localStorage.setItem('token', response.data);

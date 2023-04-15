@@ -15,7 +15,7 @@ util.interceptors.request.use(
     if (localStorage.getItem('token')) {
       config.headers.set(
         'Authorization',
-        `Bearer ${localStorage.getItem('token')!}`,
+        `Bearer ${localStorage.getItem('token') || ''}`,
       );
     }
     return config;
@@ -37,7 +37,7 @@ util.interceptors.response.use(
         if (localStorage.getItem('token')) {
           if (!RefreshUtil.do) {
             RefreshUtil.do = true;
-            AppService.refresh(localStorage.getItem('token')!)
+            AppService.refresh(localStorage.getItem('token') || '')
               .then((response) => {
                 if (response.data.success) {
                   localStorage.setItem('token', response.data.data);

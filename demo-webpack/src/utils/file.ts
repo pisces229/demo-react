@@ -7,6 +7,7 @@ const listToArray = (fileList: FileList | null) => {
   if (fileList) {
     for (let i = 0; i < fileList?.length; ++i) {
       if (fileList.item(i)) {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         result.push(fileList.item(i)!);
       }
     }
@@ -14,7 +15,7 @@ const listToArray = (fileList: FileList | null) => {
   return result;
 };
 
-const axiosResponseDownload = async (response: AxiosResponse<Blob, any>) => {
+const axiosResponseDownload = async (response: AxiosResponse<Blob>) => {
   console.log(response);
   if (response.headers['content-type'] !== 'application/json; charset=utf-8') {
     const contentDispositionValues =
@@ -50,7 +51,7 @@ const axiosResponseDownload = async (response: AxiosResponse<Blob, any>) => {
   }
 };
 
-const axiosResponseOpen = async (response: AxiosResponse<Blob, any>) => {
+const axiosResponseOpen = async (response: AxiosResponse<Blob>) => {
   console.log(response);
   if (response.headers['content-type'] !== 'application/json; charset=utf-8') {
     const fileURL = window.URL.createObjectURL(

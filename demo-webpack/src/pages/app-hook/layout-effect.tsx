@@ -4,6 +4,7 @@ const Index = () => {
   const [state, setState] = useState<number>(0);
   const divRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     divRef!.current!.style.top = '100px';
     console.log(`useEffect.MOUNTED`);
   }, []);

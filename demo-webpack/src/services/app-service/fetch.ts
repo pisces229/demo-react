@@ -97,6 +97,7 @@ const Index = {
     ),
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const parseQuery = (json: any) =>
   Object.keys(json)
     .map((key) => {

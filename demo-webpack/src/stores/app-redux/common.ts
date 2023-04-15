@@ -8,7 +8,7 @@ export const commonAction = createAction('common/action', (value: string) => {
 
 export const commonThunk = createAsyncThunk(
   'commonThunk',
-  async (postData: string, thunkAPI: any) => {
+  async (postData: string, thunkAPI: unknown) => {
     return await new Promise<string>((resolve, reject) => {
       setTimeout(() => {
         // resolve('commonThunk');

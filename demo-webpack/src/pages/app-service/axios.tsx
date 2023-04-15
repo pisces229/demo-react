@@ -62,7 +62,7 @@ const Index = () => {
   };
   const onClickRefresh = async () => {
     if (localStorage.getItem('token')) {
-      await AppService.refresh(localStorage.getItem('token')!)
+      await AppService.refresh(localStorage.getItem('token') || '')
         .then((response) => {
           console.log(response);
           if (response.data.success) {
@@ -75,7 +75,7 @@ const Index = () => {
   };
   const onClickSignOut = async () => {
     if (localStorage.getItem('token')) {
-      await AppService.signOut(localStorage.getItem('token')!)
+      await AppService.signOut(localStorage.getItem('token') || '')
         .then((response) => {
           console.log(response);
           if (response.data.success) {

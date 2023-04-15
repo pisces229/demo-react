@@ -138,41 +138,43 @@ const Index = (props: {
   const [yearValue, setYearValue] = useState(1911);
   const [monthValue, setMonthValue] = useState(0);
   const [dateValue, setDateValue] = useState(0);
-  const calendarRefCallback = useCallback(
-    (node: HTMLDivElement) => {
-      if (node !== null) {
-        const inputNode = inputRef!.current!;
-        setCalendarPosition({
-          style: {
-            top:
-              inputNode.getBoundingClientRect().top +
-                inputNode.getBoundingClientRect().height +
-                node.getBoundingClientRect().height <
-              window.innerHeight - 20
-                ? inputNode.getBoundingClientRect().bottom +
-                  window.document!.scrollingElement!.scrollTop +
-                  5
-                : inputNode.getBoundingClientRect().top -
-                  node.getBoundingClientRect().height +
-                  window.document!.scrollingElement!.scrollTop -
-                  5,
-            left:
-              inputNode.getBoundingClientRect().left +
-                node.getBoundingClientRect().width <
-              window.innerWidth - 20
-                ? inputNode.getBoundingClientRect().left +
-                  window.document!.scrollingElement!.scrollLeft
-                : inputNode.getBoundingClientRect().left +
-                  inputNode.getBoundingClientRect().width -
-                  node.getBoundingClientRect().width +
-                  window.document!.scrollingElement!.scrollLeft,
-          },
-        });
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    },
-    [yearValue, monthValue],
-  );
+  const calendarRefCallback = useCallback((node: HTMLDivElement) => {
+    if (node !== null) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const inputNode = inputRef!.current!;
+      setCalendarPosition({
+        style: {
+          top:
+            inputNode.getBoundingClientRect().top +
+              inputNode.getBoundingClientRect().height +
+              node.getBoundingClientRect().height <
+            window.innerHeight - 20
+              ? inputNode.getBoundingClientRect().bottom +
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                window.document!.scrollingElement!.scrollTop +
+                5
+              : inputNode.getBoundingClientRect().top -
+                node.getBoundingClientRect().height +
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                window.document!.scrollingElement!.scrollTop -
+                5,
+          left:
+            inputNode.getBoundingClientRect().left +
+              node.getBoundingClientRect().width <
+            window.innerWidth - 20
+              ? inputNode.getBoundingClientRect().left +
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                window.document!.scrollingElement!.scrollLeft
+              : inputNode.getBoundingClientRect().left +
+                inputNode.getBoundingClientRect().width -
+                node.getBoundingClientRect().width +
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                window.document!.scrollingElement!.scrollLeft,
+        },
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const renderInput = () => {
     const onFocus = (event: React.FocusEvent<HTMLInputElement>) => {
       event.preventDefault();
@@ -518,6 +520,7 @@ const TabLoopComponent = (props: { children: JSX.Element }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const getChildren = () =>
     Array.prototype.slice
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       .call(wrapperRef!.current!.querySelectorAll('[tabindex]'), 1, -1)
       .filter(
         (node: { disabled: boolean; tabIndex: number }) =>
