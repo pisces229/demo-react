@@ -190,6 +190,7 @@ const Index = (props: {
         props.onChange('');
       }
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
       // const eventKey = event.key;
       // if (eventKey === 'Tab') {
@@ -478,6 +479,7 @@ const PopperComponent = (props: {
         }
       }
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const focusoutOutside = (event: FocusEvent) => {
       // if (wrapperRef.current) {
       //   if (event.target instanceof Node) {
@@ -526,12 +528,14 @@ const TabLoopComponent = (props: { children: JSX.Element }) => {
         (node: { disabled: boolean; tabIndex: number }) =>
           !node.disabled && node.tabIndex !== -1,
       );
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onFocusStart = (event: React.FocusEvent<HTMLDivElement>) => {
     const tabChildren = getChildren();
     tabChildren &&
       tabChildren.length > 1 &&
       tabChildren[tabChildren.length - 1].focus();
   };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onFocusEnd = (event: React.FocusEvent<HTMLDivElement>) => {
     const tabChildren = getChildren();
     tabChildren && tabChildren.length > 1 && tabChildren[0].focus();

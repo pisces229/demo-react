@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface Form {
+type Form = {
   stringValue?: string;
   numberValue?: number;
   booleanValue?: boolean;
@@ -11,7 +11,7 @@ const initForm: Form = {
   booleanValue: false,
 };
 
-interface StoreCreator {
+type StoreCreator = {
   form: Form;
   setForm: (value: Form) => void;
   getForm: () => Form;

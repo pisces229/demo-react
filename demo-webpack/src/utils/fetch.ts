@@ -59,7 +59,7 @@ const execute = async (
             })
             .finally(() => RefreshUtil.run());
         }
-        return new Promise<Response>((resolve, reject) => {
+        return new Promise<Response>((resolve) => {
           const request = new Request(`${CONFIG.ENDPOINT}/api${url}`, {
             method: method,
             headers: header,

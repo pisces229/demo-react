@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface Form {
+type Form = {
   stringValue?: string;
   numberValue?: number;
   booleanValue?: boolean;

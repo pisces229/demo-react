@@ -12,7 +12,7 @@ import {
   usePageSecondStore,
 } from '@/stores/app-page/page-second-store';
 
-interface FormState {
+type FormState = {
   stringValue?: string;
   numberValue?: number;
   booleanValue?: boolean;

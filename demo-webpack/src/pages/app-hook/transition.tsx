@@ -3,6 +3,7 @@ import React, { useEffect, useState, useTransition } from 'react';
 const Index = () => {
   const [first, setFirst] = useState('');
   const [second, setSecond] = useState('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [transition, startTransition] = useTransition();
   useEffect(() => {
     console.log(`[second]:[${second}]`);

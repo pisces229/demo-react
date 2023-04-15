@@ -1,50 +1,50 @@
 // Common
-export interface CommonPageInputModel {
+export type CommonPageInputModel = {
   pageNo: number;
   pageSize: number;
 }
-export interface CommonPagedQueryInputModel<T> {
+export type CommonPagedQueryInputModel<T> = {
   data: T;
   page: CommonPageInputModel;
 }
-export interface CommonPagedQueryOutputModel<T> {
+export type CommonPagedQueryOutputModel<T> = {
   data: T[];
   totalCount: number;
 }
-export interface CommonOutputModel<T> {
+export type CommonOutputModel<T> = {
   success: boolean;
   message: string;
   data: T;
 }
 // Default
-export interface DefaultJsonInputModel {
+export type DefaultJsonInputModel = {
   text: string;
   value: number;
   date: Date;
 }
-export interface DefaultSignInInputModel {
+export type DefaultSignInInputModel = {
   account: string;
   password: string;
 }
-export interface DefaultJsonHttpGetInputModel {
+export type DefaultJsonHttpGetInputModel = {
   text: string;
   value: number;
   date: Date;
 }
-export interface DefaultJsonHttpPostInputModel {
+export type DefaultJsonHttpPostInputModel = {
   text: string;
   value: number;
   date: Date;
 }
-export interface DefaultJsonOutputModel {
+export type DefaultJsonOutputModel = {
   text: string;
   value: number;
   date: Date;
 }
-export interface DefaultDownloadInputModel {
+export type DefaultDownloadInputModel = {
   filename?: string;
 }
-export interface DefaultJsonPageInputModel extends CommonPageInputModel {
+export type DefaultJsonPageInputModel = CommonPageInputModel & {
   text: string;
   value: number;
   date: Date;

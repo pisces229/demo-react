@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface StoreCreator {
+type StoreCreator = {
   action: number;
   setAction: (value?: number) => void;
   getAction: () => number;

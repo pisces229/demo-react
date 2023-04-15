@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface StoreCreator {
+type StoreCreator = {
   message: string;
   setMessage: (value: string) => void;
   getMessage: () => string;

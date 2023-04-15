@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
+import { persist } from 'zustand/middleware';
 
 interface CountState {
   count: number;
@@ -29,7 +29,7 @@ const useCountStore = create<CountState>()(
       count: 0,
       getCount: () => get().count,
       plus: (count) => set((state) => ({ count: state.count + count })),
-      reset: () => set((state) => ({ count: 0 })),
+      reset: () => set(() => ({ count: 0 })),
       fetch: async () => {
         const response = await fetch('');
         set({ count: await response.json() });
@@ -82,7 +82,7 @@ const Index = () => {
   // const countPlus = useCountStore((state) => (state.plus));
   // const countReset = useCountStore((state) => (state.reset));
   // const countFetch = useCountStore((state) => (state.fetch));
-  const { countState, countPlus, countReset, countFetch } = useCountStore(
+  const { countState, countPlus, countReset } = useCountStore(
     (state) => ({
       countState: state.count,
       countPlus: state.plus,

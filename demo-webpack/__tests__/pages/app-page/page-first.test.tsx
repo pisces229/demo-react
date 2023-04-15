@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import Index from '@/pages/app-page/page-first';
 import { BrowserRouter } from 'react-router-dom';
 

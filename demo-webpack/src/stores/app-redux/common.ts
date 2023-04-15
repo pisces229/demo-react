@@ -8,6 +8,7 @@ export const commonAction = createAction('common/action', (value: string) => {
 
 export const commonThunk = createAsyncThunk(
   'commonThunk',
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async (postData: string, thunkAPI: unknown) => {
     return await new Promise<string>((resolve, reject) => {
       setTimeout(() => {

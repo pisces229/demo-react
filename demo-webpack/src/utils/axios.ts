@@ -51,7 +51,7 @@ util.interceptors.response.use(
               })
               .finally(() => RefreshUtil.run());
           }
-          return new Promise((resolve, reject) => {
+          return new Promise((resolve) => {
             RefreshUtil.push(() => {
               resolve(util(config));
             });

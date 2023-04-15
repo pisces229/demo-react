@@ -9,7 +9,7 @@ import {
 } from '@/stores/app-page/page-second-store';
 import { PageFirstAction } from '@/stores/app-page/page-first-store';
 
-interface FormState {
+type FormState = {
   stringValue?: string;
   numberValue?: number;
   booleanValue?: boolean;
