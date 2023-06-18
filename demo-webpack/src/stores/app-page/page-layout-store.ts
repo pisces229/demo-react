@@ -4,7 +4,7 @@ type StoreCreator = {
   message: string;
   setMessage: (value: string) => void;
   getMessage: () => string;
-}
+};
 
 export const usePageLayoutStore = create<StoreCreator>()((set, get) => ({
   message: '',

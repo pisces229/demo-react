@@ -13,7 +13,7 @@ type FormState = {
   stringValue?: string;
   numberValue?: number;
   booleanValue?: boolean;
-}
+};
 const initFormState: FormState = {
   stringValue: '',
   numberValue: 0,

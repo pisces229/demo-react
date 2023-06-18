@@ -4,7 +4,7 @@ type Form = {
   stringValue?: string;
   numberValue?: number;
   booleanValue?: boolean;
-}
+};
 const initForm: Form = {
   stringValue: '',
   numberValue: 0,
