@@ -8,8 +8,8 @@ const HomeLayout = (props: { children: ReactElement }) => {
   return (
     <>
       <h3>Home Layout</h3>
-      <Link href="/home/first">First</Link>
-      <Link href="/home/second">Second</Link>
+      <Link href="/layout/first">First</Link>
+      <Link href="/layout/second">Second</Link>
       <hr></hr>
       <button onClick={() => setCount((state) => state + 1)}>{count}</button>
       <hr></hr>

@@ -1,4 +1,4 @@
-import { NextPage, GetStaticPaths, GetStaticProps } from 'next';
+import { NextPage, GetStaticProps } from 'next';
 import { useState } from 'react';
 // server
 import { readFile } from 'fs/promises';
@@ -13,10 +13,10 @@ type IndexProps = {
 };
 
 const Index: NextPage<IndexProps> = (props: IndexProps) => {
-  const [user, setUser] = useState<User | undefined>(props.user);
+  const [user, setUser] = useState<User | undefined>(props?.user);
   return (
     <>
-      <h3>Render SSG</h3>
+      <h3>Render ISR</h3>
       <p>
         {user?.id}-{user?.name}
       </p>
@@ -26,11 +26,11 @@ const Index: NextPage<IndexProps> = (props: IndexProps) => {
 export default Index;
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  console.log('SSG.getStaticProps');
+  console.log('ISR.getStaticProps');
   let data: User | undefined;
   try {
-    const res = await fetch("http://localhost:9080/api/users/${context?.params?.id}");
-    // const res = await fetch(`https://localhost:9443/api/users/${context?.params?.id}`);
+    const res = await fetch("http://localhost:9080/api/users/1");
+    // const res = await fetch('https://localhost:9443/api/users/1');
     data = await res.json();
     console.log('fetch:', data);
   } catch (e) {
@@ -47,14 +47,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       user: data,
     },
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async (context) => {
-  console.log('SSG.getStaticPaths');
-  return {
-    paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
-    // fallback: true,
-    fallback: 'blocking',
+    revalidate: 1,
   };
 };

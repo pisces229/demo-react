@@ -351,3 +351,7 @@ MigrationBackup/
 
 # Build
 dist/
+
+# next.js
+.next/
+/out/
