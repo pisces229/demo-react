@@ -1,4 +1,5 @@
 import { NextPage, GetStaticProps } from 'next';
+import Head from 'next/head';
 import { useState } from 'react';
 // server
 import { readFile } from 'fs/promises';
@@ -16,10 +17,15 @@ const Index: NextPage<IndexProps> = (props: IndexProps) => {
   const [user, setUser] = useState<User | undefined>(props?.user);
   return (
     <>
-      <h3>Render ISR</h3>
-      <p>
-        {user?.id}-{user?.name}
-      </p>
+      <Head>
+        <title>Render ISR</title>
+      </Head>
+      <main>
+        <h3>Render ISR</h3>
+        <p>
+          {user?.id}-{user?.name}
+        </p>
+      </main>
     </>
   );
 };

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { ReactElement, useState } from 'react';
 
@@ -7,13 +8,18 @@ const HomeLayout = (props: { children: ReactElement }) => {
   const [count, setCount] = useState<number>(0);
   return (
     <>
-      <h3>Home Layout</h3>
-      <Link href="/layout/first">First</Link>
-      <Link href="/layout/second">Second</Link>
-      <hr></hr>
-      <button onClick={() => setCount((state) => state + 1)}>{count}</button>
-      <hr></hr>
-      {props.children}
+      <Head>
+        <title>Layout</title>
+      </Head>
+      <main>
+        <h3>Home Layout</h3>
+        <Link href="/layout/first">First</Link>
+        <Link href="/layout/second">Second</Link>
+        <hr></hr>
+        <button onClick={() => setCount((state) => state + 1)}>{count}</button>
+        <hr></hr>
+        {props.children}
+      </main>
     </>
   );
 };

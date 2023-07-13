@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const fs = require('fs');
+const { withSuperjson } = require('next-superjson');
 
 // const nextConfig = {
 //   reactStrictMode: true,
@@ -29,10 +30,15 @@ const nextConfig = {
     // Will only be available on the server side
     value: 'serverRuntimeConfig',
     // secondSecret: process.env.SECOND_SECRET, // Pass through env variables
+    ENVIRONMENT: CONFIG.ENVIRONMENT,
+    NAME: 'Demo Create Next App',
   },
   publicRuntimeConfig: {
     // Will be available on both server and client
     value: 'publicRuntimeConfig',
+    // 
+    ENVIRONMENT: CONFIG.ENVIRONMENT,
+    NAME: 'Demo Create Next App',
   },
   reactStrictMode: true,
   images: {
@@ -49,4 +55,5 @@ const nextConfig = {
   // },
 };
 
-module.exports = nextConfig;
+// module.exports = nextConfig;
+module.exports = withSuperjson()(nextConfig);

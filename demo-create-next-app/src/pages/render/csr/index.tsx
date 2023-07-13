@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
@@ -17,10 +18,15 @@ const Index: NextPage = () => {
   }, []);
   return (
     <>
-      <h3>Render CSR</h3>
-      <p>
-        {user?.id}-{user?.name}
-      </p>
+      <Head>
+        <title>Render CSR</title>
+      </Head>
+      <main>
+        <h3>Render CSR</h3>
+        <p>
+          {user?.id}-{user?.name}
+        </p>
+      </main>
     </>
   );
 };
