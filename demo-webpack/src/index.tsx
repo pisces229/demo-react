@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import '@/styles/global.css';
 import '@/index.css';
 import logo from '@/assets/logo.svg';
 import charlie from '@/assets/charlie.jpg';
@@ -12,6 +11,7 @@ import App from '@/pages/app-api/app';
 // import App from '@/pages/app-store/app';
 // import App from '@/pages/app-style/app';
 // import App from '@/router/app';
+import '@/styles/global.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -19,6 +19,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
+    <h1 className="text-primary text-4xl font-bold">
+      Hello world! I am using React
+    </h1>
     <img src={logo} className="logo" alt="logo" />
     <img src={charlie} className="charlie" alt="charlie" />
     <App />

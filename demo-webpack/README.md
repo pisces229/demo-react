@@ -65,6 +65,10 @@
 
 `npm install --save redux react-redux @reduxjs/toolkit`
 
+## Tailwindcss
+
+`npm install --save-dev tailwindcss postcss autoprefixer postcss-loader`
+
 ## Other
 
 `npm install --save axios`
@@ -118,3 +122,7 @@
 [2](https://icodex.me/docs/engineer/guides)
 
 [3](https://ithelp.ithome.com.tw/users/20107789/ironman/3332)
+
+[https://tailwindcss.com/docs/installation/using-postcss](https://tailwindcss.com/docs/installation/using-postcss)
+
+[Setup Tailwind CSS in a React project configured from scratch with Webpack](https://dev.to/ivadyhabimana/setup-tailwind-css-in-a-react-project-configured-from-scratch-a-step-by-step-guide-2jc8)

@@ -37,7 +37,7 @@ module.exports = {
             presets: [
               '@babel/preset-env',
               ['@babel/preset-react', { runtime: 'automatic' }],
-              '@babel/typescript', 
+              '@babel/typescript',
             ],
             plugins: ['@babel/plugin-transform-runtime'],
             cacheDirectory: true,
@@ -48,10 +48,7 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.(jpg|png|svg)$/,
