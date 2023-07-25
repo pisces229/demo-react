@@ -4,12 +4,12 @@ import '@/index.css';
 import logo from '@/assets/logo.svg';
 import charlie from '@/assets/charlie.jpg';
 // import App from '@/pages/app/app';
-import App from '@/pages/app-api/app';
+// import App from '@/pages/app-api/app';
 // import App from '@/pages/app-hook/app';
 // import App from '@/pages/app-router/app';
 // import App from '@/pages/app-service/app';
 // import App from '@/pages/app-store/app';
-// import App from '@/pages/app-style/app';
+import App from '@/pages/app-style/app';
 // import App from '@/router/app';
 import '@/styles/global.css';
 
@@ -19,9 +19,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <h1 className="text-primary text-4xl font-bold">
-      Hello world! I am using React
-    </h1>
     <img src={logo} className="logo" alt="logo" />
     <img src={charlie} className="charlie" alt="charlie" />
     <App />
