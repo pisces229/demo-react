@@ -20,7 +20,10 @@ if (process.env.NODE_ENV === 'development') {
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <h1 className={styles.textColor}>Index</h1>
+    <h1 className="text0">Index</h1>
+    <h1 className={styles.text1}>Index</h1>
+    <h1 className={styles.text2}>Index</h1>
+    <h1 className={styles.text3}>Index</h1>
     <App />
   </React.StrictMode>,
 );

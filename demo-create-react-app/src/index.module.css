@@ -1,4 +1,17 @@
-.textColor {
+/* @value size: 30px; */
+@value size from "./other.module.css";
+:global(.text0) {
+  color: blue;
+  font-size: size;
+}
+.text1 {
   color: red;
-  font-size: 30px;
+  font-size: size;
+}
+.text2 {
+  composes: text1;
+}
+.text3 {
+  font-size: size;
+  composes: text from './other.module.css';
 }
