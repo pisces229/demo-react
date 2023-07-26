@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import styles from './index.module.css';
 import App from './pages/app/App';
 // import App from './pages/app-api/app';
 // import App from './pages/app-hook/app';
@@ -19,6 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
+    <h1 className={styles.textColor}>Index</h1>
     <App />
   </React.StrictMode>,
 );
