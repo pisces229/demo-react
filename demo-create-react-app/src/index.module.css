@@ -1,5 +1,7 @@
 /* @value size: 30px; */
 @value size from "./other.module.css";
+/* @value otherModule: "./other.module.css";
+@value size from otherModule; */
 :global(.text0) {
   color: blue;
   font-size: size;
