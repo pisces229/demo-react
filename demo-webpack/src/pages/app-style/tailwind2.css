@@ -1,0 +1,25 @@
+@tailwind base; /* Preflight will be injected here */
+@tailwind components;
+@tailwind utilities;
+
+/* src_[path]_[name]_[class] */
+
+.src_pages_app-style_btn7-a {
+  @apply bg-red-500 p-3 text-white font-bold;
+}
+
+@layer base {
+  .src_pages_app-style_btn7-b {
+    @apply bg-blue-500 p-3 text-white font-bold;
+  }
+}
+@layer components {
+  .src_pages_app-style_btn7-c {
+    @apply bg-yellow-500 p-3 text-white font-bold;
+  }
+}
+@layer utilities {
+  .src_pages_app-style_btn7-u {
+    @apply bg-green-500 p-3 text-white font-bold;
+  }
+}

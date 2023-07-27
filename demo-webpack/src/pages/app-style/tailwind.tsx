@@ -1,4 +1,5 @@
-import './tailwind.css';
+import './tailwind1.css';
+import './tailwind2.css';
 // Responsive Design
 // Breakpoint prefix  Minimum width
 // sm	                640px
@@ -32,14 +33,16 @@ const Index = () => {
       <button className="pages_app-style_btn5">按鈕 5</button>
       <button className="pages_app-style_btn6">按鈕 6</button>
       <hr></hr>
-      <button className="pages_app-style_btn7-a bg-purple-500">按鈕 7-1</button>
-      <button className="pages_app-style_btn7-a pages_app-style_btn7-u">
+      <button className="src_pages_app-style_btn7-a bg-purple-500">
+        按鈕 7-1
+      </button>
+      <button className="src_pages_app-style_btn7-a src_pages_app-style_btn7-u">
         按鈕 7-2
       </button>
-      <button className="pages_app-style_btn7-b pages_app-style_btn7-c">
+      <button className="src_pages_app-style_btn7-b src_pages_app-style_btn7-c">
         按鈕 7-2
       </button>
-      <button className="pages_app-style_btn7-b pages_app-style_btn7-c pages_app-style_btn7-u bg-purple-500">
+      <button className="src_pages_app-style_btn7-b src_pages_app-style_btn7-c src_pages_app-style_btn7-u bg-purple-500">
         按鈕 7-3
       </button>
       <hr></hr>

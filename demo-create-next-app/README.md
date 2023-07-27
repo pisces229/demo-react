@@ -37,3 +37,11 @@
 
 [NextAuth.js](https://github.com/nextauthjs/next-auth)
 
+## Image
+
+[Docker Node](https://hub.docker.com/_/node/)
+
+```
+docker/podman build -f Dockerfile -t demo.create.next.app .
+docker/podman run -d -p 3000:3000 demo.create.next.app
+```

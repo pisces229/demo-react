@@ -1,0 +1,20 @@
+@tailwind base; /* Preflight will be injected here */
+@tailwind components;
+@tailwind utilities;
+
+/* src_[path]_[name]_[class] */
+
+.src_pages_app-style_btn4 {
+  @apply bg-green-500 p-3 text-white font-bold;
+}
+
+@layer components {
+  .src_pages_app-style_btn5 {
+    @apply bg-green-500 p-3 text-white font-bold;
+  }
+}
+
+.src_pages_app-style_btn6 {
+  @apply p-3 text-white font-bold hover:bg-yellow-500;
+  background-color: theme(colors.green.500);
+}

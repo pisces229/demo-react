@@ -11,7 +11,7 @@ const CONFIG = {
   ENDPOINT: '',
 };
 switch (process.env.NODE_ENV) {
-  case 'prod': {
+  case 'production': {
     CONFIG.ENVIRONMENT = 'PRODUCTION';
     break;
   }
