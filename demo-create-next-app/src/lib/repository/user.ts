@@ -1,4 +1,7 @@
 import { connectionPoolPromise } from '@/lib/utility/database';
+import getConfig from 'next/config';
+
+const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
 
 type User = {
   row: string;
@@ -9,6 +12,8 @@ type User = {
 };
 
 export const getUser = async () => {
+  console.log('serverRuntimeConfig', serverRuntimeConfig);
+  console.log('publicRuntimeConfig', publicRuntimeConfig);
   let result: User | undefined;
   try {
     const connectionPool = await connectionPoolPromise;

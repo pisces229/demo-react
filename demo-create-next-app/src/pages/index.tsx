@@ -6,6 +6,9 @@ import styles from '@/styles/index.module.css';
 
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
 
+console.log('serverRuntimeConfig', serverRuntimeConfig);
+console.log('publicRuntimeConfig', publicRuntimeConfig);
+
 const title = `${publicRuntimeConfig.ENVIRONMENT}-${publicRuntimeConfig.NAME}`;
 
 const Index: NextPageWithLayout = () => {

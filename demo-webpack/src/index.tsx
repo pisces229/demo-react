@@ -19,8 +19,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <img src={logo} className="logo" alt="logo" />
-    <img src={charlie} className="charlie" alt="charlie" />
+    <h1 className="index_title">Title</h1>
+    <img src={logo} className="index_logo" alt="logo" />
+    <img src={charlie} className="index_charlie" alt="charlie" />
     <App />
   </React.StrictMode>,
 );

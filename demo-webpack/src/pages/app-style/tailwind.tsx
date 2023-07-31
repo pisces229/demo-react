@@ -26,23 +26,17 @@ const Index = () => {
       >
         Dark Mode
       </button>
-      <button className="btn1 bg-blue-500">按鈕 1</button>
-      <button className="btn2 bg-blue-500">按鈕 2</button>
-      <button className="btn3">按鈕 3</button>
-      <button className="pages_app-style_btn4">按鈕 4</button>
-      <button className="pages_app-style_btn5">按鈕 5</button>
-      <button className="pages_app-style_btn6">按鈕 6</button>
+      <button className="index_btn1 bg-blue-500">按鈕 1</button>
+      <button className="index_btn2 bg-blue-500">按鈕 2</button>
+      <button className="index_btn3">按鈕 3</button>
+      <button className="app-style_btn4">按鈕 4</button>
+      <button className="app-style_btn5">按鈕 5</button>
+      <button className="app-style_btn6">按鈕 6</button>
       <hr></hr>
-      <button className="src_pages_app-style_btn7-a bg-purple-500">
-        按鈕 7-1
-      </button>
-      <button className="src_pages_app-style_btn7-a src_pages_app-style_btn7-u">
-        按鈕 7-2
-      </button>
-      <button className="src_pages_app-style_btn7-b src_pages_app-style_btn7-c">
-        按鈕 7-2
-      </button>
-      <button className="src_pages_app-style_btn7-b src_pages_app-style_btn7-c src_pages_app-style_btn7-u bg-purple-500">
+      <button className="app-style_btn7-a bg-purple-500">按鈕 7-1</button>
+      <button className="app-style_btn7-a app-style_btn7-u">按鈕 7-2</button>
+      <button className="app-style_btn7-b app-style_btn7-c">按鈕 7-2</button>
+      <button className="app-style_btn7-b app-style_btn7-c app-style_btn7-u bg-purple-500">
         按鈕 7-3
       </button>
       <hr></hr>

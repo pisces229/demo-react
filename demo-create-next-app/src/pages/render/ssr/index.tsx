@@ -21,7 +21,8 @@ type IndexProps = {
 };
 
 const Index: NextPage<IndexProps> = (props: IndexProps) => {
-  console.log(publicRuntimeConfig.value);
+  console.log('SSR.NextPage');
+  console.log('publicRuntimeConfig', publicRuntimeConfig);
   const [user, setUser] = useState<User | undefined>(props?.user);
   return (
     <>
@@ -40,8 +41,8 @@ const Index: NextPage<IndexProps> = (props: IndexProps) => {
 export default Index;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  console.log(serverRuntimeConfig.value);
   console.log('SSR.getServerSideProps');
+  console.log('serverRuntimeConfig', serverRuntimeConfig);
   context.res.setHeader('Cache-Control', 'public, s-maxage=1, stale-while-revalidate=59');
   context.res.setHeader('Set-Cookie', [
     'Page1=1; Path=/; HttpOnly; SameSite=Strict;',
@@ -71,6 +72,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   //   }
   // }
   data = await getUser();
+  // if (!data) {
+  //   return {
+  //     notFound: true,
+  //   }
+  // }
   return {
     props: {
       user: data,

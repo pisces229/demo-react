@@ -1,33 +1,39 @@
+:root {
+  --color: red;
+}
+
 @tailwind base; /* Preflight will be injected here */
 @tailwind components;
 @tailwind utilities;
 
-.btn1 {
+/* Adding Custom Styles */
+/* [prefix]_[class] */
+
+.index_btn1 {
   @apply bg-red-500 p-3 text-white font-bold;
 }
 
 @layer components {
-  .btn2 {
+  .index_btn2 {
     @apply bg-red-500 p-3 text-white font-bold;
   }
 }
 
-.btn3 {
+.index_btn3 {
   @apply p-3 text-white font-bold hover:bg-green-500;
   background-color: theme(colors.red.500);
 }
 
-h3 {
-  font-weight: bold;
-  font-size: xx-small;
-  /* font-size: xx-large; */
+.index_title {
+  color: var(--color);
 }
-.logo {
+
+.index_logo {
   height: 10vmin;
   pointer-events: none;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .logo {
+  .index_logo {
     animation: logo-spin infinite 20s linear;
   }
 }
@@ -39,7 +45,7 @@ h3 {
     transform: rotate(360deg);
   }
 }
-.charlie {
+.index_charlie {
   height: 10vmin;
   pointer-events: none;
 }

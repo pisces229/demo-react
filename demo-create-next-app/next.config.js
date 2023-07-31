@@ -20,6 +20,8 @@ switch (process.env.NODE_ENV) {
   }
 }
 
+console.log(process.env.NODE_ENV);
+
 // https://nextjs.org/docs/api-reference/next.config.js/exportPathMap
 const nextConfig = {
   env: {

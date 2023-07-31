@@ -49,6 +49,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
       console.error(e);
     }
   }
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
   return {
     props: {
       user: data,

@@ -32,3 +32,11 @@
 axios.defaults.xsrfCookieName: 'XSRF-TOKEN', // 名稱請與儲存在 cookies 相同，axios 預設是 'XSRF-TOKEN'
 axios.defaults.xsrfHeaderName = 'X-XSRF-TOKEN'; // 這一個主要是請求時，會帶在 header 的名稱，建議與後端溝通，有些後端接收是接收 XSRF-TOKEN，axios 預設是 'X-XSRF-TOKEN'
 ```
+
+## Static Web Server
+
+[Azure Static Web Apps](https://learn.microsoft.com/en-us/azure/static-web-apps/overview)
+
+[Nginx](https://www.nginx.com/)
+
+[Caddy](https://caddyserver.com/)

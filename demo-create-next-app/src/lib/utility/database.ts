@@ -1,12 +1,16 @@
 import sql, { Connection } from 'mssql';
 
-// https://tediousjs.github.io/node-mssql/
+console.log('APP_VALUE', process.env.APP_VALUE);
 
 let config = {
-  user: 'sa',
-  password: '1qaz!QAZ',
-  server: '127.0.0.1',
-  database: 'test',
+  // server: '127.0.0.1',
+  // database: 'test',
+  // user: 'sa',
+  // password: '1qaz!QAZ',
+  server: process.env.APP_CONNECTION_HOST!,
+  database: process.env.APP_CONNECTION_DBNM!,
+  user: process.env.APP_CONNECTION_USER!,
+  password: process.env.APP_CONNECTION_MIMA!,
   options: {
     trustServerCertificate: true,
     encrypt: true,
