@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import './tailwind.css';
+@import './tailwind.0.css';
+@import './tailwind.1.css';
+@import './tailwind.2.css';
 
 * {
   padding: 0;

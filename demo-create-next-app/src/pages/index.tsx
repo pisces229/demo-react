@@ -1,6 +1,6 @@
 import { NextPageWithLayout } from 'next';
 import Head from 'next/head';
-import Image from 'next/image'
+import Image from 'next/image';
 import getConfig from 'next/config';
 import styles from '@/styles/index.module.css';
 
@@ -20,9 +20,9 @@ const Index: NextPageWithLayout = () => {
         console.log(await res.json());
       }
     });
-  }
+  };
   const onClickTest = async () => {
-    fetch('/api/user',{
+    fetch('/api/user', {
       credentials: 'include',
     }).then(async (res) => {
       console.log(res);
@@ -30,7 +30,7 @@ const Index: NextPageWithLayout = () => {
         console.log(await res.json());
       }
     });
-  }
+  };
   return (
     <>
       <Head>
@@ -38,31 +38,28 @@ const Index: NextPageWithLayout = () => {
         <title>{title}</title>
       </Head>
       <main>
-        <h1 className="text-3xl font-bold underline">
-          Hello world!
-        </h1>
+        <h1 className="text-3xl font-bold underline">Hello world!</h1>
         <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
           <div className="md:flex">
             <div className="md:shrink-0">
               <div className="h-48 w-full object-cover md:h-full md:w-48">
-              <Image
-                className="h-48 w-full object-cover md:h-full md:w-48"
-                src="photo-1637734433731-621aca1c8cb6.avif"
-                alt="Modern building architecture"
-                width={0}
-                height={0}
-              />
+                <Image
+                  className="h-48 w-full object-cover md:h-full md:w-48"
+                  src="photo-1637734433731-621aca1c8cb6.avif"
+                  alt="Modern building architecture"
+                  width={0}
+                  height={0}
+                />
               </div>
             </div>
             <div className="p-8">
-              <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                Company retreats
-              </div>
+              <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Company retreats</div>
               <a href="#" className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
                 Incredible accommodation for your team
               </a>
               <p className="mt-2 text-slate-500">
-                Looking to take your team away on a retreat to enjoy awesome food and take in some sunshine? We have a list of places to do just that.
+                Looking to take your team away on a retreat to enjoy awesome food and take in some sunshine? We have a
+                list of places to do just that.
               </p>
             </div>
           </div>
@@ -74,6 +71,11 @@ const Index: NextPageWithLayout = () => {
           <button onClick={onClickApp('POST')}>POST</button>
           <button onClick={onClickApp('PUT')}>PUT</button>
           <button onClick={onClickTest}>Test</button>
+        </div>
+        <div>
+          <button className="index_btn0 bg-green-500">按鈕 1</button>
+          <button className="index_btn1 index_btn2">按鈕 12</button>
+          <button className="index_btn2 index_btn1">按鈕 21</button>
         </div>
       </main>
     </>
