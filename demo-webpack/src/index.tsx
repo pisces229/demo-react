@@ -11,7 +11,6 @@ import charlie from '@/assets/charlie.jpg';
 // import App from '@/pages/app-store/app';
 import App from '@/pages/app-style/app';
 // import App from '@/router/app';
-import '@/styles/global.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -23,6 +22,10 @@ root.render(
     <img src={logo} className="index_logo" alt="logo" />
     <img src={charlie} className="index_charlie" alt="charlie" />
     <App />
+    <hr />
+    <button className="index_btn0 bg-green-500">按鈕 1</button>
+    <button className="index_btn1 index_btn2">按鈕 12</button>
+    <button className="index_btn2 index_btn1">按鈕 21</button>
   </React.StrictMode>,
 );
 

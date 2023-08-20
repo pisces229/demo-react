@@ -1,27 +1,10 @@
+@import './tailwind.css';
+@import './tailwind.0.css';
+@import './tailwind.1.css';
+@import './tailwind.2.css';
+
 :root {
   --color: red;
-}
-
-@tailwind base; /* Preflight will be injected here */
-@tailwind components;
-@tailwind utilities;
-
-/* Adding Custom Styles */
-/* [prefix]_[class] */
-
-.index_btn1 {
-  @apply bg-red-500 p-3 text-white font-bold;
-}
-
-@layer components {
-  .index_btn2 {
-    @apply bg-red-500 p-3 text-white font-bold;
-  }
-}
-
-.index_btn3 {
-  @apply p-3 text-white font-bold hover:bg-green-500;
-  background-color: theme(colors.red.500);
 }
 
 .index_title {

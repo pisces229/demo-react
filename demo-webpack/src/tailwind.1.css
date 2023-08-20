@@ -1,0 +1,7 @@
+@import './tailwind.css';
+
+@layer components {
+  .index_btn1 {
+    @apply p-3 text-white font-bold bg-red-500;
+  }
+}
