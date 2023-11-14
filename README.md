@@ -41,3 +41,6 @@ axios.defaults.xsrfHeaderName = 'X-XSRF-TOKEN'; // 這一個主要是請求時�
 
 [Caddy](https://caddyserver.com/)
 
+## ENVIRONMENT
+
+`$Env:ENVIRONMENT='Staging'`

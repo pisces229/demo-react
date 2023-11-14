@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../node_modules/@prisma/app1-client"
+  output   = "./prisma-client/app1-client"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_APP1_URL")
+}
+
+model app1 {
+  row      BigInt   @id(map: "pk__app1") @default(autoincrement())
+  id       String   @db.VarChar(50)
+  name     String   @db.NVarChar(50)
+  birthday DateTime @db.Date
+  age      Int
+  deadline DateTime @db.DateTime
+}
