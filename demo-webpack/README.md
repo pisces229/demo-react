@@ -1,101 +1,116 @@
 ## Demo Webpack
-
-`npm init`
+```
+npm init
+```
 
 ## webpack 
+```
+npm install --save-dev webpack webpack-cli webpack-dev-server
+npm install --save-dev webpack-bundle-analyzer
 
-`npm install --save-dev webpack webpack-cli webpack-dev-server`
-`npm install --save-dev webpack-bundle-analyzer`
-
-`npm install --save-dev clean-webpack-plugin`
-`npm install --save-dev copy-webpack-plugin`
-`npm install --save-dev html-webpack-plugin`
-`npm install --save-dev css-minimizer-webpack-plugin`
-`npm install --save-dev mini-css-extract-plugin`
-`npm install --save-dev terser-webpack-plugin`
-`npm install --save-dev compression-webpack-plugin`
-`npm install --save-dev fork-ts-checker-webpack-plugin`
-`npm install --save-dev eslint-webpack-plugin`
+npm install --save-dev clean-webpack-plugin
+npm install --save-dev copy-webpack-plugin
+npm install --save-dev html-webpack-plugin
+npm install --save-dev css-minimizer-webpack-plugin
+npm install --save-dev mini-css-extract-plugin
+npm install --save-dev terser-webpack-plugin
+npm install --save-dev compression-webpack-plugin
+npm install --save-dev fork-ts-checker-webpack-plugin
+npm install --save-dev eslint-webpack-plugin
+```
 
 ## babel
 
-`npm install --save-dev babel-loader`
-`npm install --save-dev @babel/core`
-`npm install --save-dev @babel/preset-env`
-`npm install --save-dev @babel/preset-typescript`
-`npm install --save-dev @babel/preset-react`
-`npm install --save-dev @babel/preset-flow`
+```
+npm install --save-dev babel-loader
+npm install --save-dev @babel/core
+npm install --save-dev @babel/preset-env
+npm install --save-dev @babel/preset-typescript
+npm install --save-dev @babel/preset-react
+npm install --save-dev @babel/preset-flow
+```
 
 ## loader
 
-`npm install --save-dev source-map-loader`
-`npm install --save-dev css-loader style-loader`
+```
+npm install --save-dev source-map-loader
+npm install --save-dev css-loader style-loader
+```
 
 ## typescript
-
-`npm install --save-dev typescript`
-`npm install --save-dev @types/node`
+```
+npm install --save-dev typescript
+npm install --save-dev @types/node
+```
 
 ## browserslist
-
-`npm install --save-dev browserslist`
+```
+npm install --save-dev browserslist
+```
 
 ## source-map-explorer
-
-`npm install source-map-explorer`
+```
+npm install source-map-explorer
+```
 
 ## Eslint
-
-`npm install --save-dev eslint`
-`npx eslint --init`
-`npm install --save-dev eslint-plugin-react`
-`npm install --save-dev eslint-plugin-react-hooks`
+```
+npm install --save-dev eslint
+npx eslint --init
+npm install --save-dev eslint-plugin-react
+npm install --save-dev eslint-plugin-react-hooks
+```
 
 ## Prettier
-
-`npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier`
+```
+npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
+```
 
 ## React
+```
+npm install --save react react-dom
+npm install --save-dev @types/react @types/react-dom
 
-`npm install --save react react-dom`
-`npm install --save-dev @types/react @types/react-dom`
+npm install --save react-router react-router-dom
+npm install --save-dev @types/react-router @types/react-router-dom
 
-`npm install --save react-router react-router-dom`
-`npm install --save-dev @types/react-router @types/react-router-dom`
-
-`npm install --save redux react-redux @reduxjs/toolkit`
-
+npm install --save redux react-redux @reduxjs/toolkit
+```
 ## Tailwindcss
-
-`npm install --save-dev tailwindcss postcss autoprefixer postcss-loader`
+```
+npm install --save-dev tailwindcss postcss autoprefixer postcss-loader
+```
 
 ## Other
+```npm install --save axios
 
-`npm install --save axios`
+npm install --save file-saver
+npm install --save-dev @types/file-saver
 
-`npm install --save file-saver`
-`npm install --save-dev @types/file-saver`
+npm install --save immer
 
-`npm install --save immer`
+npm install --save styled-components
+npm install --save-dev @types/styled-components
 
-`npm install --save styled-components`
-`npm install --save-dev @types/styled-components`
-
-`npm install --save zustand`
+npm install --save zustand
+```
 
 ## web-vitals
-
-`npm install --dev-save web-vitals`
+```
+npm install --dev-save web-vitals
+```
 
 ## MSW
-
-`npm install --save-dev msw`
+```
+npm install --save-dev msw
+```
 
 ## Testing
-
-`npm install --save-dev jest @types/jest ts-jest jest-environment-jsdom`
-`npm install --save-dev @testing-library/jest-dom`
-`npm install --save-dev @testing-library/react`
+```
+npm install --save-dev jest @types/jest ts-jest jest-environment-jsdom
+npm install --save-dev @testing-library/jest-dom
+npm install --save-dev @testing-library/react
+```
 
 ## Reference
 
