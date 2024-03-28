@@ -34,11 +34,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              '@babel/preset-env',
-              ['@babel/preset-react', { runtime: 'automatic' }],
-              '@babel/typescript',
-            ],
+            presets: ['@babel/typescript', ['@babel/preset-react', { runtime: 'automatic' }], '@babel/preset-env'],
             plugins: ['@babel/plugin-transform-runtime'],
             cacheDirectory: true,
             cacheCompression: false,
@@ -86,6 +82,7 @@ module.exports = {
       templateParameters: {
         ENVIRONMENT: 'DEVELOPMENT',
       },
+      publicPath: '/',
     }),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].css',
