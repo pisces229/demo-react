@@ -15,6 +15,7 @@ const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 console.log('[webpack.prod]');
 
 module.exports = {
+  target: ['browserslist'],
   mode: 'production',
   // stats: 'detailed',
   entry: {
@@ -32,7 +33,6 @@ module.exports = {
       '@': path.resolve(__dirname, 'src'),
     },
   },
-  target: ['browserslist'],
   module: {
     rules: [
       {
@@ -41,11 +41,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              '@babel/preset-env',
-              ['@babel/preset-react', { runtime: 'automatic' }],
-              '@babel/typescript',
-            ],
+            presets: ['@babel/typescript', ['@babel/preset-react', { runtime: 'automatic' }], '@babel/preset-env'],
             plugins: ['@babel/plugin-transform-runtime'],
             cacheDirectory: true,
             cacheCompression: false,
@@ -81,7 +77,7 @@ module.exports = {
     minimizer: [
       new CssMinimizerPlugin(),
       new TerserPlugin({
-        test: /\.js(\?.*)?$/i,
+        test: /\.js(\?.*)?$/,
         extractComments: false,
         terserOptions: {
           compress: {
@@ -123,6 +119,7 @@ module.exports = {
       templateParameters: {
         ENVIRONMENT: 'Porduction',
       },
+      publicPath: '/',
     }),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash:8].css',
